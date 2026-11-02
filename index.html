@@ -201,6 +201,7 @@ input[type=number]{font-variant-numeric:tabular-nums}
     <button type="button" id="nCtr" aria-current="false">Contrats</button>
     <button type="button" id="nAv" aria-current="false">Avenants</button>
     <button type="button" id="nFac" aria-current="false">Factures</button>
+    <button type="button" id="nTar" aria-current="false">Tarifs</button>
     <button type="button" id="nSet" aria-current="false">Réglages</button>
   </nav>
   </div>
@@ -386,9 +387,50 @@ const DEF_ACM = [
     desc: "Objectifs : accompagner le stagiaire BAFD dans la réussite de son stage pratique ; l'aider à exercer pleinement les fonctions de direction ; préparer son bilan de stage. Contenu : appui à la construction et à la mise en œuvre du projet pédagogique, accompagnement dans la conduite de l'équipe et la gestion administrative, entretiens de tutorat réguliers, observation et retours sur sa pratique, aide à la rédaction du bilan de stage." }];
 const DEF_FRAIS = { pkm: 0.6, repas: 20, nuit: 90 };
 const acmDur = id => ACM_DUR.find(x => x.id === id) || ACM_DUR[2];
-const acmMode = it => (ACM_GRP[it.grp] || {}).mode || it.mode || "ind";
-const acmNat = it => (ACM_GRP[it.grp] || {}).nature || it.nature || "coaching";
+const acmMode = it => it.gmode || (ACM_GRP[it.grp] || {}).mode || it.mode || "ind";
+const acmNat = it => it.gnat || (ACM_GRP[it.grp] || {}).nature || it.nature || "coaching";
 const acmJours = du => Math.round(du.h / 7 * 100) / 100;
+/* Grille tarifaire de la page Tarifs (même appareil, même stockage) : prestations, prix, durées et descriptions */
+const GRID_KEY = "kalailet_tarifs";
+const GFAM_OF = { groupe: "f1", court: "f1", inter: "f1", coach: "f2", terrain: "f3", audit: "f4", parcours: "f4" };
+const GCAT = { groupe: ["col", "formation"], court: ["col", "formation"], inter: ["col", "formation"], parcours: ["col", "formation"], coach: ["ind", "coaching"], terrain: ["ind", "accompagnement"], audit: ["ind", "conseil"] };
+const GFAM0 = { acm: { f1: "Formation en groupe", f2: "Coaching personnalisé", f3: "Accompagnement sur le terrain", f4: "Diagnostic et parcours" }, com: { f1: "Formation en groupe", f2: "Coaching commercial", f3: "Accompagnement en clientèle", f4: "Diagnostic et parcours" } };
+let GRID = null;
+function gridLoad() { try { const j = JSON.parse(localStorage.getItem(GRID_KEY) || "null"); GRID = j && Array.isArray(j.lines) && j.lines.length ? j : null; } catch (e) { GRID = null; } return GRID; }
+const gNum = v => String(Math.round(v * 10) / 10).replace(".", ",");
+const gHrs = h => h % 1 === 0 ? h + " h" : Math.floor(h) + " h " + String(Math.round(h % 1 * 60)).padStart(2, "0");
+const gAuto = h => h >= 35 && h % 35 === 0 ? (h / 35) + (h / 35 > 1 ? " semaines" : " semaine") : h >= 7 && (h * 2) % 7 === 0 ? gNum(h / 7) + (h / 7 >= 2 ? " jours" : " jour") : h === 3.5 ? "½ journée" : gHrs(h);
+function gDur(l) {
+  const h = +l.h || 0, lab = (l.dur && String(l.dur).trim()) || gAuto(h), hh = gHrs(h);
+  const txt = lab === hh ? (h === 1 ? "1 heure" : h % 1 === 0 ? h + " heures" : hh) : lab.replace(/ /g, "") === hh.replace(/ /g, "") ? lab : lab + " (" + hh + ")";
+  return { id: "", label: lab, txt, h };
+}
+function gridItems(br) {
+  if (!GRID) return [];
+  const fam = (GRID.aff && GRID.aff[br] && GRID.aff[br].fam) || {}, order = Object.keys(GCAT);
+  return GRID.lines.filter(l => l.pole === br && GCAT[l.cat]).map(l => {
+    const [mode, nature] = GCAT[l.cat], f = GFAM_OF[l.cat];
+    return { id: "g:" + l.id, grid: true, br, fam: f, famN: "0" + f.slice(1), famLabel: (fam[f] && fam[f].t) || GFAM0[br][f], famPub: (fam[f] && fam[f].p) || "", cat: l.cat, label: String(l.titre || "Prestation"), note: l.note || "", prix: +l.prix || 0, desc: l.desc || "", gmode: mode, gnat: nature, du: gDur(l), part: l.unite === "participant", min: Math.max(1, +l.min || 1) };
+  }).sort((a, b) => a.fam.localeCompare(b.fam) || order.indexOf(a.cat) - order.indexOf(b.cat));
+}
+const gridFind = id => typeof id === "string" && id.startsWith("g:") ? [...gridItems("acm"), ...gridItems("com")].find(t => t.id === id) || null : null;
+const gPrice = it => money(+it.prix || 0) + " HT" + (it.part ? " par participant" : "");
+function gridOptions(br, p) {
+  const L = gridItems(br), fams = [...new Set(L.map(t => t.fam))];
+  return fams.map(f => { const G = L.filter(t => t.fam === f), A = G[0]; return `<optgroup label="${esc(A.famN + " " + A.famLabel)}">${G.map(t => opt(t.id, p.typeId, `${t.label} · ${t.du.label} · ${money(t.prix)}${t.part ? " /pers." : ""}`)).join("")}</optgroup>`; }).join("");
+}
+function itemHint(it) {
+  if (it.grid) return `${esc(it.famN + " " + it.famLabel)}${it.famPub ? " · " + esc(it.famPub) : ""} · ${MODE[it.gmode].toLowerCase()} · ${esc(NATURES[it.gnat])} · ${esc(it.du.label)} · <b>${gPrice(it)}</b>${it.part ? ` (${it.min} au minimum, reportés au chiffrage)` : ", reporté au chiffrage"}${it.note ? `<br><span style="color:var(--ink-3)">${esc(it.note)}</span>` : ""}`;
+  const G = ACM_GRP[it.grp];
+  return `${G && G.n ? G.n + " " : ""}${esc(G ? G.label : "")}${G && G.pub ? " · " + esc(G.pub) : ""} · ${MODE[acmMode(it)].toLowerCase()} · ${esc(NATURES[acmNat(it)])} · ${acmDur(it.dur).label} · <b>${money(+it.prix || 0)} HT</b>, reporté au chiffrage`;
+}
+function gridBanner() {
+  const a = gridItems("acm").length, c = gridItems("com").length;
+  const go = IN_CLAUDE ? "" : `<a class="btn sm gold" href="tarifs.html" style="text-decoration:none;justify-self:start">Ouvrir Tarifs</a>`;
+  return GRID ? `<div class="sigbox"><p class="done">Grille tarifaire reliée : ${a} prestation${a > 1 ? "s" : ""} Animation, ${c} Commerce</p><p class="hint">Tes devis proposent ces prestations dans « Choisir dans ma grille tarifaire », avec leur prix, leur durée et leur description, reprises dans le contrat et la facture. Pour les modifier, ouvre la page Tarifs.</p>${go}</div>`
+    : (IN_CLAUDE ? "" : `<div class="sigbox"><p class="hint">Ouvre la page Tarifs une première fois : ta grille tarifaire (Animation et Commerce) sera alors proposée dans tes devis.</p>${go}</div>`);
+}
+gridLoad();
 const DEF_TARIFS = { col: { j1: 950, j2: 1800, s1: 4250, s2: 8000 }, ind: { j1: 600, j2: 1150, s1: 2700, s2: 5100 } };
 const OLD_ANNUL = "Toute annulation ou tout report à l'initiative du client doit être notifié par écrit. Notifié moins de 15 jours avant le début de la prestation, 50 % du montant HT reste dû ; moins de 7 jours avant, 100 % du montant HT reste dû. Toute prestation commencée est due en totalité.";
 const ANNUL = "Toute annulation ou tout report à l'initiative du client doit être notifié par écrit. Pour toute notification d'annulation inférieure à 3 jours ouvrés avant le début de la prestation, 30 % du montant HT sera dû. Toute prestation commencée est due en totalité.";
@@ -2598,12 +2640,12 @@ function bodyClient(D) {
     ${pub ? `<div class="row">${inp("client.bc", "N° d'engagement / bon de commande")}${inp("client.chorus", "Service exécutant Chorus Pro", { small: "(si connu)" })}</div><p class="hint">Structure publique : délai global de paiement de 30 jours, facture déposée sur Chorus Pro. Les mentions s'adaptent seules.</p>` : ""}`;
 }
 function acmOptions(p) {
-  const it = t => opt(t.id, p.typeId, `${t.label} · ${acmDur(t.dur).label} · ${money(+t.prix || 0)}`);
-  return Object.entries(ACM_GRP).map(([g, G]) => { const L = SET.acm.filter(t => t.grp === g); return L.length ? `<optgroup label="${esc((G.n ? G.n + " " : "") + G.label + (G.mode ? " · " + MODE[G.mode].toLowerCase() : ""))}">${L.map(it).join("")}</optgroup>` : ""; }).join("")
+  const it = t => opt(t.id, p.typeId, `${t.label} · ${acmDur(t.dur).label} · ${money(+t.prix || 0)}`), hasG = gridItems("acm").length > 0;
+  return gridOptions("acm", p) + Object.entries(ACM_GRP).map(([g, G]) => { const L = SET.acm.filter(t => t.grp === g); return L.length ? `<optgroup label="${esc((hasG ? "Ancienne grille · " : "") + (G.n ? G.n + " " : "") + G.label + (G.mode ? " · " + MODE[G.mode].toLowerCase() : ""))}">${L.map(it).join("")}</optgroup>` : ""; }).join("")
     + `<optgroup label="Autre"><option value="_libre"${p.typeId === "_libre" ? " selected" : ""}>Prestation personnalisée (saisie libre)</option></optgroup>`;
 }
 function descBlock(D, p, i) {
-  const P = `prestas.${i}`, it = SET.acm.find(t => t.id === p.typeId) || (SET.cat[p.branche] && SET.cat[p.branche][p.mode] || []).find(t => t.id === p.typeId);
+  const P = `prestas.${i}`, it = gridFind(p.typeId) || SET.acm.find(t => t.id === p.typeId) || (SET.cat[p.branche] && SET.cat[p.branche][p.mode] || []).find(t => t.id === p.typeId);
   const conv = p.nature === "formation" && !(D.st && D.st.on);
   return `<div class="sigbox" style="background:var(--soft,#fbf8f3)">
     ${ta(P + ".desc", "Description : objectifs et contenu").replace("<textarea ", '<textarea style="min-height:170px" ')}
@@ -2626,10 +2668,10 @@ function prestaCard(D, p, i) {
     <p class="lab">Branche</p>
     <div class="seg">${Object.entries(BR).map(([k, v]) => `<button type="button" data-seg="${P}.branche" data-v="${k}" aria-pressed="${p.branche === k}">${v}</button>`).join("")}</div>`;
   if (p.branche === "acm") {
-    const it = SET.acm.find(t => t.id === p.typeId), lib = p.typeId === "_libre", G = it && ACM_GRP[it.grp];
+    const it = gridFind(p.typeId) || SET.acm.find(t => t.id === p.typeId), lib = p.typeId === "_libre";
     return `<div class="sigbox">${head}
       <label class="f">Prestation<select id="d_${P.replace(".", "_")}_acm" data-acmpick="${i}"><option value="">- Choisir dans ma grille tarifaire -</option>${acmOptions(p)}</select></label>
-      ${it ? `<p class="hint">${G && G.n ? G.n + " " : ""}${esc(G ? G.label : "")}${G && G.pub ? " · " + esc(G.pub) : ""} · ${MODE[acmMode(it)].toLowerCase()} · ${esc(NATURES[acmNat(it)])} · ${acmDur(it.dur).label} · <b>${money(+it.prix || 0)} HT</b>, reporté au chiffrage</p>` : ""}
+      ${it ? `<p class="hint">${itemHint(it)}</p>` : ""}
       ${!it && p.typeId && !lib ? `<p class="hint">Prestation de l'ancien catalogue : choisis-la dans la grille pour mettre à jour le prix, ou garde-la telle quelle.</p>` : ""}
       ${lib ? `<div class="sigbox">
         <p class="lab">Prestation personnalisée</p>
@@ -2645,8 +2687,15 @@ function prestaCard(D, p, i) {
       ${prestaPractical(D, p, i)}
     </div>`;
   }
-  const L = alpha(SET.cat[p.branche][p.mode]), T = SET.tarifs[p.mode];
-  return `<div class="sigbox">${head}
+  const L = alpha(SET.cat[p.branche][p.mode]), T = SET.tarifs[p.mode], GL = gridItems(p.branche), git = gridFind(p.typeId);
+  const pick = GL.length ? `<label class="f">Prestation<select id="d_${P.replace(".", "_")}_grid" data-acmpick="${i}"><option value="">- Choisir dans ma grille tarifaire -</option>${gridOptions(p.branche, p)}</select></label>` : "";
+  if (git) return `<div class="sigbox">${head}${pick}
+    <p class="hint">${itemHint(git)}</p>
+    ${inp(P + ".objet", "Intitulé de la prestation")}
+    ${descBlock(D, p, i)}
+    ${prestaPractical(D, p, i)}
+  </div>`;
+  return `<div class="sigbox">${head}${pick}${GL.length ? `<p class="lab">Ou composer librement</p>` : ""}
     <p class="lab">Format</p>
     <div class="seg">${Object.entries(MODE).map(([k, v]) => `<button type="button" data-seg="${P}.mode" data-v="${k}" aria-pressed="${p.mode === k}">${v}</button>`).join("")}</div>
     <label class="f">Type de prestation - ${BR[p.branche]}, ${MODE[p.mode].toLowerCase()}
@@ -2850,9 +2899,10 @@ function applyAcm(D, p, it) {
   p.typeId = it.id; p.mode = acmMode(it); p.nature = acmNat(it);
   if (!p.objet || p.objet === prevL) p.objet = it.label; p._lastType = it.label;
   if (!p.desc || p.desc === prevD) p.desc = it.desc || ""; p._descSrc = it.desc || "";
-  applyDur(p, acmDur(it.dur));
+  applyDur(p, it.du || acmDur(it.dur));
   if (p.nature === "formation" && !p.moda) p.moda = MODA;
-  upsertForfait(D, p, it.prix, p.objet || it.label);
+  const fl = upsertForfait(D, p, it.prix, p.objet || it.label);
+  if (it.grid) { if (it.part) { fl.qte = it.min; fl.unite = "participant"; } else fl.qte = 1; }
 }
 function dupPresta(D, i) {
   const p = D.prestas[i], q = clone(p); q.id = uid();
@@ -3093,7 +3143,7 @@ function renderSet() {
     <div class="addrow"><input id="newSt" placeholder="Nouveau type de structure"><label class="check" style="font-size:12px"><input type="checkbox" id="newStPub">Public</label><button class="btn sm" type="button" id="addSt">Ajouter</button></div>`)}
   ${sec("cat", "Prestations et tarifs", `
     <div class="seg">${Object.entries(BR).map(([k, v]) => `<button type="button" data-setbr="${k}" aria-pressed="${SETBR === k}">${v}</button>`).join("")}</div>
-    ${SETBR === "acm" ? acmSettings() : `${catBlock("ind")}${catBlock("col")}
+    ${gridBanner()}${SETBR === "acm" ? acmSettings() : `${catBlock("ind")}${catBlock("col")}
     <p class="lab">Tarifs des forfaits Commerce</p>
     <p class="hint">Prix HT par défaut, modifiables ensuite ligne par ligne.</p>
     <div class="tarifs"><span></span>${DUR.map(u => `<b>${u.label.toUpperCase()}</b>`).join("")}
@@ -3143,6 +3193,7 @@ document.addEventListener("click", async e => {
   if (b.id === "nFac") return show("fac");
   if (b.id === "nAv") return show("av");
   if (b.id === "nAl") return show("al");
+  if (b.id === "nTar") { location.href = "tarifs.html"; return; }
   if (b.id === "sentOk") { $("#mBox").hidden = true; if (SENDCTX) { const x = SENDCTX; SENDCTX = null; markSent(x); } return; }
   if (b.dataset.lsreset) { const v = b.dataset.lsreset; LS[v] = { q: (LS[v] || {}).q || "", sort: (LS[v] || {}).sort }; lsSave(); return show(v); }
   if (b.dataset.alact) return alAction(b.dataset.alact, b.dataset.alid);
@@ -3172,7 +3223,7 @@ document.addEventListener("click", async e => {
     if (b.dataset.seg) { const path = b.dataset.seg; if (getP(D, path) === b.dataset.v) return; const E = editable(); const tp = path.replace(/\.(branche|mode)$/, ".typeId"); setP(E, path, b.dataset.v); if (!(/\.mode$/.test(path) && getP(E, tp) === "_libre")) setP(E, tp, ""); touch(); rerender("presta"); refreshLight(); return; }
     if (b.dataset.pdup !== undefined) { const E = editable(), i = +b.dataset.pdup; dupPresta(E, i); touch(); rerender("presta"); rerender("chiffrage"); refreshLight(); const c = $$("#b_presta > .sigbox")[i + 2]; if (c) c.scrollIntoView({ behavior: "smooth", block: "start" }); return toast(`Prestation dupliquée : modifie la copie (prestation ${i + 2})`); }
     if (b.dataset.ldup !== undefined) { const E = editable(), i = +b.dataset.ldup; E.lines.splice(i + 1, 0, Object.assign(clone(E.lines[i]), { id: uid() })); touch(); rerender("chiffrage"); refreshLight(); return toast(`Ligne dupliquée : modifie la ligne ${i + 2}`); }
-    if (b.dataset.descreset !== undefined) { const E = editable(), p = E.prestas[+b.dataset.descreset], it = SET.acm.find(t => t.id === p.typeId) || (SET.cat[p.branche] && SET.cat[p.branche][p.mode] || []).find(t => t.id === p.typeId); if (it && it.desc) { p.desc = it.desc; p._descSrc = it.desc; touch(); rerender("presta"); } return; }
+    if (b.dataset.descreset !== undefined) { const E = editable(), p = E.prestas[+b.dataset.descreset], it = gridFind(p.typeId) || SET.acm.find(t => t.id === p.typeId) || (SET.cat[p.branche] && SET.cat[p.branche][p.mode] || []).find(t => t.id === p.typeId); if (it && it.desc) { p.desc = it.desc; p._descSrc = it.desc; touch(); rerender("presta"); } return; }
     if (b.dataset.libkeep !== undefined) {
       const E = editable(), p = E.prestas[+b.dataset.libkeep];
       if (!p.objet) return toast("Indique d'abord l'intitulé de la prestation");
@@ -3444,7 +3495,7 @@ document.addEventListener("change", async e => {
     const E = editable(), i = +el.dataset.acmpick, p = E.prestas[i], v = el.value;
     if (v === "_libre") { p.typeId = "_libre"; if (!p.durId) applyDur(p, acmDur("j1")); const l = E.lines.find(x => x.pid === p.id && x.kind === "forfait"); if (p.prix == null) p.prix = l ? l.pu : 0; }
     else if (!v) p.typeId = "";
-    else { const it = SET.acm.find(t => t.id === v); if (it) { applyAcm(E, p, it); toast(`${it.label} : ${money(+it.prix || 0)} HT ajouté au chiffrage`); } }
+    else { const it = gridFind(v) || SET.acm.find(t => t.id === v); if (it) { applyAcm(E, p, it); toast(`${it.label} : ${it.grid ? gPrice(it) : money(+it.prix || 0) + " HT"} ajouté au chiffrage`); } }
     touch(); rerender("presta"); rerender("chiffrage"); rerender("cond"); refreshLight(); return;
   }
   if (el.dataset.d && D && /^suivi\./.test(el.dataset.d)) D = stage();
@@ -3523,6 +3574,9 @@ function takeRet() {
   window.addEventListener("storage", e => { if (e.key === "kalailet_ret" && e.newValue) takeRet(); });
   window.addEventListener("focus", takeRet);
   kembReady.then(() => { if (VIEW === "set") renderSet(); });
+  { const nt = $("#nTar"); if (nt) nt.hidden = IN_CLAUDE || !/^https?:/.test(location.protocol); }
+  const gridRefresh = () => { const was = JSON.stringify(GRID); gridLoad(); if (JSON.stringify(GRID) === was) return; try { if (VIEW === "edit" && cur()) rerender("presta"); if (VIEW === "set") renderSet(); } catch (e) { } };
+  window.addEventListener("pageshow", gridRefresh); window.addEventListener("storage", e => { if (e.key === GRID_KEY) gridRefresh(); }); document.addEventListener("visibilitychange", () => { if (!document.hidden) gridRefresh(); });
   if (!IN_CLAUDE && /^https?:/.test(location.protocol) && SET.pubUrl !== location.origin + location.pathname) { SET.pubUrl = location.origin + location.pathname; saveSettings(); }
   const onSigned = () => { if (!/^#signed=/.test(location.hash) && !new URLSearchParams(location.search).get("r")) return; const h = location.href; try { history.replaceState(null, "", location.pathname); } catch (e) { } setTimeout(() => importReturn(h), 300); };
   onSigned(); window.addEventListener("hashchange", onSigned);
