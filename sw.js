@@ -1,4 +1,4 @@
-const C="kalailet-devis-v30",F="kalailet-polices",FONTS="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap";
+const C="kalailet-devis-v31",F="kalailet-polices",FONTS="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap";
 async function cacheFonts(){try{const c=await caches.open(F),r=await fetch(FONTS);if(!r.ok)return;await c.put(FONTS,r.clone());const css=await r.text(),u=[...new Set((css.match(/https:\/\/fonts\.gstatic\.com\/[^)\s'"]+/g)||[]))];await Promise.all(u.map(x=>c.match(x).then(m=>m||fetch(x).then(y=>y.ok&&c.put(x,y))).catch(()=>{})))}catch(e){}}
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(["./","index.html","manifest.webmanifest","icon-192-v3.png","icon-512-v3.png"]).then(()=>c.add("tarifs.html").catch(()=>{}))).then(()=>cacheFonts()));self.skipWaiting()});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C&&x!==F&&x!=="kalailet-alertes").map(x=>caches.delete(x)))));self.clients.claim()});

@@ -48,6 +48,10 @@ button{font-family:var(--body)}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
 .al-urgent{border-left:4px solid #B3261E}.al-warn{border-left:4px solid #BE8336}.al-info{border-left:4px solid #8A93A6}
 [data-alsnooze]{flex:1;min-width:120px}
+/* bouton d'installation (site seulement) */
+.getapp{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 -16px;padding:8px 16px;background:#0A2145;color:#F5F3F1;font-size:12.5px;font-weight:600}
+.getapp[hidden]{display:none}.getapp span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.getapp .btn{flex:none;white-space:nowrap}
+.ihelp{margin:6px 0 0;padding-left:20px;display:grid;gap:6px;font-size:13.5px}
 /* haut de l'application toujours visible */
 .stick{position:sticky;top:0;z-index:10;background:var(--bg);margin:0 -16px;padding:0 16px;padding-top:env(safe-area-inset-top,0px);box-shadow:0 6px 10px -10px #0A214566}
 .stick .top{padding-block:8px 2px}.stick .logo img{height:40px}.stick .nav{margin:4px 0 8px}
@@ -190,6 +194,7 @@ input[type=number]{font-variant-numeric:tabular-nums}
 <body>
 <div class="wrap">
   <div class="stick">
+  <div class="getapp" id="getApp" hidden><span>KALAILET Gestion</span><button type="button" class="btn gold sm" id="bInstall">Télécharger l'application</button></div>
   <header class="top">
     <div class="logo"><img id="brandLogo" alt="KALAILET CONSEIL - Accompagnement et Formation"></div>
     <div class="save" id="save" data-s="local"><i></i><span>Enregistré sur cet appareil</span></div>
@@ -431,6 +436,33 @@ function gridBanner() {
     : (IN_CLAUDE ? "" : `<div class="sigbox"><p class="hint">Ouvre la page Tarifs une première fois : ta grille tarifaire (Animation et Commerce) sera alors proposée dans tes devis.</p>${go}</div>`);
 }
 gridLoad();
+/* installation de l'application depuis le site */
+let INSTALL_EVT = null;
+window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); INSTALL_EVT = e; });
+const isInstalledApp = () => ["standalone", "minimal-ui", "fullscreen", "window-controls-overlay"].some(m => { try { return matchMedia("(display-mode: " + m + ")").matches; } catch (e) { return false; } }) || navigator.standalone === true || document.referrer.startsWith("android-app://");
+function installHelp() {
+  const ua = navigator.userAgent, ios = /iPhone|iPad|iPod/i.test(ua), sam = /SamsungBrowser/i.test(ua);
+  const how = ios ? `<li>Touche le bouton Partager de Safari (le carré avec une flèche).</li><li>Touche « Sur l'écran d'accueil », puis « Ajouter ».</li>`
+    : sam ? `<li>Touche le menu (les trois traits) en bas à droite.</li><li>Touche « Ajouter page à », puis « Écran d'accueil ».</li>`
+    : `<li>Touche les trois points en haut à droite de Chrome.</li><li>Touche « Ajouter à l'écran d'accueil », puis « Installer ».</li>`;
+  return `<p class="hint">Ton navigateur ne propose pas l'installation directe depuis ce bouton. Fais-la depuis son menu :</p><ol class="ihelp">${how}</ol>
+    ${ios ? "" : `<div class="sigbox"><p class="lab">Chrome répond « Cette appli est déjà installée » ?</p>
+      <p class="hint">L'ancienne application est encore sur le téléphone, le plus souvent masquée ou désactivée. Il faut la retirer pour pouvoir réinstaller.</p>
+      <ol class="ihelp"><li>Paramètres, Applications : cherche « KALAILET » ou « Gestion ». Ouvre-la : si elle est désactivée, touche « Activer », puis « Désinstaller ».</li>
+      <li>Si elle n'apparaît pas : appui long sur un espace vide de l'écran d'accueil, Paramètres, « Masquer les applications ». Retire KALAILET de la liste, puis désinstalle-la depuis l'écran des applications.</li>
+      <li>Redémarre le téléphone, rouvre ce site, puis touche de nouveau « Télécharger l'application ».</li></ol></div>
+    <p class="hint">En attendant, « Créer un raccourci », dans le même menu, met l'icône sur ton écran d'accueil : l'application s'ouvre alors dans Chrome, avec les mêmes données.</p>`}
+    <p class="hint">Tes devis, contrats et factures restent enregistrés sur ce téléphone : ne vide jamais les données de Chrome.</p>
+    <p class="hint" style="opacity:.7">Version 31</p>`;
+}
+async function installApp() {
+  const ev = INSTALL_EVT;
+  if (ev) {
+    INSTALL_EVT = null;
+    try { await ev.prompt(); const r = await ev.userChoice; if (r && r.outcome === "accepted") { toast("Installation en cours : l'icône KALAILET arrive sur ton écran d'accueil", 5000); return; } if (r && r.outcome === "dismissed") return; } catch (e) { }
+  }
+  boxOpen("Télécharger l'application", installHelp());
+}
 const DEF_TARIFS = { col: { j1: 950, j2: 1800, s1: 4250, s2: 8000 }, ind: { j1: 600, j2: 1150, s1: 2700, s2: 5100 } };
 const OLD_ANNUL = "Toute annulation ou tout report à l'initiative du client doit être notifié par écrit. Notifié moins de 15 jours avant le début de la prestation, 50 % du montant HT reste dû ; moins de 7 jours avant, 100 % du montant HT reste dû. Toute prestation commencée est due en totalité.";
 const ANNUL = "Toute annulation ou tout report à l'initiative du client doit être notifié par écrit. Pour toute notification d'annulation inférieure à 3 jours ouvrés avant le début de la prestation, 30 % du montant HT sera dû. Toute prestation commencée est due en totalité.";
@@ -3194,6 +3226,7 @@ document.addEventListener("click", async e => {
   if (b.id === "nAv") return show("av");
   if (b.id === "nAl") return show("al");
   if (b.id === "nTar") { location.href = "tarifs.html"; return; }
+  if (b.id === "bInstall") return installApp();
   if (b.id === "sentOk") { $("#mBox").hidden = true; if (SENDCTX) { const x = SENDCTX; SENDCTX = null; markSent(x); } return; }
   if (b.dataset.lsreset) { const v = b.dataset.lsreset; LS[v] = { q: (LS[v] || {}).q || "", sort: (LS[v] || {}).sort }; lsSave(); return show(v); }
   if (b.dataset.alact) return alAction(b.dataset.alact, b.dataset.alid);
@@ -3575,6 +3608,9 @@ function takeRet() {
   window.addEventListener("focus", takeRet);
   kembReady.then(() => { if (VIEW === "set") renderSet(); });
   { const nt = $("#nTar"); if (nt) nt.hidden = IN_CLAUDE || !/^https?:/.test(location.protocol); }
+  { const ga = () => { const g = $("#getApp"); if (g) g.hidden = IN_CLAUDE || !/^https?:/.test(location.protocol) || isInstalledApp(); }; ga();
+    try { matchMedia("(display-mode: standalone)").addEventListener("change", ga); } catch (e) { }
+    window.addEventListener("appinstalled", () => { INSTALL_EVT = null; ga(); toast("Application installée : retrouve l'icône KALAILET sur ton écran d'accueil", 5000); }); }
   const gridRefresh = () => { const was = JSON.stringify(GRID); gridLoad(); if (JSON.stringify(GRID) === was) return; try { if (VIEW === "edit" && cur()) rerender("presta"); if (VIEW === "set") renderSet(); } catch (e) { } };
   window.addEventListener("pageshow", gridRefresh); window.addEventListener("storage", e => { if (e.key === GRID_KEY) gridRefresh(); }); document.addEventListener("visibilitychange", () => { if (!document.hidden) gridRefresh(); });
   if (!IN_CLAUDE && /^https?:/.test(location.protocol) && SET.pubUrl !== location.origin + location.pathname) { SET.pubUrl = location.origin + location.pathname; saveSettings(); }
