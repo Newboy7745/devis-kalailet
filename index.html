@@ -357,7 +357,7 @@ input[type=number]{font-variant-numeric:tabular-nums}
 "use strict";
 const W = window;
 if (W.claude && W.claude.use) { W.KZ = null; return; }
-const CONF0 = /*KZ_FB*/null;
+const CONF0 = {"apiKey": "AIzaSyCMy6zBBiSOvmlmLEBVQsRBov0GAd9qwIo", "projectId": "kalailet-gestion"};
 const OWNER_H = "1b96b3eb8c236a998ce92bb602ec6502cf642175e6f31dfc7f7c6090dd7596e9";
 const ADMIN_V = { s: "t8PlLX8QjAd4yiXyy6nxpw==", i: 310000, h: "041e75eb07812a08bdd57cb3e5c67213f683dacea543461e5fa72f733f48e464" };
 const SYNC_KEYS = ["kalailet_app_v2", "kalailet_drafts", "kalailet_ls", "kalailet_clients", "kalailet_tarifs", "kalailet_tarifs_for", "kalailet_tomb"];
@@ -689,7 +689,9 @@ KZ.login = async (email, pass, opt = {}) => {
         const c = e && e.code;
         if (!opt.create && ["INVALID_LOGIN_CREDENTIALS", "EMAIL_NOT_FOUND", "INVALID_PASSWORD"].includes(c)) {
           /* compte gardé sur cet appareil avant le raccordement du serveur : il est créé en ligne avec le même mot de passe */
-          if (!(known && known.ver && !known.uid && await verOk(known, pass))) throw { code: known && known.uid ? "INVALID_LOGIN_CREDENTIALS" : "NOUVEAU" };
+          /* ou première connexion du compte propriétaire sur le serveur : le compte en ligne est créé avec ce mot de passe */
+          const canCreate = (known && known.ver && !known.uid && await verOk(known, pass)) || (ah === OWNER_H && !(known && known.uid));
+          if (!canCreate) throw { code: known && known.uid ? "INVALID_LOGIN_CREDENTIALS" : "NOUVEAU" };
           try { j = await authCall("signUp", { email, password: pass, returnSecureToken: true }); acc.created = 1; }
           catch (e2) { throw (e2 && e2.code === "EMAIL_EXISTS") ? { code: "INVALID_LOGIN_CREDENTIALS" } : e2; }
         } else if (opt.create && c === "EMAIL_EXISTS") throw { code: "INVALID_LOGIN_CREDENTIALS" };
