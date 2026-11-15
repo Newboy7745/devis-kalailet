@@ -22,8 +22,8 @@
  ],
  "shortcuts": [
   {
-   "name": "Tarifs et grilles",
-   "short_name": "Tarifs",
+   "name": "Étude & stratégie tarifaire",
+   "short_name": "Étude tarifaire",
    "url": "tarifs.html",
    "icons": [
     {

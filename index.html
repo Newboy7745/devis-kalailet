@@ -52,6 +52,74 @@ button{font-family:var(--body)}
 .getapp{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 -16px;padding:8px 16px;background:#0A2145;color:#F5F3F1;font-size:12.5px;font-weight:600}
 .getapp[hidden]{display:none}.getapp span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.getapp .btn{flex:none;white-space:nowrap}
 .ihelp{margin:6px 0 0;padding-left:20px;display:grid;gap:6px;font-size:13.5px}
+/* ---------- compte, connexion, administration, mode test ---------- */
+body.kz-locked .wrap,body.kz-locked #bar,body.kz-locked .bar{display:none!important}
+.kz-gate{min-height:100vh;min-height:100dvh;display:flex;align-items:flex-start;justify-content:center;padding:calc(28px + env(safe-area-inset-top,0px)) 0 40px}
+.kz-box{width:100%;max-width:420px;display:flex;flex-direction:column;gap:14px}
+.kz-brand{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.kz-brand img{width:min(280px,76%);height:auto}
+.kz-brand .kz-app{font:600 11px var(--body);letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+.kz-card{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;padding:18px 16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 24px -16px #0A214566}
+.kz-card h2{font:700 26px/1.1 var(--display);margin:0;color:var(--ink)}
+.kz-card p{margin:0}
+.kz-f{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:var(--ink-2)}
+.kz-in{width:100%;min-height:48px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:500 16px var(--body);color:var(--ink);background:var(--field)}
+.kz-in:focus{outline:2px solid var(--accent);outline-offset:1px}
+.kz-mask{-webkit-text-security:disc;text-security:disc}
+.kz-eye-w{position:relative;display:block}
+.kz-eye-w .kz-in{padding-right:52px}
+.kz-eye{position:absolute;top:50%;right:2px;transform:translateY(-50%);width:46px;height:46px;border:0;border-radius:8px;background:transparent;color:var(--ink-2);display:grid;place-items:center;cursor:pointer}
+.kz-eye[aria-pressed="true"]{color:var(--accent)}
+.kz-eye svg{width:22px;height:22px;pointer-events:none}
+.kz-msg{min-height:1.2em;font-size:13px;font-weight:600;color:var(--err)}
+.kz-msg.ok{color:var(--ok)}
+.kz-btn{min-height:48px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:700 14.5px var(--body);padding:10px 18px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%}
+.kz-btn.pri{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.kz-btn.gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+.kz-btn[disabled]{opacity:.6;cursor:progress}
+.kz-btn svg{width:22px;height:22px}
+.kz-bio{min-height:64px;font-size:16px}
+.kz-or{font-size:12.5px;color:var(--ink-3);text-align:center}
+.kz-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:13.5px}
+.kz-links a{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+.kz-acct{font-size:13px;color:var(--ink-2);text-align:center}
+.kz-step{font-size:13px;color:var(--ink-2);text-align:center;display:flex;align-items:center;justify-content:center;gap:8px}
+.kz-spin{width:16px;height:16px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--accent);animation:kzsp 1s linear infinite}
+@keyframes kzsp{to{transform:rotate(360deg)}}
+.kz-foot{font-size:11.5px;color:var(--ink-3);text-align:center}
+/* bandeau du mode test : doré, fixé tout en haut (comme Suivi ACM) */
+.kz-test-banner{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:center;gap:10px;min-height:calc(46px + env(safe-area-inset-top,0px));padding:4px 12px;padding-top:calc(4px + env(safe-area-inset-top,0px));background:linear-gradient(180deg,#F4CB52,#E8B31E);color:#2A1C00;font-size:15px;line-height:1.2;text-align:center;border-bottom:2px solid #8A6400;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.kz-test-banner b{font-weight:800;letter-spacing:.02em}
+.kz-tb-ic{flex:none;width:24px;height:24px}
+.kz-tb-out{flex:none;border:1.5px solid #8A6400;background:#FFF6D6;color:#2A1C00;border-radius:999px;font:700 12.5px var(--body,inherit);padding:6px 12px;cursor:pointer}
+body.kz-test{padding-top:var(--kztb,50px)}
+body.kz-test .stick,body.kz-test .topbar{top:var(--kztb,50px)}
+/* carte « Mode test » de l'administration */
+.kz-tm{border:2px solid #E8B31E;border-radius:14px;padding:14px;background:color-mix(in srgb,#E8B31E 9%,transparent);display:flex;flex-direction:column;gap:10px}
+.kz-tm-h{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap}
+.kz-tm-h h3{margin:0;font:700 22px var(--display)}
+.kz-badge{display:inline-block;padding:3px 10px;border-radius:999px;background:#E8B31E;color:#2A1C00;font-size:12px;font-weight:800}
+.kz-tm .kz-btn.tm{background:#E8B31E;color:#2A1C00;border:1px solid #8A6400;font-weight:800}
+.kz-tm .kz-btn.tm2{background:transparent;border:1.5px solid #E8B31E}
+.kz-adm{display:flex;flex-direction:column;gap:14px}
+.kz-adm .kz-card{border-left-width:4px}
+.kz-adm h3{margin:0;font:700 22px var(--display);color:var(--ink)}
+.kz-row{display:grid;gap:8px}
+@media (min-width:620px){.kz-row.two{grid-template-columns:1fr 1fr}}
+.kz-st{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+.kz-st i{width:9px;height:9px;border-radius:50%;background:var(--ink-3)}
+.kz-st.ok i{background:var(--ok)} .kz-st.warn i{background:var(--warn)} .kz-st.err i{background:var(--err)}
+.kz-ta{width:100%;min-height:96px;border:1px solid var(--line);border-radius:10px;padding:10px;font:13px ui-monospace,Menlo,monospace;color:var(--ink);background:var(--field)}
+.kz-acc{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.kz-acc .kz-btns{display:flex;flex-wrap:wrap;gap:8px}
+.kz-acc .kz-btn{width:auto;min-height:40px;font-size:13px;padding:8px 14px}
+/* flèches des rangées de boutons qui défilent */
+.kz-sc{position:relative}
+.kz-sc-b{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:34px;height:34px;border-radius:50%;border:1px solid var(--line,#E4DED5);background:var(--surface,#fff);color:var(--ink,#0A2145);display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 8px rgba(10,33,69,.18);padding:0}
+.kz-sc-l{left:2px}.kz-sc-r{right:2px}
+.kz-sc.kz-sc-l>.nav,.kz-sc.kz-sc-l>nav{padding-left:40px}
+.kz-sc.kz-sc-r>.nav,.kz-sc.kz-sc-r>nav{padding-right:40px}
+
 /* haut de l'application toujours visible */
 .stick{position:sticky;top:0;z-index:10;background:var(--bg);margin:0 -16px;padding:0 16px;padding-top:env(safe-area-inset-top,0px);box-shadow:0 6px 10px -10px #0A214566}
 .stick .top{padding-block:8px 2px}.stick .logo img{height:40px}.stick .nav{margin:4px 0 8px}
@@ -206,8 +274,9 @@ input[type=number]{font-variant-numeric:tabular-nums}
     <button type="button" id="nCtr" aria-current="false">Contrats</button>
     <button type="button" id="nAv" aria-current="false">Avenants</button>
     <button type="button" id="nFac" aria-current="false">Factures</button>
-    <button type="button" id="nTar" aria-current="false">Tarifs</button>
+    <button type="button" id="nTar" aria-current="false">ÉTUDE &amp; STRATÉGIE TARIFAIRE</button>
     <button type="button" id="nSet" aria-current="false">Réglages</button>
+    <button type="button" id="nAdm" aria-current="false" hidden>Administrateur</button>
   </nav>
   </div>
   <main>
@@ -217,7 +286,8 @@ input[type=number]{font-variant-numeric:tabular-nums}
     <section id="vFac" hidden></section>
     <section id="vAv" hidden></section>
     <section id="vAl" hidden></section>
-    <section id="vSet" hidden></section>
+    <section id="vAdm" hidden></section>
+<section id="vSet" hidden></section>
   </main>
 </div>
 
@@ -275,6 +345,680 @@ input[type=number]{font-variant-numeric:tabular-nums}
 <div class="toast" id="toast" hidden role="status"></div>
 
 <script>
+/* KALAILET : comptes, espaces de données (réel / test), stockage par compte et synchronisation entre appareils.
+   - Connexion : adresse e-mail et mot de passe (Firebase Authentication, API REST, sans bibliothèque), empreinte (WebAuthn).
+   - Hors connexion : le mot de passe est vérifié sur l'appareil (empreinte PBKDF2 gardée après la dernière connexion en ligne).
+   - Stockage : les clés de l'application sont rangées par compte et par espace (« kz:<compte>:<r|t>:clé ») ; l'application,
+     elle, lit et écrit toujours ses clés habituelles (« kalailet_app_v2 »…) : la correspondance se fait ici, au plus bas niveau.
+   - Synchronisation : chaque clé est envoyée compressée, en morceaux, dans Cloud Firestore (u/<uid>/s_<espace>, c_<espace>) ;
+     les fichiers joints (IndexedDB) dans fm_/fc_<espace>. Le dernier qui écrit gagne, sauf pour les devis : fusion devis par devis.
+   - Aucun mot de passe en clair dans ce code : seules des empreintes (SHA-256, PBKDF2) y figurent. */
+(function () {
+"use strict";
+const W = window;
+if (W.claude && W.claude.use) { W.KZ = null; return; }
+const CONF0 = /*KZ_FB*/null;
+const OWNER_H = "1b96b3eb8c236a998ce92bb602ec6502cf642175e6f31dfc7f7c6090dd7596e9";
+const ADMIN_V = { s: "t8PlLX8QjAd4yiXyy6nxpw==", i: 310000, h: "041e75eb07812a08bdd57cb3e5c67213f683dacea543461e5fa72f733f48e464" };
+const SYNC_KEYS = ["kalailet_app_v2", "kalailet_drafts", "kalailet_ls", "kalailet_clients", "kalailet_tarifs", "kalailet_tarifs_for", "kalailet_tomb"];
+const SYNCED = new Set(SYNC_KEYS);
+const AUTH = "https://identitytoolkit.googleapis.com/v1/accounts:", TOKEN = "https://securetoken.googleapis.com/v1/token", FSB = "https://firestore.googleapis.com/v1/";
+const CH = 700 * 1024, VER_ITER = 150000;
+
+/* ---------- outils ---------- */
+const enc = new TextEncoder(), dec = new TextDecoder();
+const b64 = u => { u = u instanceof Uint8Array ? u : new Uint8Array(u); let s = ""; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); };
+const unb64 = s => { const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; };
+const hex = buf => [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2, "0")).join("");
+const rnd = n => crypto.getRandomValues(new Uint8Array(n));
+const sha = async s => hex(await crypto.subtle.digest("SHA-256", typeof s === "string" ? enc.encode(s) : s));
+async function pbk(pass, salt, iter) { const k = await crypto.subtle.importKey("raw", enc.encode(pass), "PBKDF2", false, ["deriveBits"]); return hex(await crypto.subtle.deriveBits({ name: "PBKDF2", salt, iterations: iter, hash: "SHA-256" }, k, 256)); }
+const HAS_CS = typeof CompressionStream === "function" && typeof DecompressionStream === "function";
+async function gz(u8, un) { return new Uint8Array(await new Response(new Blob([u8]).stream().pipeThrough(un ? new DecompressionStream("gzip") : new CompressionStream("gzip"))).arrayBuffer()); }
+const mailNorm = m => String(m || "").trim().toLowerCase();
+const mailOk = m => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mailNorm(m));
+const mailHash = m => sha("kalailet/compte/v1|" + mailNorm(m));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const withTimeout = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej({ code: "delai" }), ms))]);
+function masked(m) { const [a, d] = mailNorm(m).split("@"); if (!d) return m; return a.slice(0, 1) + "•".repeat(Math.max(2, Math.min(8, a.length - 1))) + "@" + d; }
+
+/* ---------- stockage brut et correspondance des clés ---------- */
+const LS = W.localStorage, SS = W.sessionStorage, SP = Storage.prototype, oGet = SP.getItem, oSet = SP.setItem, oRem = SP.removeItem;
+const rGet = k => { try { return oGet.call(LS, k); } catch (e) { return null; } };
+const rSet = (k, v) => { try { oSet.call(LS, k, v); return true; } catch (e) { return false; } };
+const rRem = k => { try { oRem.call(LS, k); } catch (e) { } };
+const sGet = k => { try { return oGet.call(SS, k); } catch (e) { return null; } };
+const sSet = (k, v) => { try { oSet.call(SS, k, v); } catch (e) { } };
+const sRem = k => { try { oRem.call(SS, k); } catch (e) { } };
+const KZ = W.KZ = { ns: "", sp: "r", acc: null, page: "app", booted: false, admin: false, SYNC_KEYS, masked, mailOk, mailNorm };
+SP.getItem = function (k) { return oGet.call(this, this === LS && KZ.ns && SYNCED.has(k) ? KZ.ns + k : k); };
+SP.setItem = function (k, v) { if (this === LS && KZ.ns && SYNCED.has(k)) { const r = oSet.call(this, KZ.ns + k, v); Sync.touch(k); return r; } return oSet.call(this, k, v); };
+SP.removeItem = function (k) { if (this === LS && KZ.ns && SYNCED.has(k)) { oRem.call(this, KZ.ns + k); Sync.touch(k); return; } return oRem.call(this, k); };
+const nsOf = (ah, sp) => "kz:" + ah.slice(0, 16) + ":" + sp + ":";
+KZ.fdbName = () => KZ.ns ? "kalailet_files__" + KZ.ah.slice(0, 16) + "_" + KZ.sp : "kalailet_files";
+let DEV = rGet("kz_dev"); if (!DEV) { DEV = hex(rnd(6)); rSet("kz_dev", DEV); }
+
+/* ---------- comptes connus sur cet appareil ---------- */
+const accAll = () => { try { const a = JSON.parse(rGet("kz_acc") || "null"); return a && a.list ? a : { list: {}, last: "" }; } catch (e) { return { list: {}, last: "" }; } };
+const accSave = a => rSet("kz_acc", JSON.stringify(a));
+function accPut(acc) { const a = accAll(); a.list[acc.ah] = acc; accSave(a); if (KZ.acc && KZ.acc.ah === acc.ah) KZ.acc = acc; }
+KZ.lastAcc = () => { const a = accAll(); return a.last && a.list[a.last] ? a.list[a.last] : null; };
+KZ.forgetLast = () => { const a = accAll(); a.last = ""; accSave(a); };
+KZ.isOwner = () => !!(KZ.acc && KZ.acc.ah === OWNER_H);
+
+/* ---------- serveur (Firebase) ---------- */
+const conf = () => { if (CONF0 && CONF0.apiKey) return CONF0; try { const c = JSON.parse(rGet("kz_fb") || "null"); return c && c.apiKey && c.projectId ? c : null; } catch (e) { return null; } };
+KZ.conf = conf;
+KZ.setConf = txt => {
+  const s = String(txt || ""), k = (s.match(/apiKey["'\s]*[:=]\s*["']([^"']+)["']/) || s.match(/\b(AIza[0-9A-Za-z_\-]{30,})\b/) || [])[1], p = (s.match(/projectId["'\s]*[:=]\s*["']([^"']+)["']/) || [])[1];
+  if (!k || !p) return false; rSet("kz_fb", JSON.stringify({ apiKey: k.trim(), projectId: p.trim() })); return true;
+};
+async function fx(url, o) { try { return await fetch(url, { ...o, cache: "no-store", credentials: "omit" }); } catch (e) { throw { code: "reseau" }; } }
+async function authCall(kind, body) {
+  const c = conf(); if (!c) throw { code: "sans-serveur" };
+  const r = await fx(AUTH + kind + "?key=" + encodeURIComponent(c.apiKey), { method: "POST", headers: { "Content-Type": "application/json", "X-Firebase-Locale": "fr" }, body: JSON.stringify(body) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw { code: String((j.error && j.error.message) || "serveur").split(/[\s:]/)[0] };
+  return j;
+}
+let IDT = null;
+async function token(force) {
+  const acc = KZ.acc, c = conf(); if (!acc || !acc.rt || !c) throw { code: "reconnexion" };
+  if (!force && IDT && IDT.ah === acc.ah && Date.now() < IDT.exp - 120000) return IDT.t;
+  const r = await fx(TOKEN + "?key=" + encodeURIComponent(c.apiKey), { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "grant_type=refresh_token&refresh_token=" + encodeURIComponent(acc.rt) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || !j.id_token) throw { code: [400, 401, 403].includes(r.status) ? "reconnexion" : r.status === 429 ? "quota" : "serveur" };
+  IDT = { ah: acc.ah, t: j.id_token, exp: Date.now() + (+j.expires_in || 3600) * 1000 };
+  if (j.refresh_token && j.refresh_token !== acc.rt) { acc.rt = j.refresh_token; accPut(acc); }
+  return IDT.t;
+}
+const root = () => `projects/${conf().projectId}/databases/(default)/documents`;
+async function fs(method, path, body) {
+  for (let i = 0; ; i++) {
+    const t = await token(i > 0);
+    const r = await fx(FSB + path, { method, headers: { Authorization: "Bearer " + t, ...(body ? { "Content-Type": "application/json" } : {}) }, body: body ? JSON.stringify(body) : undefined });
+    if (r.status === 401 && i === 0) continue;
+    if (r.status === 404 && method === "GET") return null;
+    const j = await r.json().catch(() => null);
+    if (!r.ok) throw { code: r.status === 429 ? "quota" : r.status === 401 ? "reconnexion" : r.status === 403 ? "refus" : "serveur", st: r.status };
+    return j;
+  }
+}
+const docName = p => root() + "/" + p;
+async function listAll(coll) {
+  const out = []; let tok = "";
+  for (let i = 0; i < 50; i++) {
+    const j = await fs("GET", root() + "/" + coll + "?pageSize=300" + (tok ? "&pageToken=" + encodeURIComponent(tok) : ""));
+    if (!j) break; out.push(...(j.documents || [])); if (!j.nextPageToken) break; tok = j.nextPageToken;
+  }
+  return out;
+}
+async function batchGet(names) {
+  const m = new Map();
+  for (let i = 0; i < names.length; i += 20) { const j = await fs("POST", root() + ":batchGet", { documents: names.slice(i, i + 20) }); for (const x of j || []) if (x && x.found) m.set(x.found.name, x.found); }
+  return names.map(n => m.get(n) || null);
+}
+async function commit(writes) {
+  for (let i = 0; i < writes.length;) {
+    const part = []; let size = 0;
+    while (i < writes.length && part.length < 400) { const n = JSON.stringify(writes[i]).length; if (part.length && size + n > 8e6) break; size += n; part.push(writes[i++]); }
+    await fs("POST", root() + ":commit", { writes: part });
+  }
+}
+const FI = v => ({ integerValue: String(Math.round(v)) }), FS_ = v => ({ stringValue: String(v) }), FB = v => ({ booleanValue: !!v });
+const gI = f => f ? +(f.integerValue || 0) : 0, gS = f => f ? f.stringValue || "" : "", gB = f => !!(f && f.booleanValue);
+
+/* ---------- fichiers joints (IndexedDB de l'espace en cours) ---------- */
+const IDB = {
+  open(name) { return new Promise((res, rej) => { const r = indexedDB.open(name, 1); r.onupgradeneeded = () => r.result.createObjectStore("f"); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); },
+  async run(name, mode, fn) { const db = await this.open(name); try { return await new Promise((res, rej) => { const t = db.transaction("f", mode), st = t.objectStore("f"), q = fn(st); t.oncomplete = () => res(q && q.result); t.onerror = () => rej(t.error); }); } finally { db.close(); } },
+  keys(name) { return this.run(name, "readonly", st => st.getAllKeys()); },
+  get(name, id) { return this.run(name, "readonly", st => st.get(id)); },
+  put(name, id, rec) { return this.run(name, "readwrite", st => st.put(rec, id)); },
+  del(name, id) { return this.run(name, "readwrite", st => st.delete(id)); }
+};
+KZ.hookFiles = F => {
+  const p0 = F.put.bind(F), d0 = F.del.bind(F);
+  F.put = async (id, rec) => { const r = await p0(id, rec); Sync.fileTouch(id, false); return r; };
+  F.del = async id => { const r = await d0(id); Sync.fileTouch(id, true); return r; };
+};
+
+/* ---------- fusion des devis (deux appareils modifiés en même temps) ---------- */
+const parse = s => { try { return JSON.parse(s); } catch (e) { return null; } };
+function mergeApp(localS, remoteS, preferLocal) {
+  const L = parse(localS), R = parse(remoteS); if (!L) return remoteS; if (!R) return localS;
+  const tomb = parse(rGet(KZ.ns + "kalailet_tomb")) || {}, base = preferLocal ? L : R, o = { ...base, DV: {} };
+  const ids = new Set([...Object.keys(L.DV || {}), ...Object.keys(R.DV || {})]);
+  for (const id of ids) {
+    const a = (L.DV || {})[id], b = (R.DV || {})[id], ta = a ? a.updatedAt || "" : "", tb = b ? b.updatedAt || "" : "";
+    const d = !a ? b : !b ? a : ta >= tb ? a : b;
+    if (tomb[id] && tomb[id] >= (d.updatedAt || "")) continue;
+    o.DV[id] = d;
+  }
+  return JSON.stringify(o);
+}
+function mergeTomb(a, b) { const A = parse(a) || {}, B = parse(b) || {}; for (const k in B) if (!A[k] || B[k] > A[k]) A[k] = B[k]; return JSON.stringify(A); }
+function mergeClients(a, b) {
+  const A = parse(a) || {}, B = parse(b) || {}, seen = new Set(), out = [];
+  for (const c of [...(B.clients || []), ...(A.clients || [])]) { const k = String(c && (c.nom || "") + "|" + (c.ville || "")).toLowerCase(); if (!c || seen.has(k)) continue; seen.add(k); out.push(c); }
+  const cps = []; const sc = new Set(); for (const p of [...(B.cps || []), ...(A.cps || [])]) { const k = p && p.cp + "|" + String(p.ville || "").toLowerCase(); if (!p || sc.has(k)) continue; sc.add(k); cps.push(p); }
+  return JSON.stringify({ clients: out, cps, at: new Date().toISOString() });
+}
+
+/* ---------- synchronisation ---------- */
+const Sync = KZ.sync = {
+  timer: 0, busy: false, again: false, last: 0, err: "", state: "off",
+  meta() { const m = parse(rGet(KZ.ns + "~meta")); return m && m.k ? m : { k: {}, f: {} }; },
+  upd(fn) { const m = this.meta(); fn(m); rSet(KZ.ns + "~meta", JSON.stringify(m)); return m; },
+  touch(k) { if (!KZ.ns || !SYNCED.has(k)) return; this.upd(m => { const e = m.k[k] = m.k[k] || {}; e.dirty = 1; e.lm = Date.now(); }); this.kick(2500); },
+  fileTouch(id, del) { if (!KZ.ns) return; this.upd(m => { m.f = m.f || {}; const e = m.f[id] = m.f[id] || {}; e.dirty = 1; e.del = del ? 1 : 0; e.lm = Date.now(); }); this.kick(2500); },
+  ready() { return !!(conf() && KZ.acc && KZ.acc.uid && KZ.acc.rt && KZ.ns); },
+  pending() { const m = this.meta(); return Object.values(m.k).some(e => e.dirty) || Object.values(m.f || {}).some(e => e.dirty); },
+  kick(ms) { clearTimeout(this.timer); this.timer = setTimeout(() => this.cycle(), ms); },
+  set(state, err) { this.state = state; this.err = err || ""; try { W.dispatchEvent(new CustomEvent("kz-sync", { detail: { state, err } })); } catch (e) { } },
+  async cycle(opts = {}) {
+    if (!KZ.ns) return;
+    if (!this.ready()) { this.set(conf() ? "compte" : "off"); return; }
+    if (navigator.onLine === false) { this.set("horsligne"); return; }
+    if (this.busy) { this.again = true; return; }
+    this.busy = true; this.set("busy");
+    try { const ch = await this.pull(); if (!opts.pullOnly) { await this.push(); await this.files(); } this.last = Date.now(); rSet(KZ.ns + "~last", String(this.last)); this.set("ok"); if (ch.length) KZ.onRemote(ch); }
+    catch (e) { this.set("err", (e && e.code) || "serveur"); if (e && e.code === "reconnexion") { const a = KZ.acc; if (a) { a.rt = ""; accPut(a); } } }
+    finally { this.busy = false; if (this.again) { this.again = false; this.kick(800); } }
+  },
+  coll(kind) { return `u/${KZ.acc.uid}/${kind}_${KZ.sp}`; },
+  async fetchVal(k, n, z) {
+    const names = []; for (let i = 0; i < n; i++) names.push(docName(this.coll("c") + "/" + k + "~" + i));
+    const docs = await batchGet(names); const parts = docs.map(d => { if (!d) throw { code: "incomplet" }; return unb64(d.fields.b.bytesValue || ""); });
+    let all = new Uint8Array(parts.reduce((s, p) => s + p.length, 0)), o = 0; for (const p of parts) { all.set(p, o); o += p.length; }
+    if (z) all = await gz(all, true);
+    return dec.decode(all);
+  },
+  async pull() {
+    const docs = await listAll(this.coll("s")), changed = [], ns = KZ.ns;
+    for (const d of docs) {
+      const k = decodeURIComponent(d.name.slice(d.name.lastIndexOf("/") + 1)); if (!SYNCED.has(k)) continue;
+      const F = d.fields || {}, r = { n: gI(F.n), h: gS(F.h), t: gI(F.t), z: gB(F.z), x: gB(F.x) };
+      const e = this.meta().k[k] || {};
+      if (e.h && e.h === r.h) continue;
+      const inc = r.x ? null : await this.fetchVal(k, r.n, r.z), loc = rGet(ns + k);
+      let val = inc, keepDirty = 0;
+      if (loc !== null && inc !== null && (e.dirty || !e.h)) {
+        if (k === "kalailet_app_v2") { val = mergeApp(loc, inc, !!e.h && e.dirty && (e.lm || 0) > r.t); keepDirty = val !== inc ? 1 : 0; }
+        else if (k === "kalailet_tomb") { val = mergeTomb(loc, inc); keepDirty = val !== inc ? 1 : 0; }
+        else if (k === "kalailet_clients") { val = mergeClients(loc, inc); keepDirty = val !== inc ? 1 : 0; }
+        else if (e.h && e.dirty && (e.lm || 0) > r.t) { this.upd(m => { const x = m.k[k] = m.k[k] || {}; x.h = r.h; x.t = r.t; x.n = r.n; }); continue; }
+      }
+      if (val === null) rRem(ns + k); else rSet(ns + k, val);
+      this.upd(m => { const x = m.k[k] = m.k[k] || {}; x.h = r.h; x.t = r.t; x.n = r.n; x.dirty = keepDirty; if (keepDirty) x.lm = Date.now(); });
+      if (val !== loc) changed.push(k);
+    }
+    return changed;
+  },
+  async push() {
+    for (const k of SYNC_KEYS) {
+      const e = this.meta().k[k]; if (!e || !e.dirty) continue;
+      const t0 = Date.now(), v = rGet(KZ.ns + k), metaN = docName(this.coll("s") + "/" + k);
+      if (v === null) {
+        const w = [{ update: { name: metaN, fields: { n: FI(0), h: FS_("-"), t: FI(t0), d: FS_(DEV), x: FB(true) } } }];
+        for (let i = 0; i < (e.n || 0); i++) w.push({ delete: docName(this.coll("c") + "/" + k + "~" + i) });
+        await commit(w); this.upd(m => { const x = m.k[k]; x.h = "-"; x.n = 0; x.t = t0; if ((x.lm || 0) <= t0) x.dirty = 0; }); continue;
+      }
+      const h = (await sha(v)).slice(0, 32);
+      if (h === e.h) { this.upd(m => { const x = m.k[k]; if ((x.lm || 0) <= t0) x.dirty = 0; }); continue; }
+      let bytes = enc.encode(v), z = false; if (HAS_CS) { bytes = await gz(bytes); z = true; }
+      const parts = []; for (let i = 0; i < bytes.length || i === 0; i += CH) parts.push(bytes.subarray(i, i + CH));
+      const w = parts.map((p, i) => ({ update: { name: docName(this.coll("c") + "/" + k + "~" + i), fields: { b: { bytesValue: b64(p) } } } }));
+      for (let i = parts.length; i < (e.n || 0); i++) w.push({ delete: docName(this.coll("c") + "/" + k + "~" + i) });
+      w.push({ update: { name: metaN, fields: { n: FI(parts.length), h: FS_(h), t: FI(t0), d: FS_(DEV), z: FB(z), x: FB(false) } } });
+      await commit(w);
+      this.upd(m => { const x = m.k[k]; x.h = h; x.n = parts.length; x.t = t0; if ((x.lm || 0) <= t0) x.dirty = 0; });
+    }
+  },
+  async files() {
+    const name = KZ.fdbName(); let local = [];
+    try { local = (await IDB.keys(name)) || []; } catch (e) { return; }
+    const remote = await listAll(this.coll("fm")), rmap = new Map(remote.map(d => [decodeURIComponent(d.name.slice(d.name.lastIndexOf("/") + 1)), d]));
+    const m0 = this.meta(); m0.f = m0.f || {};
+    /* envoi */
+    for (const id of Object.keys(m0.f)) {
+      const e = m0.f[id]; if (!e.dirty) continue; const t0 = Date.now(), metaN = docName(this.coll("fm") + "/" + id), old = rmap.get(id), oldN = old ? gI(old.fields.n) : 0;
+      if (e.del) { const w = [{ update: { name: metaN, fields: { n: FI(0), t: FI(t0), x: FB(true) } } }]; for (let i = 0; i < oldN; i++) w.push({ delete: docName(this.coll("fc") + "/" + id + "~" + i) }); await commit(w); }
+      else {
+        const rec = await IDB.get(name, id); if (!rec) { this.upd(m => { delete m.f[id]; }); continue; }
+        const blob = rec.blob instanceof Blob ? rec.blob : new Blob([]), bytes = new Uint8Array(await blob.arrayBuffer()), info = { ...rec }; delete info.blob; info.btype = blob.type;
+        const parts = []; for (let i = 0; i < bytes.length || i === 0; i += CH) parts.push(bytes.subarray(i, i + CH));
+        const w = parts.map((p, i) => ({ update: { name: docName(this.coll("fc") + "/" + id + "~" + i), fields: { b: { bytesValue: b64(p) } } } }));
+        for (let i = parts.length; i < oldN; i++) w.push({ delete: docName(this.coll("fc") + "/" + id + "~" + i) });
+        for (let i = 0; i < w.length; i += 10) await commit(w.slice(i, i + 10));
+        await commit([{ update: { name: metaN, fields: { n: FI(parts.length), t: FI(t0), j: FS_(JSON.stringify(info)), x: FB(false) } } }]);
+      }
+      this.upd(m => { const x = m.f[id]; if (x && (x.lm || 0) <= t0) { x.dirty = 0; x.t = t0; } });
+    }
+    /* réception */
+    const have = new Set(local), m1 = this.meta();
+    for (const [id, d] of rmap) {
+      const F = d.fields || {}, t = gI(F.t), e = m1.f[id] || {};
+      if (e.dirty || (e.t && e.t >= t)) continue;
+      if (gB(F.x)) { if (have.has(id)) await IDB.del(name, id).catch(() => { }); }
+      else {
+        const n = gI(F.n), names = []; for (let i = 0; i < n; i++) names.push(docName(this.coll("fc") + "/" + id + "~" + i));
+        const docs = await batchGet(names); if (docs.some(x => !x)) continue;
+        const parts = docs.map(x => unb64(x.fields.b.bytesValue || "")), info = parse(gS(F.j)) || {};
+        const rec = { ...info, blob: new Blob(parts, { type: info.btype || info.type || "application/octet-stream" }) }; delete rec.btype;
+        await IDB.put(name, id, rec);
+      }
+      this.upd(m => { m.f = m.f || {}; m.f[id] = { t, dirty: 0 }; });
+    }
+  }
+};
+W.addEventListener("online", () => Sync.kick(500));
+document.addEventListener("visibilitychange", () => { if (!KZ.ns) return; if (document.visibilityState === "visible") Sync.kick(400); else if (Sync.pending()) Sync.cycle(); });
+setInterval(() => { if (KZ.ns && document.visibilityState === "visible") Sync.cycle(); }, 60000);
+
+/* données reçues d'un autre appareil : on recharge la page quand personne n'est en train d'écrire */
+let reloadWanted = false;
+const typing = () => { const a = document.activeElement; return !!(a && (a.tagName === "INPUT" || a.tagName === "TEXTAREA" || a.isContentEditable)) || !!document.querySelector(".modal:not([hidden])"); };
+function tryReload() { if (!reloadWanted) return; if (typing()) { setTimeout(tryReload, 3000); return; } sSet("kz_toast", "Données mises à jour depuis un autre appareil"); location.reload(); }
+KZ.onRemote = keys => {
+  if (!KZ.booted) return;
+  const mine = KZ.page === "tarifs" ? ["kalailet_tarifs", "kalailet_tarifs_for"] : ["kalailet_app_v2", "kalailet_drafts", "kalailet_ls", "kalailet_clients", "kalailet_tarifs", "kalailet_tomb"];
+  if (keys.some(k => mine.includes(k))) { reloadWanted = true; tryReload(); }
+};
+KZ.pendingToast = () => { const t = sGet("kz_toast"); if (t) sRem("kz_toast"); return t; };
+
+/* ---------- session (onglet en cours) ---------- */
+const sess = () => parse(sGet("kz_s"));
+function useAccount(acc, sp) {
+  KZ.acc = acc; KZ.ah = acc.ah; KZ.sp = sp === "t" && acc.ah === OWNER_H ? "t" : "r"; KZ.ns = nsOf(acc.ah, KZ.sp);
+  sSet("kz_s", JSON.stringify({ ah: acc.ah, sp: KZ.sp }));
+  KZ.admin = KZ.isOwner() && sGet("kz_adm") === acc.ah;
+}
+KZ.restore = () => { const s = sess(); if (!s) return false; const acc = accAll().list[s.ah]; if (!acc) return false; useAccount(acc, s.sp); return true; };
+
+/* ---------- reprise des données déjà présentes sur l'appareil (avant les comptes) ---------- */
+async function migrateLegacy(acc) {
+  if (rGet("kz_legacy_done")) return;
+  const legacy = {}; SYNC_KEYS.forEach(k => { const v = rGet(k); if (v !== null) legacy[k] = v; });
+  if (!Object.keys(legacy).length) { rSet("kz_legacy_done", "1"); return; }
+  const nsR = nsOf(acc.ah, "r"), nsT = nsOf(acc.ah, "t"), mark = (ns, keys) => { const m = parse(rGet(ns + "~meta")) || { k: {}, f: {} }; keys.forEach(k => { m.k[k] = { dirty: 1, lm: Date.now() }; }); rSet(ns + "~meta", JSON.stringify(m)); };
+  const empty = ns => !SYNC_KEYS.some(k => rGet(ns + k) !== null);
+  /* 1. mode test : copie complète de ce qui existait (devis, contrats, factures, alertes, clients, fichiers) */
+  if (acc.ah === OWNER_H && empty(nsT)) {
+    Object.entries(legacy).forEach(([k, v]) => rSet(nsT + k, v)); mark(nsT, Object.keys(legacy));
+    try { const src = "kalailet_files", dst = "kalailet_files__" + acc.ah.slice(0, 16) + "_t", ids = (await IDB.keys(src)) || []; for (const id of ids) { await IDB.put(dst, id, await IDB.get(src, id)); } if (ids.length) { const m = parse(rGet(nsT + "~meta")) || { k: {}, f: {} }; m.f = m.f || {}; ids.forEach(id => m.f[id] = { dirty: 1, lm: Date.now() }); rSet(nsT + "~meta", JSON.stringify(m)); } } catch (e) { }
+  }
+  /* 2. vraies données : on garde les réglages, on repart de zéro pour les devis, contrats, factures, alertes, clients et l'historique */
+  if (empty(nsR) && !acc.hasRemote) {
+    const app = parse(legacy.kalailet_app_v2);
+    if (app) {
+      const SET = app.SET || {}; SET.clients = []; SET.alerts = {}; SET._clSeed = 1; delete SET.xlDone;
+      rSet(nsR + "kalailet_app_v2", JSON.stringify({ SET, SIG: app.SIG || null, TAMP: app.TAMP || { mode: "genere", img: null }, DV: {} }));
+      rSet(nsR + "kalailet_clients", JSON.stringify({ clients: [], cps: SET.cps || [], at: new Date().toISOString() }));
+    }
+    ["kalailet_ls", "kalailet_tarifs", "kalailet_tarifs_for"].forEach(k => { if (legacy[k] !== undefined) rSet(nsR + k, legacy[k]); });
+    mark(nsR, SYNC_KEYS.filter(k => rGet(nsR + k) !== null));
+  }
+  SYNC_KEYS.forEach(rRem); rSet("kz_legacy_done", acc.ah);
+}
+/* espace vide (nouvel appareil ou vraies données remises à zéro) : pas de devis d'exemple dans les vraies données */
+function ensureBase() {
+  if (KZ.sp !== "r" || rGet(KZ.ns + "kalailet_app_v2") !== null) return;
+  rSet(KZ.ns + "kalailet_app_v2", JSON.stringify({ SET: { _clSeed: 1 }, SIG: null, TAMP: { mode: "genere", img: null }, DV: {} }));
+}
+
+/* ---------- connexion ---------- */
+const ERR = {
+  reseau: "Pas de connexion internet.", "sans-serveur": "Le serveur de comptes n'est pas encore raccordé.", INVALID_LOGIN_CREDENTIALS: "Adresse e-mail ou mot de passe incorrect.", INVALID_PASSWORD: "Adresse e-mail ou mot de passe incorrect.",
+  EMAIL_NOT_FOUND: "Adresse e-mail ou mot de passe incorrect.", USER_DISABLED: "Ce compte est désactivé.", TOO_MANY_ATTEMPTS_TRY_LATER: "Trop d'essais : réessaie dans quelques minutes.", EMAIL_EXISTS: "Un compte existe déjà avec cette adresse : mot de passe incorrect.",
+  WEAK_PASSWORD: "Mot de passe trop faible : 6 caractères au minimum.", INVALID_EMAIL: "Adresse e-mail invalide.", OPERATION_NOT_ALLOWED: "La connexion par e-mail n'est pas activée dans Firebase (Authentication).", quota: "Serveur saturé : réessaie dans un instant.", delai: "Le serveur ne répond pas.", refus: "Accès refusé par le serveur (règles Firestore).", serveur: "Erreur du serveur."
+};
+KZ.errTxt = e => ERR[(e && e.code) || e] || ("Erreur : " + ((e && e.code) || e));
+async function verifier(pass) { const s = rnd(16); return { s: b64(s), i: VER_ITER, h: await pbk(pass, s, VER_ITER) }; }
+async function verOk(acc, pass) { return !!(acc && acc.ver && (await pbk(pass, unb64(acc.ver.s), acc.ver.i)) === acc.ver.h); }
+/* renvoie le compte prêt à ouvrir, ou lève une erreur { code } */
+KZ.login = async (email, pass, opt = {}) => {
+  email = mailNorm(email); if (!mailOk(email)) throw { code: "INVALID_EMAIL" }; if (!pass) throw { code: "INVALID_PASSWORD" };
+  const ah = await mailHash(email), known = accAll().list[ah] || null;
+  let acc = known ? { ...known } : { email, ah };
+  if (conf()) {
+    try {
+      let j;
+      try { j = await withTimeout(authCall(opt.create ? "signUp" : "signInWithPassword", { email, password: pass, returnSecureToken: true }), 15000); }
+      catch (e) {
+        const c = e && e.code;
+        if (!opt.create && ["INVALID_LOGIN_CREDENTIALS", "EMAIL_NOT_FOUND", "INVALID_PASSWORD"].includes(c)) {
+          /* compte gardé sur cet appareil avant le raccordement du serveur : il est créé en ligne avec le même mot de passe */
+          if (!(known && known.ver && !known.uid && await verOk(known, pass))) throw { code: known && known.uid ? "INVALID_LOGIN_CREDENTIALS" : "NOUVEAU" };
+          try { j = await authCall("signUp", { email, password: pass, returnSecureToken: true }); acc.created = 1; }
+          catch (e2) { throw (e2 && e2.code === "EMAIL_EXISTS") ? { code: "INVALID_LOGIN_CREDENTIALS" } : e2; }
+        } else if (opt.create && c === "EMAIL_EXISTS") throw { code: "INVALID_LOGIN_CREDENTIALS" };
+        else throw e;
+      }
+      acc.uid = j.localId; acc.rt = j.refreshToken; IDT = { ah, t: j.idToken, exp: Date.now() + (+j.expiresIn || 3600) * 1000 };
+      acc.ver = await verifier(pass); acc.email = email; acc.at = Date.now(); accPut(acc);
+      return acc;
+    } catch (e) {
+      if (!(e && (e.code === "reseau" || e.code === "delai"))) throw e;
+      if (known && await verOk(known, pass)) return known;
+      throw { code: known ? "INVALID_LOGIN_CREDENTIALS" : "premiere" };
+    }
+  }
+  /* sans serveur : compte gardé sur cet appareil seulement */
+  if (known && known.ver) { if (await verOk(known, pass)) return known; throw { code: "INVALID_LOGIN_CREDENTIALS" }; }
+  if (!opt.create) throw { code: "NOUVEAU" };
+  acc.ver = await verifier(pass); acc.at = Date.now(); accPut(acc); return acc;
+};
+ERR.premiere = "Première connexion sur cet appareil : il faut internet.";
+ERR.NOUVEAU = "Aucun compte ne correspond à ces identifiants.";
+KZ.resetPass = async email => { email = mailNorm(email); if (!mailOk(email)) throw { code: "INVALID_EMAIL" }; await withTimeout(authCall("sendOobCode", { requestType: "PASSWORD_RESET", email }), 15000); };
+/* ouvre l'espace du compte puis démarre la page */
+KZ.open = async (acc, sp, onStep) => {
+  useAccount(acc, sp || "r");
+  const a = accAll(); a.last = acc.ah; accSave(a);
+  if (Sync.ready() && navigator.onLine !== false) {
+    onStep && onStep("Synchronisation de tes données…");
+    try { const docs = await withTimeout(listAll(Sync.coll("s")), 10000); acc.hasRemote = docs.length > 0; } catch (e) { }
+  }
+  await migrateLegacy(acc);
+  if (Sync.ready() && navigator.onLine !== false) { try { await withTimeout(Sync.cycle({ pullOnly: true }), 20000); } catch (e) { } }
+  ensureBase();
+  KZ.boot();
+};
+/* espace jamais reçu sur cet appareil (mode test ouvert pour la première fois ici, par exemple) : on le reçoit avant d'ouvrir */
+KZ.needsPull = () => Sync.ready() && navigator.onLine !== false && rGet(KZ.ns + "kalailet_app_v2") === null;
+KZ.prepare = async () => { try { await withTimeout(Sync.cycle({ pullOnly: true }), 20000); } catch (e) { } ensureBase(); };
+KZ.prepareLight = () => ensureBase();
+KZ.logout = (switchAcc) => { sRem("kz_s"); sRem("kz_adm"); sRem("kz_next"); if (switchAcc) KZ.forgetLast(); location.replace("./"); };
+KZ.setSpace = sp => { if (sp === "t" && !KZ.admin) return; const s = sess() || {}; s.sp = sp; sSet("kz_s", JSON.stringify(s)); if (sp === "t") sSet("kz_toast", "Mode test : tu peux tout essayer, tes vraies données ne bougent pas"); else sSet("kz_toast", "Retour à tes vraies données"); location.reload(); };
+
+/* ---------- administrateur ---------- */
+KZ.adminCheck = async pass => { if (!KZ.isOwner()) return false; const ok = (await pbk(pass, unb64(ADMIN_V.s), ADMIN_V.i)) === ADMIN_V.h; if (ok) { sSet("kz_adm", KZ.acc.ah); KZ.admin = true; } return ok; };
+KZ.adminGrant = () => { if (!KZ.isOwner()) return; sSet("kz_adm", KZ.acc.ah); KZ.admin = true; };
+KZ.adminLeave = () => { sRem("kz_adm"); KZ.admin = false; if (KZ.sp === "t") KZ.setSpace("r"); };
+KZ.resetTest = async () => {
+  if (!KZ.admin || !KZ.acc) return; const ns = nsOf(KZ.acc.ah, "t");
+  SYNC_KEYS.forEach(k => rRem(ns + k)); rRem(ns + "~meta");
+  try { await new Promise(r => { const q = indexedDB.deleteDatabase("kalailet_files__" + KZ.acc.ah.slice(0, 16) + "_t"); q.onsuccess = q.onerror = q.onblocked = () => r(); }); } catch (e) { }
+  if (Sync.ready()) { const sp0 = KZ.sp; KZ.sp = "t"; try { for (const kind of ["s", "c", "fm", "fc"]) { const docs = await listAll(Sync.coll(kind)); await commit(docs.map(d => ({ delete: d.name }))); } } finally { KZ.sp = sp0; } }
+};
+KZ.copyRealToTest = async () => {
+  if (!KZ.admin || !KZ.acc) return; const r = nsOf(KZ.acc.ah, "r"), t = nsOf(KZ.acc.ah, "t");
+  await KZ.resetTest();
+  const m = { k: {}, f: {} }; SYNC_KEYS.forEach(k => { const v = rGet(r + k); if (v !== null) { rSet(t + k, v); m.k[k] = { dirty: 1, lm: Date.now() }; } });
+  try { const src = "kalailet_files__" + KZ.acc.ah.slice(0, 16) + "_r", dst = "kalailet_files__" + KZ.acc.ah.slice(0, 16) + "_t"; for (const id of (await IDB.keys(src)) || []) { await IDB.put(dst, id, await IDB.get(src, id)); m.f[id] = { dirty: 1, lm: Date.now() }; } } catch (e) { }
+  rSet(t + "~meta", JSON.stringify(m));
+};
+
+/* ---------- empreinte digitale (WebAuthn) ---------- */
+KZ.bioDispo = () => !!(W.PublicKeyCredential && navigator.credentials && W.isSecureContext);
+KZ.bioOn = acc => !!(acc && acc.bio && acc.bio.id && KZ.bioDispo());
+KZ.bioRegister = async acc => {
+  const cred = await navigator.credentials.create({ publicKey: { challenge: rnd(32), rp: { name: "KALAILET Gestion", id: location.hostname }, user: { id: rnd(16), name: acc.email, displayName: "KALAILET Gestion" },
+    pubKeyCredParams: [{ type: "public-key", alg: -7 }, { type: "public-key", alg: -257 }], authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required", residentKey: "preferred" }, timeout: 60000, attestation: "none" } });
+  acc.bio = { id: b64(new Uint8Array(cred.rawId)), at: Date.now() }; delete acc.bioNo; accPut(acc); return acc;
+};
+KZ.bioCheck = async acc => { await navigator.credentials.get({ publicKey: { challenge: rnd(32), allowCredentials: [{ type: "public-key", id: unb64(acc.bio.id) }], userVerification: "required", timeout: 60000 } }); return true; };
+KZ.bioOff = acc => { delete acc.bio; acc.bioNo = 1; accPut(acc); };
+KZ.bioLater = acc => { acc.bioNo = 1; accPut(acc); };
+
+/* ---------- bandeau du mode test (doré, en haut de chaque écran) ---------- */
+KZ.testBanner = () => {
+  if (KZ.sp !== "t" || document.getElementById("kzTest")) return;
+  document.body.classList.add("kz-test");
+  const b = document.createElement("div"); b.id = "kzTest"; b.className = "kz-test-banner"; b.setAttribute("role", "status");
+  b.innerHTML = `<svg class="kz-tb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21.5h11.6a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7.5 15h9"/></svg><b>MODE TEST, données d'essai</b><button type="button" class="kz-tb-out" id="kzTestOut">Quitter</button>`;
+  document.body.insertBefore(b, document.body.firstChild);
+  const fit = () => document.documentElement.style.setProperty("--kztb", b.offsetHeight + "px"); fit(); W.addEventListener("resize", fit); try { new ResizeObserver(fit).observe(b); } catch (e) { }
+  b.querySelector("#kzTestOut").addEventListener("click", () => KZ.setSpace("r"));
+};
+
+/* ---------- flèches pour les rangées de boutons qui défilent (onglets, sommaire) ---------- */
+KZ.scroller = el => {
+  if (!el || el.dataset.kzs) return; el.dataset.kzs = 1;
+  const box = document.createElement("div"), cs = getComputedStyle(el); box.className = "kz-sc"; box.style.margin = cs.margin; box.style.display = "flow-root"; el.parentNode.insertBefore(box, el); box.appendChild(el); el.style.margin = "0";
+  const mk = (d, lbl) => { const b = document.createElement("button"); b.type = "button"; b.className = "kz-sc-b kz-sc-" + d; b.setAttribute("aria-label", lbl); b.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d === "l" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}"/></svg>`; box.appendChild(b); return b; };
+  const L = mk("l", "Voir les boutons à gauche"), R = mk("r", "Voir les boutons à droite");
+  const upd = () => { const max = el.scrollWidth - el.clientWidth - 2; L.hidden = el.scrollLeft <= 2; R.hidden = el.scrollLeft >= max; box.classList.toggle("kz-sc-l", !L.hidden); box.classList.toggle("kz-sc-r", !R.hidden); };
+  L.addEventListener("click", () => el.scrollBy({ left: -Math.max(120, el.clientWidth * 0.7), behavior: "smooth" }));
+  R.addEventListener("click", () => el.scrollBy({ left: Math.max(120, el.clientWidth * 0.7), behavior: "smooth" }));
+  el.addEventListener("scroll", upd, { passive: true }); W.addEventListener("resize", upd); try { new ResizeObserver(upd).observe(el); new MutationObserver(upd).observe(el, { childList: true, subtree: true, attributes: true }); } catch (e) { }
+  setTimeout(upd, 50); upd();
+};
+
+/* ---------- démarrage commun ---------- */
+KZ.isClientPage = () => /\/s\/[A-Za-z0-9]{6,12}\/?$/.test(location.pathname) || new URLSearchParams(location.search).get("s") || /^#sign=/.test(location.hash);
+KZ.boot = () => {
+  if (KZ.booted) return; KZ.booted = true;
+  document.body.classList.remove("kz-locked");
+  KZ.testBanner();
+  try { W.__KZ_APP && W.__KZ_APP(); } catch (e) { console.error(e); }
+  const t = KZ.pendingToast(); if (t) setTimeout(() => KZ.toast && KZ.toast(t), 400);
+  if (KZ.afterBoot) try { KZ.afterBoot(); } catch (e) { console.error(e); }
+  Sync.kick(1500);
+};
+})();
+
+</script>
+<script>
+const KZ_LOGO = "data:image/webp;base64,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";
+/* KALAILET : écran de connexion, empreinte, carte « Mon compte », onglet Administrateur et mode test (page de l'application) */
+(function () {
+"use strict";
+const W = window, KZ = W.KZ;
+if (!KZ) { W.__KZ_APP && W.__KZ_APP(); return; }
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const MASK = typeof CSS !== "undefined" && CSS.supports && CSS.supports("-webkit-text-security", "disc");
+const rid = () => "kz" + Math.random().toString(36).slice(2, 8);
+const IC_FP = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M7 4.6A9 9 0 0 1 20.4 11"/><path d="M3.6 9A9 9 0 0 1 5 6.4"/><path d="M4 15.5a20 20 0 0 1-.5-3.5"/><path d="M17.6 19.2A20 20 0 0 0 18 12a6 6 0 0 0-11.5-2.4"/><path d="M8 20.6A16 16 0 0 0 9.5 13"/><path d="M12 21.5c1.4-2.6 2-5.6 2-9.5a2 2 0 0 0-4 0c0 1-.1 2-.3 3"/></svg>`;
+const IC_EYE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>`;
+const IC_EYE_OFF = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.7 10.7 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4.2M6.6 6.6C3.8 8.4 2 12 2 12s3.6 7 10 7a9.6 9.6 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>`;
+
+/* champs sans proposition d'identifiants enregistrés : pas de champ « mot de passe » pour le navigateur, noms aléatoires */
+const mailF = (id, label, val) => `<label class="kz-f" for="${id}">${label}<input id="${id}" name="${rid()}" class="kz-in" type="text" inputmode="email" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore data-bwignore data-form-type="other" value="${esc(val || "")}"></label>`;
+const passF = (id, label, val) => `<label class="kz-f" for="${id}">${label}<span class="kz-eye-w"><input id="${id}" name="${rid()}" class="kz-in${MASK ? " kz-mask" : ""}" type="${MASK ? "text" : "password"}" autocomplete="${MASK ? "off" : "new-password"}" autocapitalize="none" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore data-bwignore data-form-type="other" value="${esc(val || "")}"><button type="button" class="kz-eye" data-eye="${id}" aria-label="Afficher le mot de passe" aria-pressed="false">${IC_EYE}</button></span></label>`;
+const val = id => { const e = document.getElementById(id); return e ? e.value : ""; };
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-eye]"); if (!b) return;
+  const i = document.getElementById(b.dataset.eye); if (!i) return;
+  const show = b.getAttribute("aria-pressed") !== "true";
+  if (MASK) i.classList.toggle("kz-mask", !show); else i.type = show ? "text" : "password";
+  b.setAttribute("aria-pressed", show); b.setAttribute("aria-label", show ? "Masquer le mot de passe" : "Afficher le mot de passe"); b.innerHTML = show ? IC_EYE_OFF : IC_EYE; i.focus();
+});
+
+/* ---------- écran de connexion ---------- */
+let G = { mode: "login", email: "", pass: "", busy: false };
+function gateEl() { let g = $("#kzGate"); if (!g) { g = document.createElement("div"); g.id = "kzGate"; g.className = "kz-gate"; document.body.insertBefore(g, document.body.firstChild); } return g; }
+const brand = () => `<div class="kz-brand"><img src="${KZ_LOGO}" alt="KALAILET CONSEIL, Accompagnement et Formation"><span class="kz-app">Gestion commerciale</span></div>`;
+function renderGate(msg, ok) {
+  document.body.classList.add("kz-locked");
+  const last = KZ.lastAcc(), bio = G.mode === "login" && last && KZ.bioOn(last) && !G.hideBio;
+  let body = "";
+  if (G.mode === "login") body = `<h2>Connexion</h2>
+    ${bio ? `<button type="button" class="kz-btn pri kz-bio" data-kz="bio">${IC_FP}Utiliser l'empreinte</button><p class="kz-or">Compte ${esc(KZ.masked(last.email))}<br>ou avec ton adresse e-mail et ton mot de passe :</p>` : ""}
+    ${mailF("kzM", "Adresse e-mail")}${passF("kzP", "Mot de passe")}
+    <p class="kz-msg${ok ? " ok" : ""}" id="kzMsg" role="alert">${esc(msg || "")}</p>
+    <button type="button" class="kz-btn pri" data-kz="login">Se connecter</button>
+    <div class="kz-links"><a href="#" data-kz="reset">Mot de passe oublié ?</a>${last ? `<a href="#" data-kz="switch">Changer de compte</a>` : ""}<a href="#" data-kz="new">Créer un compte</a></div>`;
+  else if (G.mode === "new") body = `<h2>Créer ton compte</h2>
+    <p class="kz-or" style="text-align:left">${G.fromLogin ? "Confirme ton mot de passe : ton compte sera créé avec cette adresse. Si tu as déjà un compte, reviens à la connexion et vérifie ton mot de passe." : "Choisis l'adresse e-mail et le mot de passe de ton compte."}</p>
+    ${mailF("kzM", "Adresse e-mail", G.email)}${passF("kzP", "Mot de passe (8 caractères minimum)", G.pass)}${passF("kzP2", "Confirmer le mot de passe")}
+    <p class="kz-msg" id="kzMsg" role="alert">${esc(msg || "")}</p>
+    <button type="button" class="kz-btn pri" data-kz="create">Créer mon compte</button>
+    <div class="kz-links"><a href="#" data-kz="back">Retour à la connexion</a></div>`;
+  else if (G.mode === "reset") body = `<h2>Mot de passe oublié</h2>
+    <p class="kz-or" style="text-align:left">Tu reçois un e-mail avec un lien pour choisir un nouveau mot de passe. Pense à regarder dans les courriers indésirables.</p>
+    ${mailF("kzM", "Adresse e-mail", G.email)}
+    <p class="kz-msg${ok ? " ok" : ""}" id="kzMsg" role="alert">${esc(msg || "")}</p>
+    <button type="button" class="kz-btn pri" data-kz="sendreset">Recevoir le lien</button>
+    <div class="kz-links"><a href="#" data-kz="back">Retour à la connexion</a></div>`;
+  else if (G.mode === "bioask") body = `<h2>Connexion par empreinte</h2>
+    <p>Activer l'empreinte sur cet appareil ? La prochaine fois, tu pourras te connecter sans taper ton mot de passe.</p>
+    <p class="kz-msg" id="kzMsg" role="alert">${esc(msg || "")}</p>
+    <button type="button" class="kz-btn pri" data-kz="bioyes">${IC_FP}Activer l'empreinte</button>
+    <button type="button" class="kz-btn" data-kz="biono">Plus tard</button>`;
+  else if (G.mode === "wait") body = `<h2>Connexion</h2><p class="kz-step"><span class="kz-spin"></span><span id="kzStep">${esc(msg || "Ouverture…")}</span></p>`;
+  gateEl().innerHTML = `<div class="kz-box">${brand()}<form class="kz-card" autocomplete="off" onsubmit="return false" novalidate>${body}</form>
+    ${installLink()}<p class="kz-foot">KALAILET CONSEIL · Khalid AJDID</p></div>`;
+  const f = G.mode === "login" && !bio ? $("#kzM") : G.mode === "new" ? $(G.email ? "#kzP2" : "#kzM") : G.mode === "reset" ? $("#kzM") : null;
+  if (f) setTimeout(() => { try { f.focus({ preventScroll: true }); } catch (e) { } }, 60);
+}
+const setMsg = (t, ok) => { const m = $("#kzMsg"); if (m) { m.textContent = t || ""; m.classList.toggle("ok", !!ok); } };
+const busy = on => { G.busy = on; document.querySelectorAll("#kzGate .kz-btn").forEach(b => b.disabled = on); };
+/* installation depuis l'écran de connexion (site dans le navigateur) */
+KZ.installEvt = null;
+W.addEventListener("beforeinstallprompt", e => { e.preventDefault(); KZ.installEvt = e; const l = $("#kzInst"); if (l) l.hidden = false; });
+const standalone = () => ["standalone", "minimal-ui", "fullscreen"].some(m => { try { return matchMedia("(display-mode: " + m + ")").matches; } catch (e) { return false; } }) || navigator.standalone === true;
+const installLink = () => standalone() ? "" : `<div class="kz-links"><a href="#" id="kzInst" data-kz="install">Télécharger l'application</a></div>`;
+
+async function afterLogin(acc) {
+  if (KZ.bioDispo() && !acc.bio && !acc.bioNo) { G.mode = "bioask"; G.acc = acc; renderGate(); return; }
+  openAcc(acc);
+}
+async function openAcc(acc) {
+  G.mode = "wait"; renderGate("Ouverture de ton espace…");
+  try { await KZ.open(acc, "r", t => { const s = $("#kzStep"); if (s) s.textContent = t; }); const g = $("#kzGate"); if (g) g.remove(); }
+  catch (e) { console.error(e); G.mode = "login"; renderGate("Ouverture impossible : " + KZ.errTxt(e)); }
+}
+document.addEventListener("click", async e => {
+  const a = e.target.closest("#kzGate [data-kz]"); if (!a || G.busy) return; e.preventDefault();
+  const k = a.dataset.kz;
+  if (k === "reset") { G.email = val("kzM"); G.mode = "reset"; return renderGate(); }
+  if (k === "back") { G.mode = "login"; G.fromLogin = false; return renderGate(); }
+  if (k === "new") { const m = val("kzM"), p = val("kzP"); G.fromLogin = !!(G.nouveau && m && m === G.email && p && p === G.pass); G.email = m; G.pass = G.fromLogin ? p : ""; G.nouveau = false; G.mode = "new"; return renderGate(); }
+  if (k === "switch") { KZ.forgetLast(); G.hideBio = true; return renderGate("Saisis l'adresse e-mail et le mot de passe de l'autre compte.", true); }
+  if (k === "install") { if (KZ.installEvt) { const ev = KZ.installEvt; KZ.installEvt = null; try { await ev.prompt(); } catch (err) { } } else setMsg("Dans Chrome : les trois points en haut à droite, puis « Ajouter à l'écran d'accueil » et « Installer ».", true); return; }
+  if (k === "login") {
+    const m = val("kzM").trim(), p = val("kzP"); if (!KZ.mailOk(m)) return setMsg("Saisis ton adresse e-mail."); if (!p) return setMsg("Saisis ton mot de passe.");
+    busy(true); setMsg("Vérification…", true);
+    try { const acc = await KZ.login(m, p); busy(false); afterLogin(acc); }
+    catch (err) { busy(false); if (err && err.code === "NOUVEAU") { G.email = m; G.pass = p; G.nouveau = true; return setMsg("Adresse e-mail ou mot de passe incorrect. S'il s'agit de ta toute première connexion, touche « Créer un compte »."); } setMsg(KZ.errTxt(err)); }
+    return;
+  }
+  if (k === "create") {
+    const m = val("kzM").trim(), p = val("kzP"), p2 = val("kzP2");
+    if (!KZ.mailOk(m)) return setMsg("Adresse e-mail invalide."); if (p.length < 8) return setMsg("Le mot de passe doit faire au moins 8 caractères."); if (p !== p2) return setMsg("Les deux mots de passe sont différents.");
+    busy(true); setMsg("Création du compte…", true);
+    try { const acc = await KZ.login(m, p, { create: true }); busy(false); afterLogin(acc); } catch (err) { busy(false); setMsg(KZ.errTxt(err)); }
+    return;
+  }
+  if (k === "sendreset") {
+    const m = val("kzM").trim(); if (!KZ.mailOk(m)) return setMsg("Saisis ton adresse e-mail.");
+    if (!KZ.conf()) return setMsg("Le lien par e-mail demande le serveur de comptes, qui n'est pas encore raccordé.");
+    busy(true); setMsg("Envoi…", true);
+    try { await KZ.resetPass(m); busy(false); setMsg("C'est envoyé : ouvre l'e-mail et choisis un nouveau mot de passe, puis reviens te connecter.", true); }
+    catch (err) { busy(false); setMsg(KZ.errTxt(err)); }
+    return;
+  }
+  if (k === "bio") {
+    const acc = KZ.lastAcc(); if (!acc) return;
+    busy(true); try { await KZ.bioCheck(acc); busy(false); openAcc(acc); } catch (err) { busy(false); setMsg("Empreinte non reconnue ou annulée : utilise ton mot de passe."); }
+    return;
+  }
+  if (k === "bioyes") { busy(true); try { await KZ.bioRegister(G.acc); busy(false); openAcc(G.acc); } catch (err) { busy(false); setMsg("L'empreinte n'a pas pu être activée sur cet appareil. Tu pourras réessayer dans Réglages."); setTimeout(() => openAcc(G.acc), 1800); } return; }
+  if (k === "biono") { KZ.bioLater(G.acc); openAcc(G.acc); return; }
+});
+document.addEventListener("keydown", e => { if (e.key !== "Enter" || !e.target.closest || !e.target.closest("#kzGate")) return; const b = $("#kzGate .kz-btn.pri:not(.kz-bio)"); if (b) { e.preventDefault(); b.click(); } });
+
+/* ---------- état de la synchronisation ---------- */
+const SYNC_TXT = { off: ["warn", "Sur cet appareil seulement (serveur non raccordé)"], compte: ["warn", "Reconnecte-toi avec ton mot de passe pour synchroniser"], horsligne: ["warn", "Hors connexion : enregistré sur l'appareil"], busy: ["", "Synchronisation…"], ok: ["ok", "Synchronisé avec tes appareils"], err: ["err", "Synchronisation en échec"] };
+KZ.syncLine = () => { const s = KZ.sync, [c, t] = SYNC_TXT[s.state] || SYNC_TXT.off; return `<span class="kz-st ${c}"><i></i>${esc(t)}${s.state === "err" ? " : " + esc(KZ.errTxt(s.err)) : ""}</span>${s.last ? ` <small style="color:var(--ink-3)">· ${new Date(s.last).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}</small>` : ""}`; };
+W.addEventListener("kz-sync", ev => {
+  const st = ev.detail.state, sv = $("#save");
+  if (sv && KZ.booted && (st === "ok" || st === "busy")) { sv.dataset.s = st === "ok" ? "db" : "local"; const sp = sv.querySelector("span"); if (sp) sp.textContent = st === "ok" ? "Synchronisé" : "Synchronisation…"; }
+  document.querySelectorAll("[data-kzsync]").forEach(x => x.innerHTML = KZ.syncLine());
+});
+
+/* ---------- carte « Mon compte » (Réglages) ---------- */
+KZ.setCard = () => {
+  const a = KZ.acc; if (!a) return "";
+  return `<div class="kz-acc" id="kzAcc"><p class="lab" style="margin:0">Mon compte</p>
+    <p style="margin:0"><b>${esc(a.email)}</b>${KZ.sp === "t" ? ` · <span class="kz-badge">mode test</span>` : ""}</p>
+    <p style="margin:0" data-kzsync>${KZ.syncLine()}</p>
+    <div class="kz-btns">${KZ.bioDispo() ? (KZ.bioOn(a) ? `<button type="button" class="kz-btn" data-kzc="biooff">Désactiver l'empreinte</button>` : `<button type="button" class="kz-btn" data-kzc="bioon">${IC_FP}Activer l'empreinte</button>`) : ""}
+      ${KZ.conf() ? `<button type="button" class="kz-btn" data-kzc="sync">Synchroniser maintenant</button><button type="button" class="kz-btn" data-kzc="pass">Changer mon mot de passe</button>` : ""}
+      <button type="button" class="kz-btn" data-kzc="switch">Changer de compte</button><button type="button" class="kz-btn" data-kzc="out">Me déconnecter</button></div>
+    <p class="hint" style="margin:0" id="kzAccMsg"></p></div>`;
+};
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-kzc]"); if (!b) return;
+  const a = KZ.acc, k = b.dataset.kzc, msg = t => { const m = $("#kzAccMsg") || $("#kzAdmMsg"); if (m) m.textContent = t; else KZ.toast(t); };
+  if (k === "bioon") { try { await KZ.bioRegister(a); msg("Empreinte activée : à la prochaine ouverture, touche « Utiliser l'empreinte »."); } catch (err) { msg("L'empreinte n'a pas pu être activée sur cet appareil."); } return KZ.refresh(); }
+  if (k === "biooff") { KZ.bioOff(a); msg("Empreinte désactivée sur cet appareil."); return KZ.refresh(); }
+  if (k === "sync") { msg("Synchronisation…"); await KZ.sync.cycle(); msg(KZ.sync.state === "ok" ? "Tout est à jour." : KZ.sync.state === "compte" ? "Déconnecte-toi puis reconnecte-toi avec ton mot de passe pour réactiver la synchronisation." : "Synchronisation impossible pour l'instant : " + KZ.errTxt(KZ.sync.err || KZ.sync.state)); return; }
+  if (k === "pass") { try { await KZ.resetPass(a.email); msg("E-mail envoyé à " + a.email + " : ouvre le lien pour choisir un nouveau mot de passe."); } catch (err) { msg(KZ.errTxt(err)); } return; }
+  if (k === "switch" || k === "out") { if (KZ.sync.pending()) { msg("Envoi de tes dernières modifications…"); try { await KZ.sync.cycle(); } catch (err) { } } return KZ.logout(k === "switch"); }
+});
+KZ.refresh = () => { try { const v = $("#vSet"); if (v && !v.hidden && KZ.app && KZ.app.renderSet) KZ.app.renderSet(); const d = $("#vAdm"); if (d && !d.hidden) KZ.renderAdmin(d); } catch (e) { } };
+
+/* ---------- onglet Administrateur ---------- */
+KZ.renderAdmin = el => {
+  if (!el) return;
+  if (!KZ.isOwner()) { el.innerHTML = `<h2 class="v">Administrateur</h2><p class="hint">Réservé au compte propriétaire.</p>`; return; }
+  const a = KZ.acc, bio = KZ.bioOn(a);
+  if (!KZ.admin) {
+    el.innerHTML = `<h2 class="v">Administrateur</h2><div class="kz-adm"><form class="kz-card" autocomplete="off" onsubmit="return false" novalidate><h3>Accès administrateur</h3>
+      ${bio ? `<button type="button" class="kz-btn pri kz-bio" data-kza="bio">${IC_FP}Utiliser l'empreinte</button><p class="kz-or">ou avec le mot de passe administrateur :</p>` : `<p class="hint" style="margin:0">Saisis le mot de passe administrateur.</p>`}
+      ${passF("kzAP", "Mot de passe administrateur")}<p class="kz-msg" id="kzAdmMsg" role="alert"></p>
+      <button type="button" class="kz-btn ${bio ? "" : "pri"}" data-kza="open">Ouvrir l'espace administrateur</button></form></div>`;
+    return;
+  }
+  const test = KZ.sp === "t", c = KZ.conf();
+  el.innerHTML = `<h2 class="v">Administrateur</h2><div class="kz-adm">
+    <div class="kz-tm"><div class="kz-tm-h"><h3>Mode test</h3><span class="kz-badge">visible par toi seul</span></div>
+      <p style="margin:0">${test ? "Tu es en mode test : devis, contrats, factures, alertes et tarifs sont des données d'essai, synchronisées sur tous tes appareils. Tes vraies données ne bougent pas." : "Un espace d'essai séparé pour tout tester (devis, contrats, factures, alertes, tarifs) sans toucher à tes vraies données. Il est le même sur tous tes appareils."}</p>
+      <div class="kz-row">${test ? `<button type="button" class="kz-btn tm" data-kza="real">Revenir à mes vraies données</button>
+        <button type="button" class="kz-btn tm2" data-kza="copy">Remplacer les essais par une copie de mes vraies données</button>
+        <button type="button" class="kz-btn tm2" data-kza="reset">Effacer toutes les données de test</button>` : `<button type="button" class="kz-btn tm" data-kza="test">Passer en mode test</button>`}</div></div>
+    <div class="kz-card"><h3>Synchronisation entre appareils</h3>
+      <p style="margin:0">Compte <b>${esc(a.email)}</b></p><p style="margin:0" data-kzsync>${KZ.syncLine()}</p>
+      ${c ? `<p class="hint" style="margin:0">Serveur : projet Firebase « ${esc(c.projectId)} ».</p><div class="kz-row two"><button type="button" class="kz-btn" data-kzc="sync">Synchroniser maintenant</button>${a.uid ? "" : `<button type="button" class="kz-btn" data-kzc="switch">Me reconnecter pour activer</button>`}</div>`
+        : `<p class="hint" style="margin:0">Le serveur n'est pas encore raccordé : tes données restent sur cet appareil. Colle ici les lignes <b>apiKey</b> et <b>projectId</b> de ton projet Firebase (Paramètres du projet, Vos applications).</p>
+        <textarea class="kz-ta" id="kzConf" spellcheck="false" autocomplete="off" placeholder='apiKey: "AIza…",&#10;projectId: "kalailet-gestion"'></textarea><button type="button" class="kz-btn pri" data-kza="conf">Raccorder le serveur</button>`}</div>
+    <div class="kz-card"><h3>Empreinte digitale</h3><p style="margin:0">${bio ? "Activée sur cet appareil : elle ouvre l'application et l'espace administrateur." : KZ.bioDispo() ? "Désactivée sur cet appareil." : "Cet appareil ne propose pas l'empreinte au navigateur."}</p>
+      ${KZ.bioDispo() ? `<div class="kz-row">${bio ? `<button type="button" class="kz-btn" data-kzc="biooff">Désactiver l'empreinte</button>` : `<button type="button" class="kz-btn" data-kzc="bioon">${IC_FP}Activer l'empreinte</button>`}</div>` : ""}</div>
+    <p class="kz-msg ok" id="kzAdmMsg" role="status"></p>
+    <button type="button" class="kz-btn" data-kza="leave">Quitter l'espace administrateur</button></div>`;
+};
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-kza]"); if (!b) return;
+  const k = b.dataset.kza, el = $("#vAdm"), msg = (t, ok) => { const m = $("#kzAdmMsg"); if (m) { m.textContent = t; m.classList.toggle("ok", !!ok); } };
+  if (k === "open") { const p = val("kzAP"); if (!p) return msg("Saisis le mot de passe administrateur."); b.disabled = true; msg("Vérification…", true); const ok = await KZ.adminCheck(p); b.disabled = false; if (!ok) return msg("Mot de passe administrateur incorrect."); KZ.renderAdmin(el); return; }
+  if (k === "bio") { try { await KZ.bioCheck(KZ.acc); KZ.adminGrant(); KZ.renderAdmin(el); } catch (err) { msg("Empreinte non reconnue ou annulée."); } return; }
+  if (k === "test") { if (KZ.sync.pending()) { msg("Envoi de tes dernières modifications…", true); try { await KZ.sync.cycle(); } catch (err) { } } return KZ.setSpace("t"); }
+  if (k === "real") { if (KZ.sync.pending()) { msg("Envoi des essais…", true); try { await KZ.sync.cycle(); } catch (err) { } } return KZ.setSpace("r"); }
+  if (k === "reset" || k === "copy") {
+    if (!b.dataset.sure) { b.dataset.sure = 1; const t0 = b.textContent; b.textContent = "Confirmer : les essais actuels seront effacés"; setTimeout(() => { if (b.isConnected) { delete b.dataset.sure; b.textContent = t0; } }, 5000); return; }
+    b.disabled = true; msg(k === "copy" ? "Copie de tes vraies données…" : "Effacement des données de test…", true);
+    try { if (k === "copy") await KZ.copyRealToTest(); else await KZ.resetTest(); try { sessionStorage.setItem("kz_toast", k === "copy" ? "Mode test : copie de tes vraies données prête" : "Mode test : données d'essai effacées"); } catch (err) { } location.reload(); }
+    catch (err) { b.disabled = false; msg("Opération impossible : " + KZ.errTxt(err)); }
+    return;
+  }
+  if (k === "conf") { if (!KZ.setConf(val("kzConf"))) return msg("Je ne trouve pas apiKey et projectId dans ce texte."); msg("Serveur raccordé. Déconnecte-toi puis reconnecte-toi avec ton mot de passe : ton compte est créé en ligne et tes données envoyées.", true); return; }
+  if (k === "leave") { KZ.adminLeave(); KZ.renderAdmin(el); KZ.toast("Espace administrateur fermé"); return; }
+});
+document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target && e.target.id === "kzAP") { e.preventDefault(); const b = $('[data-kza="open"]'); if (b) b.click(); } });
+
+/* ---------- démarrage de la page de l'application ---------- */
+KZ.page = "app";
+KZ.toast = t => { const el = $("#toast"); if (!el) return; el.textContent = t; el.hidden = false; clearTimeout(KZ._tt); KZ._tt = setTimeout(() => { el.hidden = true; }, 4200); };
+KZ.afterBoot = () => {
+  const nav = $(".nav"); if (nav) KZ.scroller(nav);
+  const adm = $("#nAdm"); if (adm) adm.hidden = !KZ.isOwner();
+  const nx = sessionStorage.getItem("kz_next"); if (nx) { sessionStorage.removeItem("kz_next"); if (nx === "tarifs.html") location.href = "tarifs.html"; }
+};
+async function start() {
+  if (KZ.isClientPage()) { KZ.booted = true; W.__KZ_APP && W.__KZ_APP(); return; }
+  if (KZ.restore()) { if (KZ.needsPull()) { G.mode = "wait"; renderGate("Synchronisation de tes données…"); await KZ.prepare(); const g = $("#kzGate"); if (g) g.remove(); } else KZ.prepareLight(); KZ.boot(); return; }
+  G.mode = "login"; renderGate();
+}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+
+</script>
+<script>
+window.__KZ_APP = function () {
 (function(){
 "use strict";
 /* =========================================================
@@ -456,7 +1200,7 @@ function installHelp() {
     <p class="hint" style="opacity:.7">Version 31</p>`;
 }
 async function installApp() {
-  const ev = INSTALL_EVT;
+  const ev = INSTALL_EVT || (window.KZ && KZ.installEvt); if (window.KZ) KZ.installEvt = null;
   if (ev) {
     INSTALL_EVT = null;
     try { await ev.prompt(); const r = await ev.userChoice; if (r && r.outcome === "accepted") { toast("Installation en cours : l'icône KALAILET arrive sur ton écran d'accueil", 5000); return; } if (r && r.outcome === "dismissed") return; } catch (e) { }
@@ -507,6 +1251,7 @@ const Store = {
     }, 600);
   },
   del(path) {
+    if (/^devis\//.test(path) && !CLIENT_PAGE) { try { const T = JSON.parse(localStorage.getItem("kalailet_tomb") || "{}"); T[path.slice(6)] = nowISO(); localStorage.setItem("kalailet_tomb", JSON.stringify(T)); } catch (e) { } }
     this.saveLocal();
     if (!this.db) return;
     const q = this.q[path] || (this.q[path] = { t: 0, chain: Promise.resolve() });
@@ -1607,13 +2352,14 @@ function makeSPad(cv) {
 /* ---------- fichiers joints (IndexedDB : bien plus de place que le stockage simple) ---------- */
 const FDB = {
   _db: null,
-  open() { return this._db || (this._db = new Promise((res, rej) => { const r = indexedDB.open("kalailet_files", 1); r.onupgradeneeded = () => r.result.createObjectStore("f"); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); })); },
+  open() { return this._db || (this._db = new Promise((res, rej) => { const r = indexedDB.open(window.KZ ? KZ.fdbName() : "kalailet_files", 1); r.onupgradeneeded = () => r.result.createObjectStore("f"); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); })); },
   async tx(mode, fn) { const db = await this.open(); return new Promise((res, rej) => { const t = db.transaction("f", mode), st = t.objectStore("f"), q = fn(st); t.oncomplete = () => res(q && q.result); t.onerror = () => rej(t.error); }); },
   put(id, rec) { return this.tx("readwrite", st => st.put(rec, id)); },
   get(id) { return this.tx("readonly", st => st.get(id)); },
   del(id) { return this.tx("readwrite", st => st.delete(id)); },
   async all() { const keys = await this.tx("readonly", st => st.getAllKeys()), vals = await this.tx("readonly", st => st.getAll()); return (keys || []).map((k, i) => [k, vals[i]]); }
 };
+if (window.KZ && KZ.hookFiles) KZ.hookFiles(FDB);
 async function prepFile(file, src) {
   let blob = file, name = file.name || "document", type = file.type || "application/octet-stream";
   if (/^image\//.test(type) && !/gif|svg/.test(type)) {
@@ -2397,7 +3143,7 @@ function alertsAll(withFuture) {
 }
 function refreshBadge() {
   const n = alertsAll().length, b = $("#nAl"); if (b) b.innerHTML = `Alertes${n ? ` <span class="badge">${n}</span>` : ""}`;
-  try { caches.open("kalailet-alertes").then(c => c.put("alertes.json", new Response(JSON.stringify({ at: nowISO(), st: SET.alerts || {}, items: alertsAll(true).map(a => ({ id: a.id, t: a.title, d: a.detail, due: a.due, lvl: a.lvl })) })))).catch(() => { }); } catch (e) { }
+  if (!(window.KZ && KZ.sp === "t")) try { caches.open("kalailet-alertes").then(c => c.put("alertes.json", new Response(JSON.stringify({ at: nowISO(), st: SET.alerts || {}, items: alertsAll(true).map(a => ({ id: a.id, t: a.title, d: a.detail, due: a.due, lvl: a.lvl })) })))).catch(() => { }); } catch (e) { }
   return n;
 }
 function renderAl() {
@@ -2545,11 +3291,11 @@ function sampleDevis() {
 /* ---------------- navigation ---------------- */
 function show(v) {
   VIEW = v;
-  [["list", "List"], ["edit", "Edit"], ["set", "Set"], ["ctr", "Ctr"], ["fac", "Fac"], ["av", "Av"], ["al", "Al"]].forEach(([k, n]) => { $("#v" + n).hidden = v !== k; $("#n" + n).setAttribute("aria-current", v === k); });
+  [["list", "List"], ["edit", "Edit"], ["set", "Set"], ["ctr", "Ctr"], ["fac", "Fac"], ["av", "Av"], ["al", "Al"], ["adm", "Adm"]].forEach(([k, n]) => { $("#v" + n).hidden = v !== k; $("#n" + n).setAttribute("aria-current", v === k); });
   $("#nEdit").hidden = !CUR || !DV[CUR]; if (DV[CUR]) $("#nEdit").textContent = stageLabel(DV[CUR]);
   $("#bar").hidden = v !== "edit";
-  if (v === "list") renderList(); else if (v === "edit") renderEdit(); else if (v === "ctr") renderCtr(); else if (v === "fac") renderFac(); else if (v === "av") renderAv(); else if (v === "al") renderAl(); else renderSet();
-  refreshBadge(); const nb = $("#n" + { list: "List", edit: "Edit", set: "Set", ctr: "Ctr", fac: "Fac", av: "Av", al: "Al" }[v]); if (nb && nb.scrollIntoView) nb.scrollIntoView({ block: "nearest", inline: "center" });
+  if (v === "list") renderList(); else if (v === "edit") renderEdit(); else if (v === "ctr") renderCtr(); else if (v === "fac") renderFac(); else if (v === "av") renderAv(); else if (v === "al") renderAl(); else if (v === "adm") { if (window.KZ) KZ.renderAdmin($("#vAdm")); } else renderSet();
+  refreshBadge(); const nb = $("#n" + { list: "List", edit: "Edit", set: "Set", ctr: "Ctr", fac: "Fac", av: "Av", al: "Al", adm: "Adm" }[v]); if (nb && nb.scrollIntoView) nb.scrollIntoView({ block: "nearest", inline: "center" });
   window.scrollTo({ top: 0 });
 }
 /* nom de l'onglet du dossier ouvert : étape en cours et son numéro */
@@ -3130,7 +3876,7 @@ function renderSet() {
   const em = SET.em, tp = tamponImg();
   const catBlock = m => `<p class="lab">${MODE[m]}</p><div class="items">${alpha(SET.cat[SETBR][m]).map(t => `<div class="item"><span>${esc(t.label)} <small>· ${NATURES[t.nature]}</small></span><button class="x" type="button" data-catdel="${m}:${t.id}">Retirer</button></div>`).join("") || `<p class="hint">Aucun type.</p>`}</div>
     <div class="addrow"><input id="cat_${m}" placeholder="Nouveau type - ${MODE[m].toLowerCase()}"><select id="catn_${m}">${Object.entries(NATURES).map(([k, v]) => opt(k, m === "col" ? "formation" : "coaching", v)).join("")}</select><button class="btn sm" type="button" data-catadd="${m}">Ajouter</button></div>`;
-  $("#vSet").innerHTML = `<h2 class="v">Réglages</h2>
+  $("#vSet").innerHTML = `<h2 class="v">Réglages</h2>${window.KZ && KZ.setCard ? KZ.setCard() : ""}
   ${sec("em", "Mon entreprise", `
     <p class="banner">Version bêta : l'adresse, le SIRET, le NDA et l'assurance sont fictifs. Remplace-les par tes vraies informations dès que tu les as.</p>
     <div class="row">${sinp("em.nom", "Nom commercial")}${sinp("em.resp", "Prénom NOM", { small: "(suivi de « Entrepreneur individuel »)" })}</div>
@@ -3226,6 +3972,7 @@ document.addEventListener("click", async e => {
   if (b.id === "nAv") return show("av");
   if (b.id === "nAl") return show("al");
   if (b.id === "nTar") { location.href = "tarifs.html"; return; }
+  if (b.id === "nAdm") return show("adm");
   if (b.id === "bInstall") return installApp();
   if (b.id === "sentOk") { $("#mBox").hidden = true; if (SENDCTX) { const x = SENDCTX; SENDCTX = null; markSent(x); } return; }
   if (b.dataset.lsreset) { const v = b.dataset.lsreset; LS[v] = { q: (LS[v] || {}).q || "", sort: (LS[v] || {}).sort }; lsSave(); return show(v); }
@@ -3617,9 +4364,11 @@ function takeRet() {
   const onSigned = () => { if (!/^#signed=/.test(location.hash) && !new URLSearchParams(location.search).get("r")) return; const h = location.href; try { history.replaceState(null, "", location.pathname); } catch (e) { } setTimeout(() => importReturn(h), 300); };
   onSigned(); window.addEventListener("hashchange", onSigned);
   window.__kc = { layoutDevis, layoutContrat, layoutAvenant, layoutFacture, buildInvoice, updateWorkbook, toPDF, importReturn, readReturn, linkUrl, createLink, FDB, DV: () => DV, cur: () => CUR, setCur: id => CUR = id };
+  if (window.KZ) KZ.app = { renderSet, show: v => show(v) };
 })();
 
 })();
+};
 </script>
 <script>if("serviceWorker" in navigator&&location.protocol.startsWith("http")&&!/\/s\//.test(location.pathname))navigator.serviceWorker.register("sw.js");</script>
 </body>

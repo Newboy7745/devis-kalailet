@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0A2145">
 <link rel="icon" href="icon-192-v3.png">
 <link rel="apple-touch-icon" href="icon-192-v3.png">
-<title>Tarifs KALAILET</title>
+<title>Étude &amp; stratégie tarifaire KALAILET</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap">
@@ -253,6 +253,34 @@ html { scroll-behavior: smooth }
 }
 .chk { display: flex; gap: 8px; align-items: flex-start; cursor: pointer } .chk input { width: 18px; height: 18px; flex: none; margin-top: 2px; accent-color: var(--gold) }
 
+/* textes modifiables */
+body.kz-edit [data-edk] { outline: 1px dashed color-mix(in srgb, var(--gold) 70%, transparent); outline-offset: 2px; border-radius: 4px; cursor: text }
+body.kz-edit [data-edk]:focus { outline: 2px solid var(--gold); background: color-mix(in srgb, var(--gold-lt) 45%, transparent) }
+body.kz-edit .verdict [data-edk]:focus { background: rgba(255,255,255,.08) }
+body.kz-edit .pdfonly { display: flex !important }
+body.kz-edit [data-only="full"]::before, body.kz-edit [data-only="acm"]::before, body.kz-edit [data-only="com"]::before { display: block; font: 600 11px var(--body); letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 999px; padding: 3px 10px; align-self: flex-start }
+body.kz-edit [data-only="full"]::before { content: "Écran et PDF de l'étude complète" }
+body.kz-edit [data-only="acm"]::before { content: "PDF « Animation et ACM »" }
+body.kz-edit [data-only="com"]::before { content: "PDF « Commerce »" }
+body.kz-edit main { padding-bottom: 90px }
+.edbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; background: var(--panel); color: var(--on-panel); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between; font-size: 13px; box-shadow: 0 -6px 18px rgba(10,33,69,.25) }
+.edbar .btn { background: transparent; color: var(--on-panel); border-color: rgba(255,255,255,.35) }
+.edbar .btn.pri { background: var(--gold); border-color: var(--gold); color: #fff }
+.edbar #edCount { color: var(--gold-br); margin-left: 4px }
+/* flèches et bandeau du mode test (communs avec l'application) */
+.kz-sc { position: relative }
+.kz-sc-b { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink); display: grid; place-items: center; cursor: pointer; box-shadow: 0 2px 8px rgba(10,33,69,.18); padding: 0 }
+.kz-sc-l { left: 0 } .kz-sc-r { right: 0 }
+.kz-sc.kz-sc-l > nav { padding-left: 38px } .kz-sc.kz-sc-r > nav { padding-right: 38px; mask-image: none }
+.kz-sc > nav.toc { mask-image: none }
+.kz-test-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 90; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: calc(46px + env(safe-area-inset-top, 0px)); padding: 4px 12px; padding-top: calc(4px + env(safe-area-inset-top, 0px)); background: linear-gradient(180deg, #F4CB52, #E8B31E); color: #2A1C00; font-size: 15px; line-height: 1.2; text-align: center; border-bottom: 2px solid #8A6400; box-shadow: 0 2px 10px rgba(0,0,0,.35) }
+.kz-test-banner b { font-weight: 800; letter-spacing: .02em }
+.kz-tb-ic { flex: none; width: 24px; height: 24px }
+.kz-tb-out { flex: none; border: 1.5px solid #8A6400; background: #FFF6D6; color: #2A1C00; border-radius: 999px; font: 700 12.5px var(--body); padding: 6px 12px; cursor: pointer }
+body.kz-test { padding-top: var(--kztb, 50px) }
+body.kz-test .topbar { top: var(--kztb, 50px) }
+.topbar .in > .kz-sc { flex: 1; min-width: 0 }
+
 </style>
 </head>
 <body>
@@ -260,66 +288,46 @@ html { scroll-behavior: smooth }
   <a class="back" id="backApp" href="./" hidden><span aria-hidden="true">‹</span> Gestion commerciale</a>
   <img class="tlogo" id="tlogo" alt="KALAILET CONSEIL">
   <nav class="toc" aria-label="Sommaire">
-    <a href="#verdict">Verdict</a><a href="#plancher">Prix plancher</a><a href="#marche">Le marché</a><a href="#acm">Grille ACM</a><a href="#commerce">Grille commerce</a><a href="#grille">Ma grille</a><a href="#affiche">Grille à diffuser</a><a href="#export">Exporter en PDF</a><a href="#simulateur">Simulateur</a><a href="#cadre">Financements</a><a href="#conditions">Conditions</a><a href="#route">Feuille de route</a><a href="#sources">Sources</a>
+    <a href="#intro">Introduction</a><a href="#plancher">Prix plancher</a><a href="#marche">Le marché</a><a href="#acm">Grille ACM</a><a href="#commerce">Grille commerce</a><a href="#grille">Ma grille</a><a href="#affiche">Grille à diffuser</a><a href="#export">Exporter en PDF</a><a href="#simulateur">Simulateur</a><a href="#cadre">Financements</a><a href="#conditions">Conditions</a><a href="#route">Feuille de route</a><a href="#sources">Sources</a><a href="#verdict">Verdict</a>
   </nav>
 </div></div>
 
 <header class="hero">
   <div class="arcs" aria-hidden="true"><i></i><i></i></div>
   <img class="logo" id="logo" alt="KALAILET CONSEIL, Accompagnement et Formation">
-  <div class="eyebrow">Étude tarifaire · novembre 2026</div>
-  <h1>Stratégie <em>tarifaire</em></h1>
-  <p class="lead">Les prix des formations, coachings et accompagnements de KALAILET CONSEIL, dans l'animation (accueils collectifs de mineurs) et dans le commerce, pour une activité viable dès 2027. L'étude compare la grille actuelle au marché, propose deux grilles et donne les outils pour les ajuster.</p>
-  <div class="row actions"><a class="btn pri" href="#affiche">Créer ma grille tarifaire</a><a class="btn" href="#export">Exporter l'étude en PDF</a></div>
+  <div class="eyebrow">Novembre 2026</div>
+  <h1>Étude &amp; stratégie <em>tarifaire</em></h1>
+  <p class="lead">Étude de marché et stratégie de prix de KALAILET CONSEIL pour l'animation (accueils collectifs de mineurs) et l'accompagnement commercial des entreprises : prix plancher, prix du marché actuel, grilles recommandées, et les outils pour les ajuster.</p>
+  <div class="row actions"><a class="btn pri" href="#affiche">Créer ma grille tarifaire</a><a class="btn" href="#export">Exporter l'étude en PDF</a><button type="button" class="btn" id="edToggle">Modifier les textes</button></div>
   <div class="rule" aria-hidden="true"><i></i></div>
 </header>
 
 <main>
-  <section id="verdict" aria-labelledby="v-t" data-pdf-title="Verdict">
-    <div class="verdict" data-only="full">
-      <div class="eyebrow">Verdict</div>
-      <h2 id="v-t">Une grille bien construite, mais trop basse et trop dégressive</h2>
-      <p>La grille ACM actuelle est lisible et colle au positionnement de KALAILET CONSEIL&nbsp;: trois familles claires, des durées précises, des conditions affichées. Le problème est le prix, surtout sur les formats longs.</p>
-      <ul>
-        <li><strong>La journée de groupe à 700&nbsp;€</strong> est dans la moitié basse du marché public&nbsp;: le CNFPT facture de 400 à 1&nbsp;200&nbsp;€ la journée intra. Avec les hypothèses de départ (2&nbsp;500&nbsp;€ nets par mois), elle ne dépasse le prix plancher que de 12&nbsp;%.</li>
-        <li><strong>Plus un client achète, plus la marge baisse.</strong> Le 2<sup>e</sup>&nbsp;jour de formation ne vaut que 400&nbsp;€, la semaine de terrain revient à 390&nbsp;€ par jour. Ces formats passent sous le prix plancher.</li>
-        <li><strong>Une journée de coaching pour un directeur (550&nbsp;€)</strong> coûte presque autant qu'une journée pour 12&nbsp;animateurs (700&nbsp;€). Le coaching se vend mieux en séances de 2&nbsp;h et en forfaits.</li>
-        <li><strong>Le commerce se vend 1,5 à 2&nbsp;fois plus cher</strong> que l'animation&nbsp;: 850 à 2&nbsp;300&nbsp;€ la journée intra. Il lui faut sa propre grille, pas celle de l'ACM.</li>
-      </ul>
-      <p><strong>Proposition&nbsp;:</strong> journée ACM à 850&nbsp;€, remises plafonnées à 5 à 10&nbsp;%, coaching vendu en séances et en forfaits, nouveaux formats (session ouverte par participant, analyse de pratiques, diagnostic, parcours), et une grille commerce autour de 1&nbsp;200&nbsp;€ la journée.</p>
-    </div>
-    <div class="verdict pdfonly" data-only="acm">
-      <div class="eyebrow">Verdict</div>
-      <h2>Une grille ACM bien construite, mais trop basse et trop dégressive</h2>
-      <p>La grille ACM actuelle est lisible et colle au positionnement de KALAILET CONSEIL&nbsp;: trois familles claires, des durées précises, des conditions affichées. Le problème est le prix, surtout sur les formats longs.</p>
-      <ul>
-        <li><strong>La journée de groupe à 700&nbsp;€</strong> est dans la moitié basse du marché public&nbsp;: le CNFPT facture de 400 à 1&nbsp;200&nbsp;€ la journée intra. Avec les hypothèses de départ (2&nbsp;500&nbsp;€ nets par mois), elle ne dépasse le prix plancher que de 12&nbsp;%.</li>
-        <li><strong>Plus un client achète, plus la marge baisse.</strong> Le 2<sup>e</sup>&nbsp;jour de formation ne vaut que 400&nbsp;€, la semaine de terrain revient à 390&nbsp;€ par jour. Ces formats passent sous le prix plancher.</li>
-        <li><strong>Une journée de coaching pour un directeur (550&nbsp;€)</strong> coûte presque autant qu'une journée pour 12&nbsp;animateurs (700&nbsp;€). Le coaching se vend mieux en séances de 2&nbsp;h et en forfaits.</li>
-      </ul>
-      <p><strong>Proposition&nbsp;:</strong> journée de formation à 850&nbsp;€, remises plafonnées à 5 à 10&nbsp;%, coaching vendu en séances et en forfaits, et de nouveaux formats&nbsp;: session ouverte par participant, analyse de pratiques, diagnostic d'un accueil, parcours d'équipe.</p>
-    </div>
-    <div class="verdict pdfonly" data-only="com">
-      <div class="eyebrow">Verdict</div>
-      <h2>Un marché porteur, qui demande une grille à part entière</h2>
-      <p>L'accompagnement commercial s'adresse à des entreprises qui achètent un résultat&nbsp;: plus de rendez-vous, un meilleur taux de signature. Le parcours de terrain de Khalid AJDID (plus de 2&nbsp;000 contrats signés, 4&nbsp;M€ de chiffre d'affaires générés comme salarié) justifie un prix de formateur confirmé.</p>
-      <ul>
-        <li><strong>Le commerce se vend 1,5 à 2&nbsp;fois plus cher</strong> que l'animation&nbsp;: 850 à 2&nbsp;300&nbsp;€ la journée intra dans les organismes de formation.</li>
-        <li><strong>Les tarifs par défaut de l'outil de gestion</strong> (950&nbsp;€ la journée de groupe, 600&nbsp;€ la journée individuelle) sont sous le marché.</li>
-        <li><strong>Les TPE n'ont souvent qu'un ou deux commerciaux</strong>&nbsp;: une session ouverte vendue par participant leur donne accès à la formation.</li>
-      </ul>
-      <p><strong>Proposition&nbsp;:</strong> journée de formation intra à 1&nbsp;200&nbsp;€, coaching en séances de 1&nbsp;h&nbsp;30, accompagnement en clientèle à 900&nbsp;€ la journée, diagnostic commercial et parcours de 3&nbsp;mois.</p>
-    </div>
+  <section id="intro" aria-labelledby="i-t">
+    <div class="sechead" data-only="full"><div class="eyebrow">Introduction</div><h2 id="i-t">Des prix justes, viables et défendables face au marché</h2>
+      <p>KALAILET CONSEIL est une activité d'accompagnement et de formation créée par Khalid AJDID, formateur, coach et consultant. Elle démarre en micro-entreprise en janvier 2027 et s'adresse uniquement aux professionnels, dans deux secteurs&nbsp;: l'animation en accueils collectifs de mineurs (ACM), auprès des collectivités, des associations et des organisateurs d'accueils, et l'accompagnement commercial des TPE et des PME.</p>
+      <p>Cette étude construit la stratégie tarifaire des deux secteurs à partir de trois éléments&nbsp;: le <strong>prix plancher</strong>, c'est-à-dire ce que l'activité doit facturer pour couvrir ses charges et rémunérer son dirigeant&nbsp;; les <strong>prix du marché actuel</strong>, relevés auprès des organismes publics, des réseaux associatifs et des organismes de formation privés&nbsp;; le <strong>cadre d'achat</strong> des clients&nbsp;: budgets publics, financement de la formation, TVA.</p>
+      <p>Elle aboutit à une grille recommandée pour chaque secteur, à des conditions commerciales, à une projection d'activité et à une feuille de route. Les chiffres sont recalculés avec les hypothèses retenues par l'entrepreneur.</p></div>
+    <div class="sechead pdfonly" data-only="acm"><div class="eyebrow">Introduction</div><h2>La stratégie tarifaire du secteur animation et ACM</h2>
+      <p>KALAILET CONSEIL est une activité d'accompagnement et de formation créée par Khalid AJDID, formateur, coach et consultant, qui démarre en micro-entreprise en janvier 2027. Ce document présente la stratégie tarifaire du secteur animation&nbsp;: formation des équipes d'animateurs, coaching des directeurs, accompagnement sur le terrain, diagnostic et parcours d'équipe.</p>
+      <p>Le besoin est permanent&nbsp;: plus de 32&nbsp;000 lieux d'accueil en France, une branche où 30&nbsp;% des salariés sont nouveaux chaque année et où 76&nbsp;% des structures peinent à recruter. Les acheteurs sont surtout des collectivités et des associations, qui comparent les prix avec ceux du CNFPT et des réseaux d'éducation populaire.</p>
+      <p>Les prix recommandés partent du <strong>prix plancher</strong> de l'activité et des <strong>prix du marché actuel</strong>, dans le <strong>cadre d'achat</strong> des clients publics et associatifs. Les chiffres sont recalculés avec les hypothèses retenues par l'entrepreneur.</p></div>
+    <div class="sechead pdfonly" data-only="com"><div class="eyebrow">Introduction</div><h2>La stratégie tarifaire de l'accompagnement commercial</h2>
+      <p>KALAILET CONSEIL est une activité d'accompagnement et de formation créée par Khalid AJDID, formateur, coach et consultant, qui démarre en micro-entreprise en janvier 2027. Ce document présente la stratégie tarifaire de l'accompagnement commercial&nbsp;: formation des équipes commerciales, coaching individuel, accompagnement en clientèle, diagnostic et parcours.</p>
+      <p>Le Loiret, premier marché visé, compte 17&nbsp;700 établissements de 1 à 49 salariés. Leurs dirigeants achètent un résultat&nbsp;: plus de rendez-vous, un meilleur taux de signature. Ils paient le plus souvent sur leur propre budget. Le parcours de terrain de Khalid AJDID, plus de 2&nbsp;000 contrats signés et 4&nbsp;M€ de chiffre d'affaires générés comme salarié, fonde un positionnement de formateur confirmé.</p>
+      <p>Les prix recommandés partent du <strong>prix plancher</strong> de l'activité et des <strong>prix du marché actuel</strong> pratiqués par les organismes de formation et les indépendants. Les chiffres sont recalculés avec les hypothèses retenues par l'entrepreneur.</p></div>
     <div class="tiles">
       <div class="tile"><div class="v num" id="t-plancher">624&nbsp;€</div><div class="l" id="t-plancher-l">prix plancher d'une journée de formation, pour 2&nbsp;500&nbsp;€ nets par mois</div></div>
       <div class="tile" data-sec="acm"><div class="v num">60&nbsp;000&nbsp;€</div><div class="l">montant qu'une mairie peut payer sans appel d'offres, depuis le 1<sup>er</sup>&nbsp;avril 2026</div></div>
+      <div class="tile" data-sec="com"><div class="v num">850 à 2&nbsp;300&nbsp;€</div><div class="l">prix d'une journée de formation commerciale en entreprise, dans les organismes de formation</div></div>
       <div class="tile"><div class="v num">28&nbsp;%</div><div class="l">prélevé sur chaque euro encaissé en micro-entreprise libérale, avec le versement libératoire de l'impôt</div></div>
     </div>
   </section>
 
   <section id="plancher" aria-labelledby="p-t">
     <div class="sechead"><div class="eyebrow">Prix plancher</div><h2 id="p-t">Ce qu'il faut facturer pour vivre de l'activité</h2>
-      <p class="muted">Le prix plancher est le prix sous lequel l'activité travaille à perte par rapport à l'objectif de revenu. Il tient compte de tout le temps qu'une prestation demande&nbsp;: préparation, trajet et gestion, pas seulement les heures devant le groupe.<span class="tool"> Règle les hypothèses&nbsp;: toute la page se recalcule.</span></p></div>
+      <p class="muted">Le prix plancher est le prix sous lequel l'activité travaille à perte par rapport à l'objectif de revenu. Il tient compte de tout le temps qu'une prestation demande&nbsp;: préparation, trajet et gestion, pas seulement les heures devant le groupe.</p>
+      <p class="muted small tool">Règle les hypothèses&nbsp;: toute la page se recalcule.</p></div>
     <div class="card" data-pdf="calc" style="display:flex;flex-direction:column;gap:16px">
       <div class="ctlgrid" id="calc-ctl"></div>
       <div class="row" style="gap:18px">
@@ -342,12 +350,12 @@ html { scroll-behavior: smooth }
       <p class="muted">Fourchettes de prix HT relevées en 2025 et 2026 (sources en fin d'étude).<span data-sec="acm"> Les grands réseaux d'éducation populaire (CEMÉA, Francas, UFCV, Ligue de l'enseignement) ne publient pas leurs prix intra&nbsp;: les repères ACM viennent du CNFPT, de Familles Rurales, de collectivités et d'organismes du secteur social.</span></p></div>
     <div class="card" data-sec="acm" style="display:flex;flex-direction:column;gap:12px">
       <h3>Animation et ACM</h3>
-      <div class="legend"><span><i style="background:var(--grid);border:1px solid var(--axis)"></i>Fourchette du marché</span><span><i style="background:var(--axis);transform:rotate(45deg)"></i>Grille actuelle</span><span><i style="background:var(--gold);transform:rotate(45deg)"></i>Proposition</span></div>
+      <div class="legend"><span><i style="background:var(--grid);border:1px solid var(--axis)"></i>Fourchette du marché</span><span><i style="background:var(--gold);transform:rotate(45deg)"></i>Prix recommandé</span></div>
       <div class="rng" id="rng-acm" data-pdf="rng-acm"></div>
     </div>
     <div class="card" data-sec="com" style="display:flex;flex-direction:column;gap:12px">
       <h3>Accompagnement commercial</h3>
-      <div class="legend"><span><i style="background:var(--grid);border:1px solid var(--axis)"></i>Fourchette du marché</span><span><i style="background:var(--axis);transform:rotate(45deg)"></i>Tarif par défaut de l'outil de gestion</span><span><i style="background:var(--gold);transform:rotate(45deg)"></i>Proposition</span></div>
+      <div class="legend"><span><i style="background:var(--grid);border:1px solid var(--axis)"></i>Fourchette du marché</span><span><i style="background:var(--gold);transform:rotate(45deg)"></i>Prix recommandé</span></div>
       <div class="rng" id="rng-com" data-pdf="rng-com"></div>
       <p class="tiny muted">Grands organismes&nbsp;: Cegos 4&nbsp;550&nbsp;€ les 2&nbsp;jours intra pour 12&nbsp;personnes, Demos 3&nbsp;580&nbsp;€ pour 10, CCI Paris Île-de-France 1&nbsp;700&nbsp;€. Formateurs indépendants en vente&nbsp;: 450 à 650&nbsp;€ par jour pour un profil confirmé, 650 à 850&nbsp;€ pour un expert.</p>
     </div>
@@ -362,31 +370,30 @@ html { scroll-behavior: smooth }
   </section>
 
   <section id="acm" aria-labelledby="a-t" data-sec="acm">
-    <div class="sechead"><div class="eyebrow">Animation et ACM</div><h2 id="a-t">La grille actuelle, ligne par ligne</h2>
-      <p class="muted">La colonne « Position » compare chaque prix au prix plancher (le temps réel que demande la prestation, avec les hypothèses du calcul) et au marché.</p></div>
-    <div class="card" id="acm-cur" data-pdf="acm-cur"></div>
+    <div class="sechead"><div class="eyebrow">Animation et ACM</div><h2 id="a-t">La grille recommandée face au marché</h2>
+      <p class="muted">Chaque prix se place dans la fourchette publique, au-dessus du prix plancher. La colonne «&nbsp;Position&nbsp;» le situe par rapport au plancher et au marché.</p></div>
+    <div class="card" id="acm-prop" data-pdf="acm-prop"></div>
     <div class="two">
-      <div class="card"><h3>Ce qui fonctionne</h3><ul class="clean small" style="margin-top:8px">
-        <li>Trois familles qui reprennent les deux publics&nbsp;: animateurs en groupe, directeurs en individuel, et le terrain.</li>
-        <li>Les formats de 2&nbsp;h sont bien plus chers à l'heure que la journée&nbsp;: c'est juste, ils occupent une demi-journée.</li>
-        <li>Les conditions sont affichées&nbsp;: 12 participants, 7&nbsp;h par jour, déplacements en sus, mention de TVA.</li>
+      <div class="card"><h3>Les principes de la grille</h3><ul class="clean small" style="margin-top:8px">
+        <li><strong>La journée de formation en groupe autour de 850&nbsp;€</strong>&nbsp;: au milieu de la fourchette du CNFPT (400 à 1&nbsp;200&nbsp;€ la journée intra), un prix qu'une mairie ou une association compare sans difficulté.</li>
+        <li><strong>Des formats courts plus chers à l'heure</strong>&nbsp;: un atelier de 2&nbsp;h demande presque autant de préparation et de trajet qu'une demi-journée.</li>
+        <li><strong>Des remises limitées à 5 à 10&nbsp;%</strong> sur les formats longs&nbsp;: au-delà, le deuxième jour passe sous le prix plancher.</li>
+        <li><strong>Le coaching des directeurs vendu en séances de 2&nbsp;h et en forfaits</strong>&nbsp;: un directeur se libère plus facilement 2&nbsp;h qu'une journée, et le forfait engage sur la durée.</li>
+        <li><strong>Une session ouverte vendue par participant</strong>, pour les petites structures qui n'ont que 1 à 3&nbsp;animateurs à former.</li>
+        <li><strong>Des formats récurrents</strong>&nbsp;: cycles d'analyse de pratiques, diagnostic d'un accueil, parcours d'équipe sur plusieurs semaines.</li>
       </ul></div>
-      <div class="card"><h3>Ce qui coince</h3><ul class="clean small" style="margin-top:8px">
-        <li>Remises trop fortes&nbsp;: −21&nbsp;% sur 2&nbsp;jours de formation, −18&nbsp;% sur 2&nbsp;jours de terrain, −29&nbsp;% sur la semaine. À titre de comparaison, Familles Rurales Hérault ne retire que 7&nbsp;% sur 2&nbsp;jours (270&nbsp;€ puis 500&nbsp;€).</li>
-        <li>« 1 semaine » ne dit pas si ce sont 5&nbsp;jours d'affilée ou 5&nbsp;journées étalées, ni combien de déplacements.</li>
-        <li>Le coaching vendu à la journée&nbsp;: un directeur ne se libère pas 7&nbsp;h d'affilée, et 550&nbsp;€ d'un coup freine l'achat.</li>
-        <li>Rien pour les petites structures, qui n'ont que 1 à 3&nbsp;animateurs à former&nbsp;: il manque un prix par participant.</li>
-        <li>Rien pour les besoins récurrents&nbsp;: analyse de pratiques, cycles, parcours.</li>
+      <div class="card"><h3>À qui la vendre, et comment</h3><ul class="clean small" style="margin-top:8px">
+        <li><strong>Collectivités</strong>&nbsp;: un simple devis suffit sous 60&nbsp;000&nbsp;€. Le budget est voté au printemps&nbsp;: la prospection se fait de septembre à janvier pour l'année suivante.</li>
+        <li><strong>Associations et organisateurs de séjours</strong>&nbsp;: paiement sur fonds propres ou par Uniformation. Les besoins culminent avant l'été et à la rentrée.</li>
+        <li><strong>Arguments</strong>&nbsp;: la qualité éducative de l'accueil, la sécurité affective des enfants, la fidélisation d'équipes qui se renouvellent chaque année.</li>
+        <li><strong>Ce que le CNFPT ne propose pas</strong>&nbsp;: interventions sur site, contenus sur mesure, accompagnement sur le terrain et coaching des directeurs.</li>
       </ul></div>
     </div>
-    <div class="sechead" style="margin-top:8px"><h3>Grille ACM proposée</h3>
-      <p class="muted small">Les intitulés sont conservés. Les prix restent dans la fourchette publique, ce qui compte pour une mairie ou une association qui compare avec le CNFPT.<span class="tool"> Tu peux tout modifier dans « Ma grille ».</span></p></div>
-    <div class="card" id="acm-prop" data-pdf="acm-prop"></div>
   </section>
 
   <section id="commerce" aria-labelledby="c-t" data-sec="com">
-    <div class="sechead"><div class="eyebrow">Accompagnement commercial</div><h2 id="c-t">Une grille à part pour les entreprises</h2>
-      <p class="muted">Une PME achète un résultat&nbsp;: plus de rendez-vous, un meilleur taux de signature. Le parcours de terrain de Khalid AJDID (plus de 2&nbsp;000 contrats signés, 4&nbsp;M€ de chiffre d'affaires générés comme salarié) justifie un prix de formateur confirmé. Les tarifs par défaut de l'outil de gestion (950&nbsp;€ la journée de groupe, 600&nbsp;€ la journée individuelle) sont sous le marché.</p></div>
+    <div class="sechead"><div class="eyebrow">Accompagnement commercial</div><h2 id="c-t">La grille recommandée pour les entreprises</h2>
+      <p class="muted">Une PME achète un résultat&nbsp;: plus de rendez-vous, un meilleur taux de signature. Le parcours de terrain de Khalid AJDID (plus de 2&nbsp;000 contrats signés, 4&nbsp;M€ de chiffre d'affaires générés comme salarié) justifie un prix de formateur confirmé.</p></div>
     <div class="card" id="com-prop" data-pdf="com-prop"></div>
     <div class="two">
       <div class="card"><h3>Pourquoi ces prix</h3><ul class="clean small" style="margin-top:8px">
@@ -541,8 +548,8 @@ html { scroll-behavior: smooth }
     <div class="steps">
       <div class="step"><div><h3>Valider la grille</h3><div class="when">Novembre et décembre 2026</div><ul>
         <li>Présenter la grille à 5&nbsp;à&nbsp;8 prospects&nbsp;: 3&nbsp;collectivités, 2&nbsp;associations, 3&nbsp;PME. Noter les réactions, sans annoncer de remise.</li>
-        <li>Diffuser l'affiche ACM mise à jour et la grille commerce, avec les conditions de cette étude.</li>
-        <li>Reporter les prix dans l'outil de gestion commerciale, pour que les devis partent au bon tarif.</li>
+        <li>Diffuser la grille tarifaire de chaque secteur, avec les conditions commerciales de cette étude.</li>
+        <li>Les prix de la grille retenue alimentent directement les devis, contrats et factures de l'outil de gestion commerciale.</li>
       </ul></div></div>
       <div class="step"><div><h3>Démarrer</h3><div class="when">Janvier 2027</div><ul>
         <li>Immatriculation, option pour le versement libératoire, demande d'ACRE dans les 60&nbsp;jours si les conditions sont remplies.</li>
@@ -599,6 +606,42 @@ html { scroll-behavior: smooth }
       <li><a href="https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/aides/frais.htm" target="_blank" rel="noopener">impots.gouv : barème kilométrique</a> · <a href="https://entreprendre.service-public.gouv.fr/vosdroits/F23999" target="_blank" rel="noopener">service-public : CFE</a> · <a href="https://entreprendre.service-public.gouv.fr/vosdroits/F11677" target="_blank" rel="noopener">service-public : ACRE</a></li>
     </ul>
   </section>
+  <section id="verdict" aria-labelledby="v-t">
+    <div class="verdict" data-only="full">
+      <div class="eyebrow">Verdict</div>
+      <h2 id="v-t">Une activité viable, à condition de vendre au prix du marché et de remplir l'agenda</h2>
+      <p>L'étude conduit à quatre constats.</p>
+      <ul>
+        <li><strong>Le prix plancher fixe la limite basse.</strong> Avec les hypothèses retenues, une journée de formation en groupe doit être facturée au moins <span data-v="day">624&nbsp;€</span>&nbsp;; en dessous, l'activité ne rémunère pas son dirigeant au niveau visé. Les prix recommandés se situent tous au-dessus de ce seuil.</li>
+        <li><strong>Les deux secteurs n'ont pas le même marché.</strong> L'animation se vend dans une fourchette publique, de 400 à 1&nbsp;200&nbsp;€ la journée intra, à des acheteurs attentifs au prix. Le commerce se vend 1,5 à 2&nbsp;fois plus cher, de 850 à 2&nbsp;300&nbsp;€ la journée intra, à des entreprises qui achètent un résultat. Chaque secteur a donc sa propre grille.</li>
+        <li><strong>La rentabilité tient aux formats.</strong> Les formats courts se facturent plus cher à l'heure, les remises sur les formats longs restent limitées, la session ouverte vendue par participant ouvre les petites structures, et les cycles et parcours installent des clients dans la durée.</li>
+        <li><strong>Le volume reste le vrai défi.</strong> Au prix recommandé de la journée de formation (<span data-v="dayp">850&nbsp;€</span>), il faut en facturer l'équivalent d'environ <span data-v="jours">55</span> par an pour atteindre l'objectif de revenu&nbsp;: la prospection, au bon moment de l'année, compte autant que le prix.</li>
+      </ul>
+      <p><strong>Recommandation&nbsp;:</strong> adopter les deux grilles recommandées, les diffuser avec les conditions commerciales, suivre l'activité avec le simulateur et réviser les prix chaque année. Points de vigilance&nbsp;: le seuil de franchise de TVA, la baisse des financements de la formation pour les petites entreprises, le creux d'août et la dépendance aux calendriers budgétaires publics.</p>
+    </div>
+    <div class="verdict pdfonly" data-only="acm">
+      <div class="eyebrow">Verdict</div>
+      <h2>Une grille ACM viable et crédible face aux acheteurs publics</h2>
+      <p>L'étude conduit à trois constats pour le secteur animation.</p>
+      <ul>
+        <li><strong>Le prix plancher fixe la limite basse.</strong> Avec les hypothèses retenues, une journée de formation en groupe doit être facturée au moins <span data-v="day">624&nbsp;€</span>. La journée recommandée, autour de 850&nbsp;€, se situe au-dessus de ce seuil et au milieu de la fourchette du CNFPT.</li>
+        <li><strong>La rentabilité tient aux formats.</strong> Ateliers et séances de coaching plus chers à l'heure, remises limitées sur les formats longs, session ouverte par participant pour les petites structures, cycles d'analyse de pratiques et parcours d'équipe pour installer des clients dans la durée.</li>
+        <li><strong>Le calendrier commande les ventes.</strong> Les collectivités votent leur budget au printemps et les besoins des équipes culminent avant l'été&nbsp;: la prospection se fait de septembre à janvier.</li>
+      </ul>
+      <p><strong>Recommandation&nbsp;:</strong> adopter la grille recommandée, la diffuser avec les conditions commerciales et la réviser chaque année. Points de vigilance&nbsp;: le creux d'août, la concurrence gratuite du catalogue du CNFPT pour les agents territoriaux, et Qualiopi dès que des associations demandent un financement.</p>
+    </div>
+    <div class="verdict pdfonly" data-only="com">
+      <div class="eyebrow">Verdict</div>
+      <h2>Une grille commerce au prix d'un formateur confirmé</h2>
+      <p>L'étude conduit à trois constats pour l'accompagnement commercial.</p>
+      <ul>
+        <li><strong>Le marché paie le résultat.</strong> Les organismes facturent de 850 à 2&nbsp;300&nbsp;€ la journée intra&nbsp;; la journée recommandée, autour de 1&nbsp;200&nbsp;€, est crédible sans marque connue ni certification, et largement au-dessus du prix plancher (<span data-v="day">624&nbsp;€</span>).</li>
+        <li><strong>Le terrain fait la différence.</strong> L'accompagnement en clientèle, rare sur le marché, se vend mieux que la formation seule&nbsp;; le diagnostic ouvre la porte au parcours de 3&nbsp;mois.</li>
+        <li><strong>Les entreprises paient sur leur budget.</strong> Les financements des OPCO se raréfient pour les moins de 50&nbsp;salariés&nbsp;: la vente repose sur le retour sur investissement chiffré avec le dirigeant.</li>
+      </ul>
+      <p><strong>Recommandation&nbsp;:</strong> adopter la grille recommandée, commencer par le diagnostic et le parcours, et réviser les prix chaque année. Points de vigilance&nbsp;: le seuil de franchise de TVA pour le coaching et le conseil, et la durée des cycles de décision dans les PME.</p>
+    </div>
+  </section>
 </main>
 <footer class="foot">
   <div class="in"><b>Khalid AJDID</b><span class="role">Formateur • Coach • Consultant</span><span>KALAILET CONSEIL, entrepreneur individuel · 06 18 62 54 59 · kalailet.conseil@gmail.com</span><span class="muted">Étude réalisée en novembre 2026</span></div>
@@ -606,6 +649,482 @@ html { scroll-behavior: smooth }
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
+/* KALAILET : comptes, espaces de données (réel / test), stockage par compte et synchronisation entre appareils.
+   - Connexion : adresse e-mail et mot de passe (Firebase Authentication, API REST, sans bibliothèque), empreinte (WebAuthn).
+   - Hors connexion : le mot de passe est vérifié sur l'appareil (empreinte PBKDF2 gardée après la dernière connexion en ligne).
+   - Stockage : les clés de l'application sont rangées par compte et par espace (« kz:<compte>:<r|t>:clé ») ; l'application,
+     elle, lit et écrit toujours ses clés habituelles (« kalailet_app_v2 »…) : la correspondance se fait ici, au plus bas niveau.
+   - Synchronisation : chaque clé est envoyée compressée, en morceaux, dans Cloud Firestore (u/<uid>/s_<espace>, c_<espace>) ;
+     les fichiers joints (IndexedDB) dans fm_/fc_<espace>. Le dernier qui écrit gagne, sauf pour les devis : fusion devis par devis.
+   - Aucun mot de passe en clair dans ce code : seules des empreintes (SHA-256, PBKDF2) y figurent. */
+(function () {
+"use strict";
+const W = window;
+if (W.claude && W.claude.use) { W.KZ = null; return; }
+const CONF0 = /*KZ_FB*/null;
+const OWNER_H = "1b96b3eb8c236a998ce92bb602ec6502cf642175e6f31dfc7f7c6090dd7596e9";
+const ADMIN_V = { s: "t8PlLX8QjAd4yiXyy6nxpw==", i: 310000, h: "041e75eb07812a08bdd57cb3e5c67213f683dacea543461e5fa72f733f48e464" };
+const SYNC_KEYS = ["kalailet_app_v2", "kalailet_drafts", "kalailet_ls", "kalailet_clients", "kalailet_tarifs", "kalailet_tarifs_for", "kalailet_tomb"];
+const SYNCED = new Set(SYNC_KEYS);
+const AUTH = "https://identitytoolkit.googleapis.com/v1/accounts:", TOKEN = "https://securetoken.googleapis.com/v1/token", FSB = "https://firestore.googleapis.com/v1/";
+const CH = 700 * 1024, VER_ITER = 150000;
+
+/* ---------- outils ---------- */
+const enc = new TextEncoder(), dec = new TextDecoder();
+const b64 = u => { u = u instanceof Uint8Array ? u : new Uint8Array(u); let s = ""; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); };
+const unb64 = s => { const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; };
+const hex = buf => [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2, "0")).join("");
+const rnd = n => crypto.getRandomValues(new Uint8Array(n));
+const sha = async s => hex(await crypto.subtle.digest("SHA-256", typeof s === "string" ? enc.encode(s) : s));
+async function pbk(pass, salt, iter) { const k = await crypto.subtle.importKey("raw", enc.encode(pass), "PBKDF2", false, ["deriveBits"]); return hex(await crypto.subtle.deriveBits({ name: "PBKDF2", salt, iterations: iter, hash: "SHA-256" }, k, 256)); }
+const HAS_CS = typeof CompressionStream === "function" && typeof DecompressionStream === "function";
+async function gz(u8, un) { return new Uint8Array(await new Response(new Blob([u8]).stream().pipeThrough(un ? new DecompressionStream("gzip") : new CompressionStream("gzip"))).arrayBuffer()); }
+const mailNorm = m => String(m || "").trim().toLowerCase();
+const mailOk = m => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mailNorm(m));
+const mailHash = m => sha("kalailet/compte/v1|" + mailNorm(m));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const withTimeout = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej({ code: "delai" }), ms))]);
+function masked(m) { const [a, d] = mailNorm(m).split("@"); if (!d) return m; return a.slice(0, 1) + "•".repeat(Math.max(2, Math.min(8, a.length - 1))) + "@" + d; }
+
+/* ---------- stockage brut et correspondance des clés ---------- */
+const LS = W.localStorage, SS = W.sessionStorage, SP = Storage.prototype, oGet = SP.getItem, oSet = SP.setItem, oRem = SP.removeItem;
+const rGet = k => { try { return oGet.call(LS, k); } catch (e) { return null; } };
+const rSet = (k, v) => { try { oSet.call(LS, k, v); return true; } catch (e) { return false; } };
+const rRem = k => { try { oRem.call(LS, k); } catch (e) { } };
+const sGet = k => { try { return oGet.call(SS, k); } catch (e) { return null; } };
+const sSet = (k, v) => { try { oSet.call(SS, k, v); } catch (e) { } };
+const sRem = k => { try { oRem.call(SS, k); } catch (e) { } };
+const KZ = W.KZ = { ns: "", sp: "r", acc: null, page: "app", booted: false, admin: false, SYNC_KEYS, masked, mailOk, mailNorm };
+SP.getItem = function (k) { return oGet.call(this, this === LS && KZ.ns && SYNCED.has(k) ? KZ.ns + k : k); };
+SP.setItem = function (k, v) { if (this === LS && KZ.ns && SYNCED.has(k)) { const r = oSet.call(this, KZ.ns + k, v); Sync.touch(k); return r; } return oSet.call(this, k, v); };
+SP.removeItem = function (k) { if (this === LS && KZ.ns && SYNCED.has(k)) { oRem.call(this, KZ.ns + k); Sync.touch(k); return; } return oRem.call(this, k); };
+const nsOf = (ah, sp) => "kz:" + ah.slice(0, 16) + ":" + sp + ":";
+KZ.fdbName = () => KZ.ns ? "kalailet_files__" + KZ.ah.slice(0, 16) + "_" + KZ.sp : "kalailet_files";
+let DEV = rGet("kz_dev"); if (!DEV) { DEV = hex(rnd(6)); rSet("kz_dev", DEV); }
+
+/* ---------- comptes connus sur cet appareil ---------- */
+const accAll = () => { try { const a = JSON.parse(rGet("kz_acc") || "null"); return a && a.list ? a : { list: {}, last: "" }; } catch (e) { return { list: {}, last: "" }; } };
+const accSave = a => rSet("kz_acc", JSON.stringify(a));
+function accPut(acc) { const a = accAll(); a.list[acc.ah] = acc; accSave(a); if (KZ.acc && KZ.acc.ah === acc.ah) KZ.acc = acc; }
+KZ.lastAcc = () => { const a = accAll(); return a.last && a.list[a.last] ? a.list[a.last] : null; };
+KZ.forgetLast = () => { const a = accAll(); a.last = ""; accSave(a); };
+KZ.isOwner = () => !!(KZ.acc && KZ.acc.ah === OWNER_H);
+
+/* ---------- serveur (Firebase) ---------- */
+const conf = () => { if (CONF0 && CONF0.apiKey) return CONF0; try { const c = JSON.parse(rGet("kz_fb") || "null"); return c && c.apiKey && c.projectId ? c : null; } catch (e) { return null; } };
+KZ.conf = conf;
+KZ.setConf = txt => {
+  const s = String(txt || ""), k = (s.match(/apiKey["'\s]*[:=]\s*["']([^"']+)["']/) || s.match(/\b(AIza[0-9A-Za-z_\-]{30,})\b/) || [])[1], p = (s.match(/projectId["'\s]*[:=]\s*["']([^"']+)["']/) || [])[1];
+  if (!k || !p) return false; rSet("kz_fb", JSON.stringify({ apiKey: k.trim(), projectId: p.trim() })); return true;
+};
+async function fx(url, o) { try { return await fetch(url, { ...o, cache: "no-store", credentials: "omit" }); } catch (e) { throw { code: "reseau" }; } }
+async function authCall(kind, body) {
+  const c = conf(); if (!c) throw { code: "sans-serveur" };
+  const r = await fx(AUTH + kind + "?key=" + encodeURIComponent(c.apiKey), { method: "POST", headers: { "Content-Type": "application/json", "X-Firebase-Locale": "fr" }, body: JSON.stringify(body) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw { code: String((j.error && j.error.message) || "serveur").split(/[\s:]/)[0] };
+  return j;
+}
+let IDT = null;
+async function token(force) {
+  const acc = KZ.acc, c = conf(); if (!acc || !acc.rt || !c) throw { code: "reconnexion" };
+  if (!force && IDT && IDT.ah === acc.ah && Date.now() < IDT.exp - 120000) return IDT.t;
+  const r = await fx(TOKEN + "?key=" + encodeURIComponent(c.apiKey), { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "grant_type=refresh_token&refresh_token=" + encodeURIComponent(acc.rt) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || !j.id_token) throw { code: [400, 401, 403].includes(r.status) ? "reconnexion" : r.status === 429 ? "quota" : "serveur" };
+  IDT = { ah: acc.ah, t: j.id_token, exp: Date.now() + (+j.expires_in || 3600) * 1000 };
+  if (j.refresh_token && j.refresh_token !== acc.rt) { acc.rt = j.refresh_token; accPut(acc); }
+  return IDT.t;
+}
+const root = () => `projects/${conf().projectId}/databases/(default)/documents`;
+async function fs(method, path, body) {
+  for (let i = 0; ; i++) {
+    const t = await token(i > 0);
+    const r = await fx(FSB + path, { method, headers: { Authorization: "Bearer " + t, ...(body ? { "Content-Type": "application/json" } : {}) }, body: body ? JSON.stringify(body) : undefined });
+    if (r.status === 401 && i === 0) continue;
+    if (r.status === 404 && method === "GET") return null;
+    const j = await r.json().catch(() => null);
+    if (!r.ok) throw { code: r.status === 429 ? "quota" : r.status === 401 ? "reconnexion" : r.status === 403 ? "refus" : "serveur", st: r.status };
+    return j;
+  }
+}
+const docName = p => root() + "/" + p;
+async function listAll(coll) {
+  const out = []; let tok = "";
+  for (let i = 0; i < 50; i++) {
+    const j = await fs("GET", root() + "/" + coll + "?pageSize=300" + (tok ? "&pageToken=" + encodeURIComponent(tok) : ""));
+    if (!j) break; out.push(...(j.documents || [])); if (!j.nextPageToken) break; tok = j.nextPageToken;
+  }
+  return out;
+}
+async function batchGet(names) {
+  const m = new Map();
+  for (let i = 0; i < names.length; i += 20) { const j = await fs("POST", root() + ":batchGet", { documents: names.slice(i, i + 20) }); for (const x of j || []) if (x && x.found) m.set(x.found.name, x.found); }
+  return names.map(n => m.get(n) || null);
+}
+async function commit(writes) {
+  for (let i = 0; i < writes.length;) {
+    const part = []; let size = 0;
+    while (i < writes.length && part.length < 400) { const n = JSON.stringify(writes[i]).length; if (part.length && size + n > 8e6) break; size += n; part.push(writes[i++]); }
+    await fs("POST", root() + ":commit", { writes: part });
+  }
+}
+const FI = v => ({ integerValue: String(Math.round(v)) }), FS_ = v => ({ stringValue: String(v) }), FB = v => ({ booleanValue: !!v });
+const gI = f => f ? +(f.integerValue || 0) : 0, gS = f => f ? f.stringValue || "" : "", gB = f => !!(f && f.booleanValue);
+
+/* ---------- fichiers joints (IndexedDB de l'espace en cours) ---------- */
+const IDB = {
+  open(name) { return new Promise((res, rej) => { const r = indexedDB.open(name, 1); r.onupgradeneeded = () => r.result.createObjectStore("f"); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); },
+  async run(name, mode, fn) { const db = await this.open(name); try { return await new Promise((res, rej) => { const t = db.transaction("f", mode), st = t.objectStore("f"), q = fn(st); t.oncomplete = () => res(q && q.result); t.onerror = () => rej(t.error); }); } finally { db.close(); } },
+  keys(name) { return this.run(name, "readonly", st => st.getAllKeys()); },
+  get(name, id) { return this.run(name, "readonly", st => st.get(id)); },
+  put(name, id, rec) { return this.run(name, "readwrite", st => st.put(rec, id)); },
+  del(name, id) { return this.run(name, "readwrite", st => st.delete(id)); }
+};
+KZ.hookFiles = F => {
+  const p0 = F.put.bind(F), d0 = F.del.bind(F);
+  F.put = async (id, rec) => { const r = await p0(id, rec); Sync.fileTouch(id, false); return r; };
+  F.del = async id => { const r = await d0(id); Sync.fileTouch(id, true); return r; };
+};
+
+/* ---------- fusion des devis (deux appareils modifiés en même temps) ---------- */
+const parse = s => { try { return JSON.parse(s); } catch (e) { return null; } };
+function mergeApp(localS, remoteS, preferLocal) {
+  const L = parse(localS), R = parse(remoteS); if (!L) return remoteS; if (!R) return localS;
+  const tomb = parse(rGet(KZ.ns + "kalailet_tomb")) || {}, base = preferLocal ? L : R, o = { ...base, DV: {} };
+  const ids = new Set([...Object.keys(L.DV || {}), ...Object.keys(R.DV || {})]);
+  for (const id of ids) {
+    const a = (L.DV || {})[id], b = (R.DV || {})[id], ta = a ? a.updatedAt || "" : "", tb = b ? b.updatedAt || "" : "";
+    const d = !a ? b : !b ? a : ta >= tb ? a : b;
+    if (tomb[id] && tomb[id] >= (d.updatedAt || "")) continue;
+    o.DV[id] = d;
+  }
+  return JSON.stringify(o);
+}
+function mergeTomb(a, b) { const A = parse(a) || {}, B = parse(b) || {}; for (const k in B) if (!A[k] || B[k] > A[k]) A[k] = B[k]; return JSON.stringify(A); }
+function mergeClients(a, b) {
+  const A = parse(a) || {}, B = parse(b) || {}, seen = new Set(), out = [];
+  for (const c of [...(B.clients || []), ...(A.clients || [])]) { const k = String(c && (c.nom || "") + "|" + (c.ville || "")).toLowerCase(); if (!c || seen.has(k)) continue; seen.add(k); out.push(c); }
+  const cps = []; const sc = new Set(); for (const p of [...(B.cps || []), ...(A.cps || [])]) { const k = p && p.cp + "|" + String(p.ville || "").toLowerCase(); if (!p || sc.has(k)) continue; sc.add(k); cps.push(p); }
+  return JSON.stringify({ clients: out, cps, at: new Date().toISOString() });
+}
+
+/* ---------- synchronisation ---------- */
+const Sync = KZ.sync = {
+  timer: 0, busy: false, again: false, last: 0, err: "", state: "off",
+  meta() { const m = parse(rGet(KZ.ns + "~meta")); return m && m.k ? m : { k: {}, f: {} }; },
+  upd(fn) { const m = this.meta(); fn(m); rSet(KZ.ns + "~meta", JSON.stringify(m)); return m; },
+  touch(k) { if (!KZ.ns || !SYNCED.has(k)) return; this.upd(m => { const e = m.k[k] = m.k[k] || {}; e.dirty = 1; e.lm = Date.now(); }); this.kick(2500); },
+  fileTouch(id, del) { if (!KZ.ns) return; this.upd(m => { m.f = m.f || {}; const e = m.f[id] = m.f[id] || {}; e.dirty = 1; e.del = del ? 1 : 0; e.lm = Date.now(); }); this.kick(2500); },
+  ready() { return !!(conf() && KZ.acc && KZ.acc.uid && KZ.acc.rt && KZ.ns); },
+  pending() { const m = this.meta(); return Object.values(m.k).some(e => e.dirty) || Object.values(m.f || {}).some(e => e.dirty); },
+  kick(ms) { clearTimeout(this.timer); this.timer = setTimeout(() => this.cycle(), ms); },
+  set(state, err) { this.state = state; this.err = err || ""; try { W.dispatchEvent(new CustomEvent("kz-sync", { detail: { state, err } })); } catch (e) { } },
+  async cycle(opts = {}) {
+    if (!KZ.ns) return;
+    if (!this.ready()) { this.set(conf() ? "compte" : "off"); return; }
+    if (navigator.onLine === false) { this.set("horsligne"); return; }
+    if (this.busy) { this.again = true; return; }
+    this.busy = true; this.set("busy");
+    try { const ch = await this.pull(); if (!opts.pullOnly) { await this.push(); await this.files(); } this.last = Date.now(); rSet(KZ.ns + "~last", String(this.last)); this.set("ok"); if (ch.length) KZ.onRemote(ch); }
+    catch (e) { this.set("err", (e && e.code) || "serveur"); if (e && e.code === "reconnexion") { const a = KZ.acc; if (a) { a.rt = ""; accPut(a); } } }
+    finally { this.busy = false; if (this.again) { this.again = false; this.kick(800); } }
+  },
+  coll(kind) { return `u/${KZ.acc.uid}/${kind}_${KZ.sp}`; },
+  async fetchVal(k, n, z) {
+    const names = []; for (let i = 0; i < n; i++) names.push(docName(this.coll("c") + "/" + k + "~" + i));
+    const docs = await batchGet(names); const parts = docs.map(d => { if (!d) throw { code: "incomplet" }; return unb64(d.fields.b.bytesValue || ""); });
+    let all = new Uint8Array(parts.reduce((s, p) => s + p.length, 0)), o = 0; for (const p of parts) { all.set(p, o); o += p.length; }
+    if (z) all = await gz(all, true);
+    return dec.decode(all);
+  },
+  async pull() {
+    const docs = await listAll(this.coll("s")), changed = [], ns = KZ.ns;
+    for (const d of docs) {
+      const k = decodeURIComponent(d.name.slice(d.name.lastIndexOf("/") + 1)); if (!SYNCED.has(k)) continue;
+      const F = d.fields || {}, r = { n: gI(F.n), h: gS(F.h), t: gI(F.t), z: gB(F.z), x: gB(F.x) };
+      const e = this.meta().k[k] || {};
+      if (e.h && e.h === r.h) continue;
+      const inc = r.x ? null : await this.fetchVal(k, r.n, r.z), loc = rGet(ns + k);
+      let val = inc, keepDirty = 0;
+      if (loc !== null && inc !== null && (e.dirty || !e.h)) {
+        if (k === "kalailet_app_v2") { val = mergeApp(loc, inc, !!e.h && e.dirty && (e.lm || 0) > r.t); keepDirty = val !== inc ? 1 : 0; }
+        else if (k === "kalailet_tomb") { val = mergeTomb(loc, inc); keepDirty = val !== inc ? 1 : 0; }
+        else if (k === "kalailet_clients") { val = mergeClients(loc, inc); keepDirty = val !== inc ? 1 : 0; }
+        else if (e.h && e.dirty && (e.lm || 0) > r.t) { this.upd(m => { const x = m.k[k] = m.k[k] || {}; x.h = r.h; x.t = r.t; x.n = r.n; }); continue; }
+      }
+      if (val === null) rRem(ns + k); else rSet(ns + k, val);
+      this.upd(m => { const x = m.k[k] = m.k[k] || {}; x.h = r.h; x.t = r.t; x.n = r.n; x.dirty = keepDirty; if (keepDirty) x.lm = Date.now(); });
+      if (val !== loc) changed.push(k);
+    }
+    return changed;
+  },
+  async push() {
+    for (const k of SYNC_KEYS) {
+      const e = this.meta().k[k]; if (!e || !e.dirty) continue;
+      const t0 = Date.now(), v = rGet(KZ.ns + k), metaN = docName(this.coll("s") + "/" + k);
+      if (v === null) {
+        const w = [{ update: { name: metaN, fields: { n: FI(0), h: FS_("-"), t: FI(t0), d: FS_(DEV), x: FB(true) } } }];
+        for (let i = 0; i < (e.n || 0); i++) w.push({ delete: docName(this.coll("c") + "/" + k + "~" + i) });
+        await commit(w); this.upd(m => { const x = m.k[k]; x.h = "-"; x.n = 0; x.t = t0; if ((x.lm || 0) <= t0) x.dirty = 0; }); continue;
+      }
+      const h = (await sha(v)).slice(0, 32);
+      if (h === e.h) { this.upd(m => { const x = m.k[k]; if ((x.lm || 0) <= t0) x.dirty = 0; }); continue; }
+      let bytes = enc.encode(v), z = false; if (HAS_CS) { bytes = await gz(bytes); z = true; }
+      const parts = []; for (let i = 0; i < bytes.length || i === 0; i += CH) parts.push(bytes.subarray(i, i + CH));
+      const w = parts.map((p, i) => ({ update: { name: docName(this.coll("c") + "/" + k + "~" + i), fields: { b: { bytesValue: b64(p) } } } }));
+      for (let i = parts.length; i < (e.n || 0); i++) w.push({ delete: docName(this.coll("c") + "/" + k + "~" + i) });
+      w.push({ update: { name: metaN, fields: { n: FI(parts.length), h: FS_(h), t: FI(t0), d: FS_(DEV), z: FB(z), x: FB(false) } } });
+      await commit(w);
+      this.upd(m => { const x = m.k[k]; x.h = h; x.n = parts.length; x.t = t0; if ((x.lm || 0) <= t0) x.dirty = 0; });
+    }
+  },
+  async files() {
+    const name = KZ.fdbName(); let local = [];
+    try { local = (await IDB.keys(name)) || []; } catch (e) { return; }
+    const remote = await listAll(this.coll("fm")), rmap = new Map(remote.map(d => [decodeURIComponent(d.name.slice(d.name.lastIndexOf("/") + 1)), d]));
+    const m0 = this.meta(); m0.f = m0.f || {};
+    /* envoi */
+    for (const id of Object.keys(m0.f)) {
+      const e = m0.f[id]; if (!e.dirty) continue; const t0 = Date.now(), metaN = docName(this.coll("fm") + "/" + id), old = rmap.get(id), oldN = old ? gI(old.fields.n) : 0;
+      if (e.del) { const w = [{ update: { name: metaN, fields: { n: FI(0), t: FI(t0), x: FB(true) } } }]; for (let i = 0; i < oldN; i++) w.push({ delete: docName(this.coll("fc") + "/" + id + "~" + i) }); await commit(w); }
+      else {
+        const rec = await IDB.get(name, id); if (!rec) { this.upd(m => { delete m.f[id]; }); continue; }
+        const blob = rec.blob instanceof Blob ? rec.blob : new Blob([]), bytes = new Uint8Array(await blob.arrayBuffer()), info = { ...rec }; delete info.blob; info.btype = blob.type;
+        const parts = []; for (let i = 0; i < bytes.length || i === 0; i += CH) parts.push(bytes.subarray(i, i + CH));
+        const w = parts.map((p, i) => ({ update: { name: docName(this.coll("fc") + "/" + id + "~" + i), fields: { b: { bytesValue: b64(p) } } } }));
+        for (let i = parts.length; i < oldN; i++) w.push({ delete: docName(this.coll("fc") + "/" + id + "~" + i) });
+        for (let i = 0; i < w.length; i += 10) await commit(w.slice(i, i + 10));
+        await commit([{ update: { name: metaN, fields: { n: FI(parts.length), t: FI(t0), j: FS_(JSON.stringify(info)), x: FB(false) } } }]);
+      }
+      this.upd(m => { const x = m.f[id]; if (x && (x.lm || 0) <= t0) { x.dirty = 0; x.t = t0; } });
+    }
+    /* réception */
+    const have = new Set(local), m1 = this.meta();
+    for (const [id, d] of rmap) {
+      const F = d.fields || {}, t = gI(F.t), e = m1.f[id] || {};
+      if (e.dirty || (e.t && e.t >= t)) continue;
+      if (gB(F.x)) { if (have.has(id)) await IDB.del(name, id).catch(() => { }); }
+      else {
+        const n = gI(F.n), names = []; for (let i = 0; i < n; i++) names.push(docName(this.coll("fc") + "/" + id + "~" + i));
+        const docs = await batchGet(names); if (docs.some(x => !x)) continue;
+        const parts = docs.map(x => unb64(x.fields.b.bytesValue || "")), info = parse(gS(F.j)) || {};
+        const rec = { ...info, blob: new Blob(parts, { type: info.btype || info.type || "application/octet-stream" }) }; delete rec.btype;
+        await IDB.put(name, id, rec);
+      }
+      this.upd(m => { m.f = m.f || {}; m.f[id] = { t, dirty: 0 }; });
+    }
+  }
+};
+W.addEventListener("online", () => Sync.kick(500));
+document.addEventListener("visibilitychange", () => { if (!KZ.ns) return; if (document.visibilityState === "visible") Sync.kick(400); else if (Sync.pending()) Sync.cycle(); });
+setInterval(() => { if (KZ.ns && document.visibilityState === "visible") Sync.cycle(); }, 60000);
+
+/* données reçues d'un autre appareil : on recharge la page quand personne n'est en train d'écrire */
+let reloadWanted = false;
+const typing = () => { const a = document.activeElement; return !!(a && (a.tagName === "INPUT" || a.tagName === "TEXTAREA" || a.isContentEditable)) || !!document.querySelector(".modal:not([hidden])"); };
+function tryReload() { if (!reloadWanted) return; if (typing()) { setTimeout(tryReload, 3000); return; } sSet("kz_toast", "Données mises à jour depuis un autre appareil"); location.reload(); }
+KZ.onRemote = keys => {
+  if (!KZ.booted) return;
+  const mine = KZ.page === "tarifs" ? ["kalailet_tarifs", "kalailet_tarifs_for"] : ["kalailet_app_v2", "kalailet_drafts", "kalailet_ls", "kalailet_clients", "kalailet_tarifs", "kalailet_tomb"];
+  if (keys.some(k => mine.includes(k))) { reloadWanted = true; tryReload(); }
+};
+KZ.pendingToast = () => { const t = sGet("kz_toast"); if (t) sRem("kz_toast"); return t; };
+
+/* ---------- session (onglet en cours) ---------- */
+const sess = () => parse(sGet("kz_s"));
+function useAccount(acc, sp) {
+  KZ.acc = acc; KZ.ah = acc.ah; KZ.sp = sp === "t" && acc.ah === OWNER_H ? "t" : "r"; KZ.ns = nsOf(acc.ah, KZ.sp);
+  sSet("kz_s", JSON.stringify({ ah: acc.ah, sp: KZ.sp }));
+  KZ.admin = KZ.isOwner() && sGet("kz_adm") === acc.ah;
+}
+KZ.restore = () => { const s = sess(); if (!s) return false; const acc = accAll().list[s.ah]; if (!acc) return false; useAccount(acc, s.sp); return true; };
+
+/* ---------- reprise des données déjà présentes sur l'appareil (avant les comptes) ---------- */
+async function migrateLegacy(acc) {
+  if (rGet("kz_legacy_done")) return;
+  const legacy = {}; SYNC_KEYS.forEach(k => { const v = rGet(k); if (v !== null) legacy[k] = v; });
+  if (!Object.keys(legacy).length) { rSet("kz_legacy_done", "1"); return; }
+  const nsR = nsOf(acc.ah, "r"), nsT = nsOf(acc.ah, "t"), mark = (ns, keys) => { const m = parse(rGet(ns + "~meta")) || { k: {}, f: {} }; keys.forEach(k => { m.k[k] = { dirty: 1, lm: Date.now() }; }); rSet(ns + "~meta", JSON.stringify(m)); };
+  const empty = ns => !SYNC_KEYS.some(k => rGet(ns + k) !== null);
+  /* 1. mode test : copie complète de ce qui existait (devis, contrats, factures, alertes, clients, fichiers) */
+  if (acc.ah === OWNER_H && empty(nsT)) {
+    Object.entries(legacy).forEach(([k, v]) => rSet(nsT + k, v)); mark(nsT, Object.keys(legacy));
+    try { const src = "kalailet_files", dst = "kalailet_files__" + acc.ah.slice(0, 16) + "_t", ids = (await IDB.keys(src)) || []; for (const id of ids) { await IDB.put(dst, id, await IDB.get(src, id)); } if (ids.length) { const m = parse(rGet(nsT + "~meta")) || { k: {}, f: {} }; m.f = m.f || {}; ids.forEach(id => m.f[id] = { dirty: 1, lm: Date.now() }); rSet(nsT + "~meta", JSON.stringify(m)); } } catch (e) { }
+  }
+  /* 2. vraies données : on garde les réglages, on repart de zéro pour les devis, contrats, factures, alertes, clients et l'historique */
+  if (empty(nsR) && !acc.hasRemote) {
+    const app = parse(legacy.kalailet_app_v2);
+    if (app) {
+      const SET = app.SET || {}; SET.clients = []; SET.alerts = {}; SET._clSeed = 1; delete SET.xlDone;
+      rSet(nsR + "kalailet_app_v2", JSON.stringify({ SET, SIG: app.SIG || null, TAMP: app.TAMP || { mode: "genere", img: null }, DV: {} }));
+      rSet(nsR + "kalailet_clients", JSON.stringify({ clients: [], cps: SET.cps || [], at: new Date().toISOString() }));
+    }
+    ["kalailet_ls", "kalailet_tarifs", "kalailet_tarifs_for"].forEach(k => { if (legacy[k] !== undefined) rSet(nsR + k, legacy[k]); });
+    mark(nsR, SYNC_KEYS.filter(k => rGet(nsR + k) !== null));
+  }
+  SYNC_KEYS.forEach(rRem); rSet("kz_legacy_done", acc.ah);
+}
+/* espace vide (nouvel appareil ou vraies données remises à zéro) : pas de devis d'exemple dans les vraies données */
+function ensureBase() {
+  if (KZ.sp !== "r" || rGet(KZ.ns + "kalailet_app_v2") !== null) return;
+  rSet(KZ.ns + "kalailet_app_v2", JSON.stringify({ SET: { _clSeed: 1 }, SIG: null, TAMP: { mode: "genere", img: null }, DV: {} }));
+}
+
+/* ---------- connexion ---------- */
+const ERR = {
+  reseau: "Pas de connexion internet.", "sans-serveur": "Le serveur de comptes n'est pas encore raccordé.", INVALID_LOGIN_CREDENTIALS: "Adresse e-mail ou mot de passe incorrect.", INVALID_PASSWORD: "Adresse e-mail ou mot de passe incorrect.",
+  EMAIL_NOT_FOUND: "Adresse e-mail ou mot de passe incorrect.", USER_DISABLED: "Ce compte est désactivé.", TOO_MANY_ATTEMPTS_TRY_LATER: "Trop d'essais : réessaie dans quelques minutes.", EMAIL_EXISTS: "Un compte existe déjà avec cette adresse : mot de passe incorrect.",
+  WEAK_PASSWORD: "Mot de passe trop faible : 6 caractères au minimum.", INVALID_EMAIL: "Adresse e-mail invalide.", OPERATION_NOT_ALLOWED: "La connexion par e-mail n'est pas activée dans Firebase (Authentication).", quota: "Serveur saturé : réessaie dans un instant.", delai: "Le serveur ne répond pas.", refus: "Accès refusé par le serveur (règles Firestore).", serveur: "Erreur du serveur."
+};
+KZ.errTxt = e => ERR[(e && e.code) || e] || ("Erreur : " + ((e && e.code) || e));
+async function verifier(pass) { const s = rnd(16); return { s: b64(s), i: VER_ITER, h: await pbk(pass, s, VER_ITER) }; }
+async function verOk(acc, pass) { return !!(acc && acc.ver && (await pbk(pass, unb64(acc.ver.s), acc.ver.i)) === acc.ver.h); }
+/* renvoie le compte prêt à ouvrir, ou lève une erreur { code } */
+KZ.login = async (email, pass, opt = {}) => {
+  email = mailNorm(email); if (!mailOk(email)) throw { code: "INVALID_EMAIL" }; if (!pass) throw { code: "INVALID_PASSWORD" };
+  const ah = await mailHash(email), known = accAll().list[ah] || null;
+  let acc = known ? { ...known } : { email, ah };
+  if (conf()) {
+    try {
+      let j;
+      try { j = await withTimeout(authCall(opt.create ? "signUp" : "signInWithPassword", { email, password: pass, returnSecureToken: true }), 15000); }
+      catch (e) {
+        const c = e && e.code;
+        if (!opt.create && ["INVALID_LOGIN_CREDENTIALS", "EMAIL_NOT_FOUND", "INVALID_PASSWORD"].includes(c)) {
+          /* compte gardé sur cet appareil avant le raccordement du serveur : il est créé en ligne avec le même mot de passe */
+          if (!(known && known.ver && !known.uid && await verOk(known, pass))) throw { code: known && known.uid ? "INVALID_LOGIN_CREDENTIALS" : "NOUVEAU" };
+          try { j = await authCall("signUp", { email, password: pass, returnSecureToken: true }); acc.created = 1; }
+          catch (e2) { throw (e2 && e2.code === "EMAIL_EXISTS") ? { code: "INVALID_LOGIN_CREDENTIALS" } : e2; }
+        } else if (opt.create && c === "EMAIL_EXISTS") throw { code: "INVALID_LOGIN_CREDENTIALS" };
+        else throw e;
+      }
+      acc.uid = j.localId; acc.rt = j.refreshToken; IDT = { ah, t: j.idToken, exp: Date.now() + (+j.expiresIn || 3600) * 1000 };
+      acc.ver = await verifier(pass); acc.email = email; acc.at = Date.now(); accPut(acc);
+      return acc;
+    } catch (e) {
+      if (!(e && (e.code === "reseau" || e.code === "delai"))) throw e;
+      if (known && await verOk(known, pass)) return known;
+      throw { code: known ? "INVALID_LOGIN_CREDENTIALS" : "premiere" };
+    }
+  }
+  /* sans serveur : compte gardé sur cet appareil seulement */
+  if (known && known.ver) { if (await verOk(known, pass)) return known; throw { code: "INVALID_LOGIN_CREDENTIALS" }; }
+  if (!opt.create) throw { code: "NOUVEAU" };
+  acc.ver = await verifier(pass); acc.at = Date.now(); accPut(acc); return acc;
+};
+ERR.premiere = "Première connexion sur cet appareil : il faut internet.";
+ERR.NOUVEAU = "Aucun compte ne correspond à ces identifiants.";
+KZ.resetPass = async email => { email = mailNorm(email); if (!mailOk(email)) throw { code: "INVALID_EMAIL" }; await withTimeout(authCall("sendOobCode", { requestType: "PASSWORD_RESET", email }), 15000); };
+/* ouvre l'espace du compte puis démarre la page */
+KZ.open = async (acc, sp, onStep) => {
+  useAccount(acc, sp || "r");
+  const a = accAll(); a.last = acc.ah; accSave(a);
+  if (Sync.ready() && navigator.onLine !== false) {
+    onStep && onStep("Synchronisation de tes données…");
+    try { const docs = await withTimeout(listAll(Sync.coll("s")), 10000); acc.hasRemote = docs.length > 0; } catch (e) { }
+  }
+  await migrateLegacy(acc);
+  if (Sync.ready() && navigator.onLine !== false) { try { await withTimeout(Sync.cycle({ pullOnly: true }), 20000); } catch (e) { } }
+  ensureBase();
+  KZ.boot();
+};
+/* espace jamais reçu sur cet appareil (mode test ouvert pour la première fois ici, par exemple) : on le reçoit avant d'ouvrir */
+KZ.needsPull = () => Sync.ready() && navigator.onLine !== false && rGet(KZ.ns + "kalailet_app_v2") === null;
+KZ.prepare = async () => { try { await withTimeout(Sync.cycle({ pullOnly: true }), 20000); } catch (e) { } ensureBase(); };
+KZ.prepareLight = () => ensureBase();
+KZ.logout = (switchAcc) => { sRem("kz_s"); sRem("kz_adm"); sRem("kz_next"); if (switchAcc) KZ.forgetLast(); location.replace("./"); };
+KZ.setSpace = sp => { if (sp === "t" && !KZ.admin) return; const s = sess() || {}; s.sp = sp; sSet("kz_s", JSON.stringify(s)); if (sp === "t") sSet("kz_toast", "Mode test : tu peux tout essayer, tes vraies données ne bougent pas"); else sSet("kz_toast", "Retour à tes vraies données"); location.reload(); };
+
+/* ---------- administrateur ---------- */
+KZ.adminCheck = async pass => { if (!KZ.isOwner()) return false; const ok = (await pbk(pass, unb64(ADMIN_V.s), ADMIN_V.i)) === ADMIN_V.h; if (ok) { sSet("kz_adm", KZ.acc.ah); KZ.admin = true; } return ok; };
+KZ.adminGrant = () => { if (!KZ.isOwner()) return; sSet("kz_adm", KZ.acc.ah); KZ.admin = true; };
+KZ.adminLeave = () => { sRem("kz_adm"); KZ.admin = false; if (KZ.sp === "t") KZ.setSpace("r"); };
+KZ.resetTest = async () => {
+  if (!KZ.admin || !KZ.acc) return; const ns = nsOf(KZ.acc.ah, "t");
+  SYNC_KEYS.forEach(k => rRem(ns + k)); rRem(ns + "~meta");
+  try { await new Promise(r => { const q = indexedDB.deleteDatabase("kalailet_files__" + KZ.acc.ah.slice(0, 16) + "_t"); q.onsuccess = q.onerror = q.onblocked = () => r(); }); } catch (e) { }
+  if (Sync.ready()) { const sp0 = KZ.sp; KZ.sp = "t"; try { for (const kind of ["s", "c", "fm", "fc"]) { const docs = await listAll(Sync.coll(kind)); await commit(docs.map(d => ({ delete: d.name }))); } } finally { KZ.sp = sp0; } }
+};
+KZ.copyRealToTest = async () => {
+  if (!KZ.admin || !KZ.acc) return; const r = nsOf(KZ.acc.ah, "r"), t = nsOf(KZ.acc.ah, "t");
+  await KZ.resetTest();
+  const m = { k: {}, f: {} }; SYNC_KEYS.forEach(k => { const v = rGet(r + k); if (v !== null) { rSet(t + k, v); m.k[k] = { dirty: 1, lm: Date.now() }; } });
+  try { const src = "kalailet_files__" + KZ.acc.ah.slice(0, 16) + "_r", dst = "kalailet_files__" + KZ.acc.ah.slice(0, 16) + "_t"; for (const id of (await IDB.keys(src)) || []) { await IDB.put(dst, id, await IDB.get(src, id)); m.f[id] = { dirty: 1, lm: Date.now() }; } } catch (e) { }
+  rSet(t + "~meta", JSON.stringify(m));
+};
+
+/* ---------- empreinte digitale (WebAuthn) ---------- */
+KZ.bioDispo = () => !!(W.PublicKeyCredential && navigator.credentials && W.isSecureContext);
+KZ.bioOn = acc => !!(acc && acc.bio && acc.bio.id && KZ.bioDispo());
+KZ.bioRegister = async acc => {
+  const cred = await navigator.credentials.create({ publicKey: { challenge: rnd(32), rp: { name: "KALAILET Gestion", id: location.hostname }, user: { id: rnd(16), name: acc.email, displayName: "KALAILET Gestion" },
+    pubKeyCredParams: [{ type: "public-key", alg: -7 }, { type: "public-key", alg: -257 }], authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required", residentKey: "preferred" }, timeout: 60000, attestation: "none" } });
+  acc.bio = { id: b64(new Uint8Array(cred.rawId)), at: Date.now() }; delete acc.bioNo; accPut(acc); return acc;
+};
+KZ.bioCheck = async acc => { await navigator.credentials.get({ publicKey: { challenge: rnd(32), allowCredentials: [{ type: "public-key", id: unb64(acc.bio.id) }], userVerification: "required", timeout: 60000 } }); return true; };
+KZ.bioOff = acc => { delete acc.bio; acc.bioNo = 1; accPut(acc); };
+KZ.bioLater = acc => { acc.bioNo = 1; accPut(acc); };
+
+/* ---------- bandeau du mode test (doré, en haut de chaque écran) ---------- */
+KZ.testBanner = () => {
+  if (KZ.sp !== "t" || document.getElementById("kzTest")) return;
+  document.body.classList.add("kz-test");
+  const b = document.createElement("div"); b.id = "kzTest"; b.className = "kz-test-banner"; b.setAttribute("role", "status");
+  b.innerHTML = `<svg class="kz-tb-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21.5h11.6a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7.5 15h9"/></svg><b>MODE TEST, données d'essai</b><button type="button" class="kz-tb-out" id="kzTestOut">Quitter</button>`;
+  document.body.insertBefore(b, document.body.firstChild);
+  const fit = () => document.documentElement.style.setProperty("--kztb", b.offsetHeight + "px"); fit(); W.addEventListener("resize", fit); try { new ResizeObserver(fit).observe(b); } catch (e) { }
+  b.querySelector("#kzTestOut").addEventListener("click", () => KZ.setSpace("r"));
+};
+
+/* ---------- flèches pour les rangées de boutons qui défilent (onglets, sommaire) ---------- */
+KZ.scroller = el => {
+  if (!el || el.dataset.kzs) return; el.dataset.kzs = 1;
+  const box = document.createElement("div"), cs = getComputedStyle(el); box.className = "kz-sc"; box.style.margin = cs.margin; box.style.display = "flow-root"; el.parentNode.insertBefore(box, el); box.appendChild(el); el.style.margin = "0";
+  const mk = (d, lbl) => { const b = document.createElement("button"); b.type = "button"; b.className = "kz-sc-b kz-sc-" + d; b.setAttribute("aria-label", lbl); b.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d === "l" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}"/></svg>`; box.appendChild(b); return b; };
+  const L = mk("l", "Voir les boutons à gauche"), R = mk("r", "Voir les boutons à droite");
+  const upd = () => { const max = el.scrollWidth - el.clientWidth - 2; L.hidden = el.scrollLeft <= 2; R.hidden = el.scrollLeft >= max; box.classList.toggle("kz-sc-l", !L.hidden); box.classList.toggle("kz-sc-r", !R.hidden); };
+  L.addEventListener("click", () => el.scrollBy({ left: -Math.max(120, el.clientWidth * 0.7), behavior: "smooth" }));
+  R.addEventListener("click", () => el.scrollBy({ left: Math.max(120, el.clientWidth * 0.7), behavior: "smooth" }));
+  el.addEventListener("scroll", upd, { passive: true }); W.addEventListener("resize", upd); try { new ResizeObserver(upd).observe(el); new MutationObserver(upd).observe(el, { childList: true, subtree: true, attributes: true }); } catch (e) { }
+  setTimeout(upd, 50); upd();
+};
+
+/* ---------- démarrage commun ---------- */
+KZ.isClientPage = () => /\/s\/[A-Za-z0-9]{6,12}\/?$/.test(location.pathname) || new URLSearchParams(location.search).get("s") || /^#sign=/.test(location.hash);
+KZ.boot = () => {
+  if (KZ.booted) return; KZ.booted = true;
+  document.body.classList.remove("kz-locked");
+  KZ.testBanner();
+  try { W.__KZ_APP && W.__KZ_APP(); } catch (e) { console.error(e); }
+  const t = KZ.pendingToast(); if (t) setTimeout(() => KZ.toast && KZ.toast(t), 400);
+  if (KZ.afterBoot) try { KZ.afterBoot(); } catch (e) { console.error(e); }
+  Sync.kick(1500);
+};
+})();
+
+</script>
+<script>
+/* page « Étude & stratégie tarifaire » : même compte et même espace (réel ou test) que l'application */
+(function () {
+  "use strict";
+  const W = window, KZ = W.KZ;
+  const run = () => { W.__KZ_APP && W.__KZ_APP(); };
+  if (!KZ) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run); else run(); return; }
+  KZ.page = "tarifs";
+  KZ.toast = t => { const el = document.getElementById("toast"); if (!el) return; el.textContent = t; el.classList.add("on"); clearTimeout(KZ._tt); KZ._tt = setTimeout(() => el.classList.remove("on"), 3600); };
+  KZ.afterBoot = () => { const t = document.querySelector("nav.toc"); if (t) KZ.scroller(t); };
+  async function start() {
+    if (!KZ.restore()) { try { sessionStorage.setItem("kz_next", "tarifs.html"); } catch (e) { } location.replace("./"); return; }
+    if (KZ.needsPull()) await KZ.prepare(); else KZ.prepareLight();
+    KZ.boot();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+
+</script>
+<script>
+window.__KZ_APP = function () {
 (function () {
 // ───────── catégories de prestations (temps réel : préparation par heure de face-à-face, temps fixe par session en heures)
 const CATS = {
@@ -617,22 +1136,6 @@ const CATS = {
   audit:   { label: 'Diagnostic et conseil', pub: { acm: 'organisateurs d\'accueils', com: 'dirigeants de TPE et PME' }, prep: 1, over: 1.5, defH: 14, defP: { acm: 1400, com: 2200 }, poles: ['acm', 'com'] },
   parcours:{ label: 'Parcours sur plusieurs semaines', pub: { acm: 'formation, terrain et coaching combinés', com: 'formation, terrain et coaching combinés' }, prep: 0.45, over: 1, groupe: 10, defH: 35, defP: { acm: 3400, com: 5900 }, poles: ['acm', 'com'], form: true },
 };
-
-// ───────── ta grille ACM actuelle (affiche « ACM : grille tarifaire »)
-const CURRENT = [
-  { pole: 'acm', cat: 'court', titre: 'Gérer un conflit ou une crise dans un groupe d\'enfants', h: 2, prix: 300, src: '01 Formation en groupe' },
-  { pole: 'acm', cat: 'groupe', titre: 'Posture de l\'animateur : cadre, autorité et bienveillance', h: 7, prix: 700, src: '01 Formation en groupe' },
-  { pole: 'acm', cat: 'groupe', titre: 'Concevoir des animations qui ont du sens', h: 14, prix: 1100, src: '01 Formation en groupe' },
-  { pole: 'acm', cat: 'coach', titre: 'Animer une réunion d\'équipe efficace', h: 2, prix: 250, src: '02 Coaching personnalisé' },
-  { pole: 'acm', cat: 'coach', titre: 'Construire le projet pédagogique avec son équipe', h: 7, prix: 550, src: '02 Coaching personnalisé' },
-  { pole: 'acm', cat: 'coach', titre: 'Gestion de conflit', h: 7, prix: 550, src: '02 Coaching personnalisé' },
-  { pole: 'acm', cat: 'coach', titre: 'Recruter, intégrer et évaluer ses animateurs', h: 7, prix: 550, src: '02 Coaching personnalisé' },
-  { pole: 'acm', cat: 'terrain', titre: 'Observation en situation et débrief', h: 7, prix: 550, src: '03 Accompagnement sur le terrain' },
-  { pole: 'acm', cat: 'terrain', titre: 'Coaching d\'un animateur en difficulté', h: 14, prix: 900, src: '03 Accompagnement sur le terrain' },
-  { pole: 'acm', cat: 'terrain', titre: 'Prise de fonction d\'un directeur nouvellement nommé', h: 14, prix: 900, src: '03 Accompagnement sur le terrain' },
-  { pole: 'acm', cat: 'terrain', titre: 'Coaching directeur', h: 35, prix: 1950, src: '03 Accompagnement sur le terrain' },
-  { pole: 'acm', cat: 'terrain', titre: 'Tutorat d\'un directeur stagiaire BAFD', h: 35, prix: 1950, src: '03 Accompagnement sur le terrain' },
-];
 
 // ───────── grille proposée (point de départ de « Ma grille »)
 // dur : durée affichée sur l'affiche et dans les devis ; note : précision sous l'intitulé ; min : participants minimum (prix par participant)
@@ -731,18 +1234,18 @@ const MARKET = {
   com_parcours: { min: 800, max: 1500, unit: 'jour', unitTxt: 'par jour' },
 };
 const RANGES_ACM = [
-  { n: 'Formation intra, 1 jour', s: 'groupe d\'animateurs', min: 400, max: 1200, cur: 700, prop: 850 },
-  { n: 'Atelier ou analyse de pratiques, 2 h', s: 'prix de la séance', min: 140, max: 700, cur: 300, prop: 350 },
+  { n: 'Formation intra, 1 jour', s: 'groupe d\'animateurs', min: 400, max: 1200, prop: 850 },
+  { n: 'Atelier ou analyse de pratiques, 2 h', s: 'prix de la séance', min: 140, max: 700, prop: 350 },
   { n: 'Session ouverte, 1 jour', s: 'par participant', min: 150, max: 520, prop: 150 },
-  { n: 'Coaching directeur, séance de 2 h', s: 'prix de la séance', min: 140, max: 400, cur: 250, prop: 260 },
-  { n: 'Accompagnement terrain, 1 jour', s: 'sur site', min: 500, max: 1200, cur: 550, prop: 650 },
-  { n: 'Terrain sur 5 jours', s: 'prix ramené à 1 jour', min: 500, max: 1200, cur: 390, prop: 580 },
+  { n: 'Coaching directeur, séance de 2 h', s: 'prix de la séance', min: 140, max: 400, prop: 260 },
+  { n: 'Accompagnement terrain, 1 jour', s: 'sur site', min: 500, max: 1200, prop: 650 },
+  { n: 'Terrain sur 5 jours', s: 'prix ramené à 1 jour', min: 500, max: 1200, prop: 580 },
 ];
 const RANGES_COM = [
-  { n: 'Formation intra, 1 jour', s: 'groupe de commerciaux', min: 850, max: 2300, cur: 950, prop: 1200 },
+  { n: 'Formation intra, 1 jour', s: 'groupe de commerciaux', min: 850, max: 2300, prop: 1200 },
   { n: 'Session ouverte, 1 jour', s: 'par participant', min: 540, max: 825, prop: 550 },
   { n: 'Coaching commercial, 1 h 30', s: 'prix de la séance', min: 150, max: 450, prop: 240 },
-  { n: 'Accompagnement en clientèle, 1 jour', s: 'sur le terrain', min: 800, max: 1800, cur: 600, prop: 900 },
+  { n: 'Accompagnement en clientèle, 1 jour', s: 'sur le terrain', min: 800, max: 1800, prop: 900 },
   { n: 'Diagnostic commercial', s: 'prix ramené à 1 jour', min: 800, max: 1500, prop: 960 },
   { n: 'Sous-traitance pour un organisme', s: 'prix d\'un jour d\'animation', min: 250, max: 450, prop: 400 },
 ];
@@ -1123,9 +1626,8 @@ const GEN = {
     B.push({ t: 'h3', runs: R('Frais fixes annuels'), gapB: 6 });
     B.push({ t: 'table', head: ['Poste', 'Montant par an'], widths: [68, 32], align: ['l', 'r'], rows: [...h.frais.map(f => ({ cells: [R(f.n), R(eur(+f.v || 0))] })), { cells: [Rb('Total'), Rb(eur(c.fixes))] }] });
   },
-  'rng-acm'(B) { B.push({ t: 'ranges', rows: RANGES_ACM, legend: ['Fourchette du marché', 'Grille actuelle', 'Proposition'] }); },
-  'rng-com'(B) { B.push({ t: 'ranges', rows: RANGES_COM, legend: ['Fourchette du marché', 'Tarif par défaut de l\'outil de gestion', 'Proposition'] }); },
-  'acm-cur'(B) { B.push(gridBlock(CURRENT)); },
+  'rng-acm'(B) { B.push({ t: 'ranges', rows: RANGES_ACM, legend: ['Fourchette du marché', 'Prix recommandé'] }); },
+  'rng-com'(B) { B.push({ t: 'ranges', rows: RANGES_COM, legend: ['Fourchette du marché', 'Prix recommandé'] }); },
   'acm-prop'(B) { B.push(gridBlock(PROPOSAL.filter(l => l.pole === 'acm'))); },
   'com-prop'(B) { B.push(gridBlock(PROPOSAL.filter(l => l.pole === 'com'))); },
   mygrid(B, mode) {
@@ -1319,12 +1821,12 @@ function drawItem(ctx, it) {
   } else if (it.k === 'rlegend') {
     let x = it.x; ctx.font = fnt(400, 15, SANS); ctx.textAlign = 'left';
     it.legend.forEach((t, i) => { if (i === 0) { ctx.fillStyle = RC.grid; ctx.strokeStyle = RC.axis; ctx.lineWidth = 1.2; rrect(ctx, x, it.y + 9, 22, 12, 4); ctx.fill(); ctx.stroke(); }
-      else { ctx.fillStyle = i === 1 ? RC.axis : RC.gold; ctx.save(); ctx.translate(x + 9, it.y + 15); ctx.rotate(Math.PI / 4); ctx.fillRect(-6, -6, 12, 12); ctx.restore(); }
+      else { ctx.fillStyle = RC.gold; ctx.save(); ctx.translate(x + 9, it.y + 15); ctx.rotate(Math.PI / 4); ctx.fillRect(-6, -6, 12, 12); ctx.restore(); }
       ctx.fillStyle = RC.muted; ctx.fillText(t, x + 30, it.y + 21); x += 30 + ctx.measureText(t).width + 26; });
   } else if (it.k === 'range') {
     const r = it.r, nmW = 380, tx = it.x + nmW + 20, tw = it.w - nmW - 40, max = Math.max(r.max, r.cur || 0, r.prop || 0) * 1.12, X = v => tx + v / max * tw;
     ctx.fillStyle = RC.ink; ctx.font = fnt(600, 16.5, SANS); ctx.textAlign = 'left'; ctx.fillText(r.n, it.x, it.y + 24);
-    const vals = [r.cur ? 'actuel ' + eur(r.cur) : '', r.prop ? 'proposé ' + eur(r.prop) : ''].filter(Boolean).join(' · ');
+    const vals = r.prop ? 'recommandé ' + eur(r.prop) : '';
     ctx.fillStyle = RC.muted; ctx.font = fnt(400, 14, SANS); wrapText(ctx, r.s + (vals ? ' · ' + vals : ''), nmW).slice(0, 2).forEach((s, i) => ctx.fillText(s, it.x, it.y + 46 + i * 19));
     ctx.fillStyle = RC.grid; ctx.strokeStyle = RC.axis; ctx.lineWidth = 1.2; rrect(ctx, X(r.min), it.y + 18, X(r.max) - X(r.min), 13, 6); ctx.fill(); ctx.stroke();
     const dia = (v, col) => { ctx.save(); ctx.translate(X(v), it.y + 24.5); ctx.rotate(Math.PI / 4); ctx.fillStyle = col; ctx.strokeStyle = RC.white; ctx.lineWidth = 2.5; ctx.fillRect(-8, -8, 16, 16); ctx.strokeRect(-8, -8, 16, 16); ctx.restore(); };
@@ -1370,11 +1872,11 @@ function drawChrome(ctx, logo, n, total, mode) {
   ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, RW, RH);
   ctx.fillStyle = RC.cream; ctx.fillRect(0, 0, RW, 104);
   if (logo) { const h = 62, w = h * logo.width / logo.height; ctx.drawImage(logo, RML, 22, w, h); }
-  ctx.fillStyle = RC.gold; ctx.font = fnt(600, 13, SANS); spaced(ctx, 'ÉTUDE TARIFAIRE', RW - RML, 50, 3, 'right');
+  ctx.fillStyle = RC.gold; ctx.font = fnt(600, 13, SANS); spaced(ctx, 'ÉTUDE & STRATÉGIE TARIFAIRE', RW - RML, 50, 3, 'right');
   ctx.fillStyle = RC.muted; ctx.font = fnt(400, 14, SANS); ctx.textAlign = 'right'; ctx.fillText(mode === 'full' ? 'Animation (ACM) et commerce' : mode === 'acm' ? 'Animation et ACM' : 'Accompagnement commercial', RW - RML, 74);
   ctx.fillStyle = RC.gold; ctx.fillRect(0, 104, RW, 2.5);
   ctx.fillStyle = RC.line; ctx.fillRect(RML, RH - 84, RCW, 1.2);
-  ctx.fillStyle = RC.muted; ctx.font = fnt(400, 13.5, SANS); ctx.textAlign = 'left'; ctx.fillText('KALAILET CONSEIL · Khalid AJDID, formateur, coach, consultant · Étude tarifaire, novembre 2026', RML, RH - 52);
+  ctx.fillStyle = RC.muted; ctx.font = fnt(400, 13.5, SANS); ctx.textAlign = 'left'; ctx.fillText('KALAILET CONSEIL · Khalid AJDID, formateur, coach, consultant · Étude & stratégie tarifaire, novembre 2026', RML, RH - 52);
   ctx.textAlign = 'right'; ctx.fillStyle = RC.ink; ctx.font = fnt(600, 14, SANS); ctx.fillText(n + ' / ' + total, RW - RML, RH - 52);
 }
 function drawCover(ctx, logo, mode, toc, forWho) {
@@ -1382,9 +1884,9 @@ function drawCover(ctx, logo, mode, toc, forWho) {
   ctx.save(); ctx.strokeStyle = RC.goldLt; ctx.lineWidth = 56; ctx.beginPath(); ctx.arc(1300, 280, 470, 0, Math.PI * 2); ctx.stroke(); ctx.lineWidth = 50; ctx.beginPath(); ctx.arc(-150, 1330, 330, 0, Math.PI * 2); ctx.stroke();
   ctx.strokeStyle = '#EBD3AE'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(1480, 1120, 300, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
   if (logo) { const w = 520, h = w * logo.height / logo.width; ctx.drawImage(logo, RW / 2 - w / 2, 120, w, h); }
-  ctx.fillStyle = RC.gold; ctx.font = fnt(600, 16, SANS); spaced(ctx, 'ÉTUDE TARIFAIRE · NOVEMBRE 2026', RW / 2, 470, 4, 'center');
-  ctx.font = fnt(700, 84, SERIF); const a = 'Stratégie ', b = 'tarifaire', wa = ctx.measureText(a).width, wb = ctx.measureText(b).width; let x = RW / 2 - (wa + wb) / 2;
-  ctx.textAlign = 'left'; ctx.fillStyle = RC.ink; ctx.fillText(a, x, 580); ctx.fillStyle = RC.gold; ctx.fillText(b, x + wa, 580);
+  ctx.fillStyle = RC.gold; ctx.font = fnt(600, 16, SANS); spaced(ctx, 'KALAILET CONSEIL · NOVEMBRE 2026', RW / 2, 470, 4, 'center');
+  ctx.font = fnt(700, 72, SERIF); const a = 'Étude & stratégie ', b = 'tarifaire', wa = ctx.measureText(a).width, wb = ctx.measureText(b).width; let x = RW / 2 - (wa + wb) / 2;
+  ctx.textAlign = 'left'; ctx.fillStyle = RC.ink; ctx.fillText(a, x, 575); ctx.fillStyle = RC.gold; ctx.fillText(b, x + wa, 575);
   ctx.strokeStyle = RC.gold; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(RW / 2 - 230, 628); ctx.lineTo(RW / 2 - 22, 628); ctx.moveTo(RW / 2 + 22, 628); ctx.lineTo(RW / 2 + 230, 628); ctx.stroke();
   ctx.fillStyle = RC.gold; ctx.beginPath(); ctx.moveTo(RW / 2, 619); ctx.lineTo(RW / 2 + 9, 628); ctx.lineTo(RW / 2, 637); ctx.lineTo(RW / 2 - 9, 628); ctx.closePath(); ctx.fill();
   ctx.fillStyle = '#4D5468'; ctx.font = fnt(400, 27, SERIF, true); ctx.textAlign = 'center'; ctx.fillText(MODE_LBL[mode], RW / 2, 690);
@@ -1423,7 +1925,7 @@ async function buildStudyPdf(mode, opts, progress) {
   ctx.setTransform(RSCALE, 0, 0, RSCALE, 0, 0); drawCover(ctx, logo, mode, toc, opts.forWho); await step();
   for (let i = 0; i < pages.length; i++) { ctx.setTransform(RSCALE, 0, 0, RSCALE, 0, 0); drawChrome(ctx, logo, i + 2, total, mode); drawGroupBgs(ctx, pages[i]); pages[i].forEach(it => drawItem(ctx, it)); await step(); }
   for (const p of posters) { const pc = document.createElement('canvas'); await drawPoster(pc, p, RW * RSCALE); out.push(await canvasJpeg(pc, 0.9)); progress && progress(out.length, total); }
-  return pdfFromJpegs(out, { title: 'Stratégie tarifaire KALAILET CONSEIL : ' + MODE_LBL[mode], author: 'Khalid AJDID, KALAILET CONSEIL', subject: 'Étude tarifaire, novembre 2026' });
+  return pdfFromJpegs(out, { title: 'Étude & stratégie tarifaire KALAILET CONSEIL : ' + MODE_LBL[mode], author: 'Khalid AJDID, KALAILET CONSEIL', subject: 'Étude & stratégie tarifaire, novembre 2026' });
 }
 
 // ───────── formats
@@ -1441,7 +1943,7 @@ const uid = () => Math.random().toString(36).slice(2, 9);
 
 // ───────── état (enregistré dans la base de la page)
 const IN_CLAUDE = !!(window.claude && window.claude.use);
-let S = { hyp: clone(HYP0), lines: clone(PROPOSAL), sim: clone(SIM0), aff: clone(AFF0), saved: false };
+let S = { hyp: clone(HYP0), lines: clone(PROPOSAL), sim: clone(SIM0), aff: clone(AFF0), txt: {}, saved: false };
 let DB = null, REF = null, saveT = 0, lastJSON = '';
 function setSave(s, t) { const el = $('#save'); if (!el) return; el.dataset.s = s; el.querySelector('span').textContent = t; }
 
@@ -1475,6 +1977,9 @@ function renderCalc() {
     <div class="legend">${seg.map(([c2, v, n]) => `<span><i style="background:color-mix(in srgb, var(${c2}) 24%, var(--card));border:1px solid var(${c2})"></i>${n} : ${eur(v)}</span>`).join('')}</div>`;
   $('#frais-tot').textContent = eur(c.fixes) + ' par an';
   const tp = $('#t-plancher'); if (tp) { tp.textContent = eur(c.day); $('#t-plancher-l').textContent = `prix plancher d'une journée de formation, pour ${eur(h.net)} nets par mois`; }
+  const gd = S.lines.filter(l => l.pole === 'acm' && l.cat === 'groupe' && +l.h === 7 && l.unite !== 'participant'), dayp = gd.length ? gd.reduce((a, l) => a + (+l.prix || 0), 0) / gd.length : 850;
+  const dyn = { day: eur(c.day), dayp: eur(dayp), jours: String(Math.ceil(c.ca / Math.max(1, dayp))) };
+  document.querySelectorAll('[data-v]').forEach(el => { const v = dyn[el.dataset.v]; if (v !== undefined && el.textContent !== v) el.textContent = v; });
   refreshInd(); renderSim(); renderStatic();
 }
 
@@ -1519,8 +2024,7 @@ function gridTable(lines) {
   return html + '</tbody></table></div>';
 }
 function renderStatic() {
-  const a = $('#acm-cur'); if (!a) return;
-  a.innerHTML = gridTable(CURRENT);
+  const a = $('#acm-prop'); if (!a) return;
   $('#acm-prop').innerHTML = gridTable(PROPOSAL.filter(l => l.pole === 'acm'));
   $('#com-prop').innerHTML = gridTable(PROPOSAL.filter(l => l.pole === 'com'));
   if (!$('#rng-acm').dataset.done) { renderRanges('#rng-acm', RANGES_ACM); renderRanges('#rng-com', RANGES_COM); $('#rng-acm').dataset.done = 1; }
@@ -1531,10 +2035,10 @@ const durTxt = h => h >= 35 && h % 35 === 0 ? (h / 35) + (h / 35 > 1 ? ' semaine
 function renderRanges(id, rows) {
   $(id).innerHTML = rows.map(r => {
     const max = Math.max(r.max, r.cur || 0, r.prop || 0) * 1.12, X = v => (v / max * 100).toFixed(2) + '%';
-    const vals = [r.cur ? `actuel ${eur(r.cur)}` : '', r.prop ? `<b style="color:var(--gold)">proposé ${eur(r.prop)}</b>` : ''].filter(Boolean).join(' · ');
+    const vals = r.prop ? `<b style="color:var(--gold)">recommandé ${eur(r.prop)}</b>` : '';
     return `<div class="r"><div class="nm">${esc(r.n)}<span>${esc(r.s)}${vals ? ' · ' + vals : ''}</span></div>
     <div class="track"><div class="band" style="left:${X(r.min)};width:calc(${X(r.max)} - ${X(r.min)})" title="Marché : ${eur(r.min)} à ${eur(r.max)}"></div>
-      ${r.cur ? `<div class="me cur" style="left:${X(r.cur)}" title="Actuel : ${eur(r.cur)}"></div>` : ''}${r.prop ? `<div class="me prop" style="left:${X(r.prop)}" title="Proposition : ${eur(r.prop)}"></div>` : ''}
+      ${r.cur ? `<div class="me cur" style="left:${X(r.cur)}" title="Actuel : ${eur(r.cur)}"></div>` : ''}${r.prop ? `<div class="me prop" style="left:${X(r.prop)}" title="Prix recommandé : ${eur(r.prop)}"></div>` : ''}
       <span class="lbl" style="left:${X(r.min)}">${eur(r.min)}</span><span class="lbl" style="left:${X(r.max)}">${eur(r.max)}</span></div></div>`; }).join('');
 }
 
@@ -1585,8 +2089,8 @@ function scheduleSave(grid = true) {
   clearTimeout(saveT); saveT = setTimeout(saveNow, 700);
   if (typeof posterDirty === 'function') posterDirty();
 }
-const bodyOf = () => ({ v: 1, hyp: S.hyp, lines: S.lines, sim: S.sim, aff: S.aff, saved: S.saved, updatedAt: new Date().toISOString() });
-const stateJSON = () => JSON.stringify([S.hyp, S.lines, S.sim, S.aff, S.saved]);
+const bodyOf = () => ({ v: 1, hyp: S.hyp, lines: S.lines, sim: S.sim, aff: S.aff, txt: S.txt, saved: S.saved, updatedAt: new Date().toISOString() });
+const stateJSON = () => JSON.stringify([S.hyp, S.lines, S.sim, S.aff, S.saved, S.txt]);
 function lsGet() { try { return JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); } catch (e) { return null; } }
 function lsSet(o) { try { localStorage.setItem(STORE_KEY, JSON.stringify(o)); return true; } catch (e) { return false; } }
 async function saveNow() {
@@ -1605,7 +2109,7 @@ function applyData(d) {
   S.hyp = { ...clone(HYP0), ...clone(d.hyp || {}) }; if (!Array.isArray(S.hyp.frais)) S.hyp.frais = clone(HYP0.frais);
   S.lines = (Array.isArray(d.lines) ? clone(d.lines) : clone(PROPOSAL)).map(normLine);
   S.sim = { ...clone(SIM0), ...clone(d.sim || {}), vol: { ...SIM0.vol, ...((d.sim || {}).vol || {}) } };
-  S.aff = mergeAff(d.aff); S.saved = d.saved !== undefined ? !!d.saved : true;
+  S.aff = mergeAff(d.aff); S.txt = d.txt && typeof d.txt === 'object' ? clone(d.txt) : {}; S.saved = d.saved !== undefined ? !!d.saved : true;
 }
 function refreshInd() { $$('#ed-lines .line').forEach(el => { const l = S.lines.find(x => x.id === el.dataset.id); if (l) el.querySelector('.ind').outerHTML = indHtml(l); }); }
 
@@ -1723,6 +2227,89 @@ document.addEventListener('click', e => {
 });
 
 
+// ───────── textes de l'étude modifiables (rubriques, introduction, verdict, conditions…)
+// Chaque texte reçoit une clé stable (rubrique + rang). La version modifiée est gardée avec l'empreinte du texte d'origine :
+// si l'étude d'origine change dans une future version, l'ancienne modification ne s'applique plus au mauvais endroit.
+const ED_SEL = 'h2, h3, p, li, td, th, .eyebrow, .tile .v, .tile .l, .when';
+const ED_TAGS = new Set(['B', 'STRONG', 'EM', 'I', 'SUP', 'SUB', 'BR']);
+let ED_ON = false, edT = 0;
+const edHash = s => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(36); };
+const edNorm = html => String(html).replace(/(<span data-v="[^"]+">)[^<]*(<\/span>)/g, '$1$2').replace(/\s+/g, ' ').trim();
+function edList() {
+  const out = [];
+  for (const sec of document.querySelectorAll('main > section')) {
+    if (sec.dataset.pdfgen) continue;
+    let n = 0;
+    for (const el of sec.querySelectorAll(ED_SEL)) {
+      if ((el.id && /^t-/.test(el.id)) || el.closest('[data-pdf], .tool, .legend, details, .ctlgrid, label, .kpis, .split, #calc-warn') || el.querySelector('.tool')) continue;
+      if (el.querySelector(ED_SEL)) continue;
+      out.push([sec.id + '.' + (n++), el]);
+    }
+  }
+  return out;
+}
+function edClean(node) {
+  const frag = document.createElement('div');
+  const walk = (src, dst) => {
+    for (const c of [...src.childNodes]) {
+      if (c.nodeType === 3) { dst.appendChild(document.createTextNode(c.nodeValue)); continue; }
+      if (c.nodeType !== 1) continue;
+      if (c.tagName === 'SPAN' && c.dataset && c.dataset.v) { const s = document.createElement('span'); s.dataset.v = c.dataset.v; s.textContent = c.textContent; dst.appendChild(s); continue; }
+      if (ED_TAGS.has(c.tagName)) { const e = document.createElement(c.tagName === 'B' ? 'strong' : c.tagName === 'I' ? 'em' : c.tagName.toLowerCase()); walk(c, e); dst.appendChild(e); continue; }
+      if (c.tagName === 'DIV' || c.tagName === 'P') { if (dst.childNodes.length) dst.appendChild(document.createElement('br')); walk(c, dst); continue; }
+      walk(c, dst);
+    }
+  };
+  walk(node, frag);
+  return frag.innerHTML.replace(/(<br>)+$/, '');
+}
+let ED_KEYS = null;
+function edInit() {
+  ED_KEYS = edList();
+  for (const [k, el] of ED_KEYS) { el.dataset.edk = k; el.dataset.edo = edHash(edNorm(el.innerHTML)); el.dataset.edorig = el.innerHTML; }
+}
+function edApply() {
+  if (!ED_KEYS) edInit();
+  const T = S.txt || {};
+  for (const [k, el] of ED_KEYS) {
+    const o = T[k], want = o && o.o === el.dataset.edo ? o.v : el.dataset.edorig;
+    if (el.innerHTML !== want && document.activeElement !== el) el.innerHTML = want;
+  }
+}
+function edSave(el) {
+  const k = el.dataset.edk; if (!k) return;
+  const v = edClean(el), orig = el.dataset.edorig;
+  S.txt = S.txt || {};
+  if (edNorm(v) === edNorm(orig) || !edNorm(v)) delete S.txt[k]; else S.txt[k] = { o: el.dataset.edo, v: edNorm(v) };
+  scheduleSave(false); edCount();
+}
+function edCount() { const n = Object.keys(S.txt || {}).length, el = $('#edCount'); if (el) el.textContent = n ? n + (n > 1 ? ' textes modifiés' : ' texte modifié') : 'Aucun texte modifié'; }
+function edToggle(on) {
+  ED_ON = on; if (!ED_KEYS) edInit();
+  document.body.classList.toggle('kz-edit', on);
+  for (const [, el] of ED_KEYS) { if (on) { el.contentEditable = 'true'; el.spellcheck = true; } else { el.removeAttribute('contenteditable'); } }
+  const b = $('#edToggle'); if (b) { b.textContent = on ? 'Terminer les modifications' : 'Modifier les textes'; b.classList.toggle('pri', on); }
+  let bar = $('#edBar');
+  if (on && !bar) {
+    bar = document.createElement('div'); bar.id = 'edBar'; bar.className = 'edbar';
+    bar.innerHTML = `<span><b>Modification des textes</b> · touche un texte pour l'écrire à ta façon. <span id="edCount"></span></span><span class="row" style="gap:6px"><span id="edResetWrap"><button type="button" class="btn sm" id="edReset">Rétablir les textes d'origine</button></span><button type="button" class="btn sm pri" id="edDone">Terminer</button></span>`;
+    document.body.appendChild(bar);
+  }
+  if (bar) bar.hidden = !on;
+  edCount();
+}
+document.addEventListener('input', e => { const el = e.target.closest && e.target.closest('[data-edk]'); if (!el || !ED_ON) return; clearTimeout(edT); edT = setTimeout(() => edSave(el), 500); });
+document.addEventListener('focusout', e => { const el = e.target.closest && e.target.closest('[data-edk]'); if (el && ED_ON) { clearTimeout(edT); edSave(el); } });
+document.addEventListener('paste', e => { const el = e.target.closest && e.target.closest('[data-edk]'); if (!el || !ED_ON) return; e.preventDefault(); const t = (e.clipboardData || window.clipboardData).getData('text/plain'); document.execCommand('insertText', false, t); });
+document.addEventListener('keydown', e => { const el = e.target.closest && e.target.closest('[data-edk]'); if (!el || !ED_ON || e.key !== 'Enter') return; if (/^(H2|H3|TD|TH)$/.test(el.tagName) || el.classList.contains('eyebrow') || el.classList.contains('v')) { e.preventDefault(); el.blur(); } });
+document.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.id === 'edToggle') { edToggle(!ED_ON); return; }
+  if (b.id === 'edDone') { edToggle(false); toast('Textes enregistrés'); return; }
+  if (b.id === 'edReset') { $('#edResetWrap').innerHTML = `<span class="confirm">Tout rétablir ? <button type="button" class="btn sm danger" id="edResetOk">Oui</button><button type="button" class="btn sm" id="edResetNo">Non</button></span>`; return; }
+  if (b.id === 'edResetOk' || b.id === 'edResetNo') { if (b.id === 'edResetOk') { S.txt = {}; scheduleSave(false); edApply(); renderCalc(); toast('Textes d\'origine rétablis'); } $('#edResetWrap').innerHTML = `<button type="button" class="btn sm" id="edReset">Rétablir les textes d'origine</button>`; edCount(); return; }
+});
+
 // ───────── générateur d'affiche : formulaire, aperçu, téléchargements
 let APOLE = 'acm', XMODE = 'full', pvT = 0, pvBusy = false, pvAgain = false;
 function getPath(o, p) { return p.split('.').reduce((a, k) => a == null ? a : a[k], o); }
@@ -1805,7 +2392,7 @@ function buildCalc() {
   $('#calc-ctl').innerHTML = CALC_CTL.map(([k, l, mn, mx, st, f, hint]) => `<div class="ctl"><label for="in-${k}"><span>${l}</span><output id="out-${k}"></output></label><input type="range" id="in-${k}" data-hyp="${k}" min="${mn}" max="${mx}" step="${st}" value="${S.hyp[k]}">${hint ? `<small>${hint}</small>` : ''}</div>`).join('');
   $('#frais').innerHTML = S.hyp.frais.map((f, i) => `<label class="ctl"><span class="small">${esc(f.n)}</span><input type="number" min="0" step="10" id="fr-${i}" data-fr="${i}" value="${f.v}"></label>`).join('');
 }
-function renderAll() { buildCalc(); renderGrids(); renderCalc(); renderPosterForm(); posterDirty(); }
+function renderAll() { edApply(); buildCalc(); renderGrids(); renderCalc(); renderPosterForm(); posterDirty(); }
 const isDark = () => { const t = document.documentElement.dataset.theme; return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; };
 function setLogos() { const src = isDark() ? LOGO_DARK : LOGO_LIGHT; ['#logo', '#tlogo'].forEach(s => { const el = $(s); if (el && el.getAttribute('src') !== src) el.src = src; }); }
 const whenTxt = d => d && d.updatedAt ? ' le ' + new Date(d.updatedAt).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(' ', ' à ') : '';
@@ -1832,7 +2419,7 @@ const whenTxt = d => d && d.updatedAt ? ' le ' + new Date(d.updatedAt).toLocaleS
       REF.onSnapshot(snap => {
         if (snap.metadata && snap.metadata.hasPendingWrites) return;
         if (!snap.exists) { setSave('ok', 'Grille proposée : modifie un chiffre pour l\'enregistrer'); return; }
-        const d = snap.data() || {}, jsD = JSON.stringify([d.hyp, d.lines, d.sim, d.aff, d.saved]);
+        const d = snap.data() || {}, jsD = JSON.stringify([d.hyp, d.lines, d.sim, d.aff, d.saved, d.txt || {}]);
         setSave('ok', 'Enregistré' + whenTxt(d));
         if (jsD === lastJSON) return;
         const prev = stateJSON(); applyData(d); lastJSON = stateJSON();
@@ -1848,6 +2435,7 @@ try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () =
 new MutationObserver(() => { renderSim(); setLogos(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
 })();
+};
 </script>
 <script>if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(function(){});</script>
 </body>
