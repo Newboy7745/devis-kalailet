@@ -151,12 +151,14 @@ details > summary { cursor: pointer; font-weight: 600; color: var(--gold); font-
 .rng { display: flex; flex-direction: column; gap: 12px }
 .rng .r { display: grid; grid-template-columns: minmax(0, 210px) minmax(0, 1fr); gap: 4px 14px; align-items: center }
 .rng .nm { font-weight: 600; font-size: 13.5px; line-height: 1.3 } .rng .nm span { display: block; font-weight: 400; color: var(--muted); font-size: 12px }
-.rng .track { position: relative; height: 34px }
-.rng .band { position: absolute; top: 12px; height: 10px; border-radius: 5px; background: var(--grid); border: 1px solid var(--axis) }
+.rng .track { position: relative; height: 66px }
+.rng .band { position: absolute; top: 36px; height: 10px; border-radius: 5px; background: var(--grid); border: 1px solid var(--axis) }
 .rng .typ { position: absolute; top: 9px; width: 2px; height: 16px; background: var(--muted) }
-.rng .me { position: absolute; top: 8px; width: 14px; height: 14px; margin-left: -7px; transform: rotate(45deg); border: 2px solid var(--card) }
+.rng .me { position: absolute; top: 32px; width: 14px; height: 14px; margin-left: -7px; transform: rotate(45deg); border: 2px solid var(--card) }
 .rng .me.cur { background: var(--axis); border-color: var(--muted) } .rng .me.prop { background: var(--gold) }
-.rng .lbl { position: absolute; top: 24px; font-size: 11px; color: var(--muted); white-space: nowrap; transform: translateX(-50%) }
+.rng .lbl { position: absolute; top: 49px; font-size: 11px; color: var(--muted); white-space: nowrap; transform: translateX(-50%) }
+.rng .rp { position: absolute; top: 0; transform: translateX(var(--sh, -50%)); background: var(--gold); color: #fff; font-weight: 700; font-size: 13px; line-height: 1; padding: 6px 9px; border-radius: 7px; white-space: nowrap; font-variant-numeric: tabular-nums; box-shadow: 0 1px 3px rgba(10,33,69,.18) }
+.rng .rp::after { content: ""; position: absolute; left: calc(-1 * var(--sh, -50%)); top: 100%; margin-left: -6px; border: 6px solid transparent; border-top-color: var(--gold); border-bottom: 0 }
 .rng .scale { position: relative; height: 16px; font-size: 11px; color: var(--muted) }
 @media (max-width: 560px) { .rng .r { grid-template-columns: 1fr } }
 
@@ -297,25 +299,29 @@ body.kz-test .topbar { top: var(--kztb, 50px) }
   <img class="logo" id="logo" alt="KALAILET CONSEIL, Accompagnement et Formation">
   <div class="eyebrow">Novembre 2026</div>
   <h1>Étude &amp; stratégie <em>tarifaire</em></h1>
-  <p class="lead">Étude de marché et stratégie de prix de KALAILET CONSEIL pour l'animation (accueils collectifs de mineurs) et l'accompagnement commercial des entreprises : prix plancher, prix du marché actuel, grilles recommandées, et les outils pour les ajuster.</p>
+  <p class="lead">Mon étude de marché et ma stratégie de prix pour KALAILET CONSEIL, en animation (accueils collectifs de mineurs) et en accompagnement commercial des entreprises&nbsp;: mon prix plancher, les prix du marché actuel, mes grilles tarifaires, et les outils pour les ajuster.</p>
   <div class="row actions"><a class="btn pri" href="#affiche">Créer ma grille tarifaire</a><a class="btn" href="#export">Exporter l'étude en PDF</a><button type="button" class="btn" id="edToggle">Modifier les textes</button></div>
   <div class="rule" aria-hidden="true"><i></i></div>
 </header>
 
 <main>
   <section id="intro" aria-labelledby="i-t">
-    <div class="sechead" data-only="full"><div class="eyebrow">Introduction</div><h2 id="i-t">Des prix justes, viables et défendables face au marché</h2>
-      <p>KALAILET CONSEIL est une activité d'accompagnement et de formation créée par Khalid AJDID, formateur, coach et consultant. Elle démarre en micro-entreprise en janvier 2027 et s'adresse uniquement aux professionnels, dans deux secteurs&nbsp;: l'animation en accueils collectifs de mineurs (ACM), auprès des collectivités, des associations et des organisateurs d'accueils, et l'accompagnement commercial des TPE et des PME.</p>
-      <p>Cette étude construit la stratégie tarifaire des deux secteurs à partir de trois éléments&nbsp;: le <strong>prix plancher</strong>, c'est-à-dire ce que l'activité doit facturer pour couvrir ses charges et rémunérer son dirigeant&nbsp;; les <strong>prix du marché actuel</strong>, relevés auprès des organismes publics, des réseaux associatifs et des organismes de formation privés&nbsp;; le <strong>cadre d'achat</strong> des clients&nbsp;: budgets publics, financement de la formation, TVA.</p>
-      <p>Elle aboutit à une grille recommandée pour chaque secteur, à des conditions commerciales, à une projection d'activité et à une feuille de route. Les chiffres sont recalculés avec les hypothèses retenues par l'entrepreneur.</p></div>
-    <div class="sechead pdfonly" data-only="acm"><div class="eyebrow">Introduction</div><h2>La stratégie tarifaire du secteur animation et ACM</h2>
-      <p>KALAILET CONSEIL est une activité d'accompagnement et de formation créée par Khalid AJDID, formateur, coach et consultant, qui démarre en micro-entreprise en janvier 2027. Ce document présente la stratégie tarifaire du secteur animation&nbsp;: formation des équipes d'animateurs, coaching des directeurs, accompagnement sur le terrain, diagnostic et parcours d'équipe.</p>
-      <p>Le besoin est permanent&nbsp;: plus de 32&nbsp;000 lieux d'accueil en France, une branche où 30&nbsp;% des salariés sont nouveaux chaque année et où 76&nbsp;% des structures peinent à recruter. Les acheteurs sont surtout des collectivités et des associations, qui comparent les prix avec ceux du CNFPT et des réseaux d'éducation populaire.</p>
-      <p>Les prix recommandés partent du <strong>prix plancher</strong> de l'activité et des <strong>prix du marché actuel</strong>, dans le <strong>cadre d'achat</strong> des clients publics et associatifs. Les chiffres sont recalculés avec les hypothèses retenues par l'entrepreneur.</p></div>
-    <div class="sechead pdfonly" data-only="com"><div class="eyebrow">Introduction</div><h2>La stratégie tarifaire de l'accompagnement commercial</h2>
-      <p>KALAILET CONSEIL est une activité d'accompagnement et de formation créée par Khalid AJDID, formateur, coach et consultant, qui démarre en micro-entreprise en janvier 2027. Ce document présente la stratégie tarifaire de l'accompagnement commercial&nbsp;: formation des équipes commerciales, coaching individuel, accompagnement en clientèle, diagnostic et parcours.</p>
-      <p>Le Loiret, premier marché visé, compte 17&nbsp;700 établissements de 1 à 49 salariés. Leurs dirigeants achètent un résultat&nbsp;: plus de rendez-vous, un meilleur taux de signature. Ils paient le plus souvent sur leur propre budget. Le parcours de terrain de Khalid AJDID, plus de 2&nbsp;000 contrats signés et 4&nbsp;M€ de chiffre d'affaires générés comme salarié, fonde un positionnement de formateur confirmé.</p>
-      <p>Les prix recommandés partent du <strong>prix plancher</strong> de l'activité et des <strong>prix du marché actuel</strong> pratiqués par les organismes de formation et les indépendants. Les chiffres sont recalculés avec les hypothèses retenues par l'entrepreneur.</p></div>
+    <div class="sechead" data-only="full"><div class="eyebrow">Introduction</div><h2 id="i-t">Pourquoi j'ai créé KALAILET CONSEIL, et comment j'ai fixé mes prix</h2>
+      <p>Je m'appelle Khalid AJDID. Depuis près de 20&nbsp;ans, je travaille sur le terrain, dans deux univers que je connais de l'intérieur. En animation, j'ai été animateur, directeur d'accueils collectifs de mineurs puis manager périscolaire, notamment à la mairie d'Olivet&nbsp;: plus de 20&nbsp;000 enfants et adolescents de 3 à 17&nbsp;ans encadrés. En commerce, j'ai été technico-commercial puis chef d'agence&nbsp;: plus de 2&nbsp;000 contrats signés et 4&nbsp;M€ de chiffre d'affaires générés en 5&nbsp;ans, comme salarié.</p>
+      <p>Sur ces deux terrains, j'ai fait le même constat&nbsp;: ce sont les personnes qui font la différence. Un animateur qui a trouvé sa posture sécurise les enfants et les fait progresser. Un directeur qui sait accompagner son équipe la garde et la fait grandir. Un commercial dont l'approche est structurée, et qui est suivi jusque sur le terrain, signe davantage et dans la durée. J'ai créé KALAILET CONSEIL pour transmettre ce que le terrain m'a appris, avec une conviction&nbsp;: <strong>l'humain au cœur de chaque transformation</strong>. Mon ambition tient en deux phrases&nbsp;: révéler les potentiels, transformer les pratiques.</p>
+      <p>Je lance mon activité en micro-entreprise en janvier 2027, à Orléans. Je travaille seul, uniquement pour les professionnels, dans deux domaines&nbsp;: l'animation en accueils collectifs de mineurs (ACM), où je forme les animateurs et j'accompagne les directeurs dans le management de leurs équipes, pour les collectivités, les associations et les organisateurs d'accueils&nbsp;; et l'accompagnement commercial des TPE et des PME, où je forme et j'accompagne les commerciaux jusque sur le terrain.</p>
+      <p>Pour fixer mes prix, je suis parti de trois éléments&nbsp;: mon <strong>prix plancher</strong>, c'est-à-dire ce que je dois facturer pour couvrir mes charges et me verser le revenu que je vise&nbsp;; les <strong>prix du marché actuel</strong>, que j'ai relevés auprès des organismes publics, des réseaux associatifs et des organismes de formation privés&nbsp;; le <strong>cadre d'achat</strong> de mes clients&nbsp;: budgets publics, financement de la formation, TVA.</p>
+      <p>J'en tire une grille recommandée pour chaque domaine, les conditions commerciales qui l'accompagnent, une projection de mon activité et ma feuille de route. Ma règle&nbsp;: un prix juste pour le client, viable pour moi, et que je peux défendre face au marché. Tous les chiffres se recalculent avec mes hypothèses.</p></div>
+    <div class="sechead pdfonly" data-only="acm"><div class="eyebrow">Introduction</div><h2>Ma stratégie tarifaire en animation et ACM</h2>
+      <p>Je m'appelle Khalid AJDID. Pendant près de 20&nbsp;ans, j'ai travaillé dans l'animation, d'animateur à directeur d'accueils collectifs de mineurs puis manager périscolaire, notamment à la mairie d'Olivet&nbsp;: plus de 20&nbsp;000 enfants et adolescents de 3 à 17&nbsp;ans encadrés. J'y ai vu ce qui fait la qualité d'un accueil&nbsp;: des animateurs qui ont trouvé leur posture, et des directeurs qui savent accompagner leur équipe.</p>
+      <p>J'ai créé KALAILET CONSEIL pour transmettre cette expérience, avec une conviction&nbsp;: <strong>l'humain au cœur de chaque transformation</strong>. Je lance mon activité en micro-entreprise en janvier 2027, à Orléans. Ce document présente mes prix en animation&nbsp;: formation des équipes d'animateurs, coaching des directeurs, accompagnement sur le terrain, diagnostic et parcours d'équipe.</p>
+      <p>Le besoin est permanent&nbsp;: plus de 32&nbsp;000 lieux d'accueil en France, une branche où 30&nbsp;% des salariés sont nouveaux chaque année et où 76&nbsp;% des structures peinent à recruter. Mes clients seront surtout des collectivités et des associations, qui comparent les prix avec ceux du CNFPT et des réseaux d'éducation populaire.</p>
+      <p>J'ai construit mes prix à partir de mon <strong>prix plancher</strong>, des <strong>prix du marché actuel</strong> et du <strong>cadre d'achat</strong> des clients publics et associatifs. Tous les chiffres se recalculent avec mes hypothèses.</p></div>
+    <div class="sechead pdfonly" data-only="com"><div class="eyebrow">Introduction</div><h2>Ma stratégie tarifaire en accompagnement commercial</h2>
+      <p>Je m'appelle Khalid AJDID. Dans le commerce, comme technico-commercial puis chef d'agence, j'ai signé plus de 2&nbsp;000 contrats et généré 4&nbsp;M€ de chiffre d'affaires en 5&nbsp;ans, comme salarié. J'y ai appris qu'un commercial progresse quand on structure son approche et qu'on l'accompagne jusqu'au passage à l'action.</p>
+      <p>J'ai créé KALAILET CONSEIL pour transmettre cette expérience, avec une conviction&nbsp;: <strong>l'humain au cœur de chaque transformation</strong>. Je lance mon activité en micro-entreprise en janvier 2027, à Orléans. Ce document présente mes prix en accompagnement commercial&nbsp;: formation des équipes commerciales, coaching individuel, accompagnement en clientèle, diagnostic et parcours.</p>
+      <p>Le Loiret, mon premier marché, compte 17&nbsp;700 établissements de 1 à 49&nbsp;salariés. Leurs dirigeants achètent un résultat&nbsp;: plus de rendez-vous, un meilleur taux de signature, et ils paient le plus souvent sur leur propre budget. Mon parcours de terrain me permet de me positionner au prix d'un formateur confirmé.</p>
+      <p>J'ai construit mes prix à partir de mon <strong>prix plancher</strong> et des <strong>prix du marché actuel</strong> pratiqués par les organismes de formation et les indépendants. Tous les chiffres se recalculent avec mes hypothèses.</p></div>
     <div class="tiles">
       <div class="tile"><div class="v num" id="t-plancher">624&nbsp;€</div><div class="l" id="t-plancher-l">prix plancher d'une journée de formation, pour 2&nbsp;500&nbsp;€ nets par mois</div></div>
       <div class="tile" data-sec="acm"><div class="v num">60&nbsp;000&nbsp;€</div><div class="l">montant qu'une mairie peut payer sans appel d'offres, depuis le 1<sup>er</sup>&nbsp;avril 2026</div></div>
@@ -325,8 +331,8 @@ body.kz-test .topbar { top: var(--kztb, 50px) }
   </section>
 
   <section id="plancher" aria-labelledby="p-t">
-    <div class="sechead"><div class="eyebrow">Prix plancher</div><h2 id="p-t">Ce qu'il faut facturer pour vivre de l'activité</h2>
-      <p class="muted">Le prix plancher est le prix sous lequel l'activité travaille à perte par rapport à l'objectif de revenu. Il tient compte de tout le temps qu'une prestation demande&nbsp;: préparation, trajet et gestion, pas seulement les heures devant le groupe.</p>
+    <div class="sechead"><div class="eyebrow">Prix plancher</div><h2 id="p-t">Ce que je dois facturer pour vivre de mon activité</h2>
+      <p class="muted">Mon prix plancher est le prix sous lequel je travaille à perte par rapport à mon objectif de revenu. Il tient compte de tout le temps qu'une prestation me demande&nbsp;: préparation, trajet et gestion, pas seulement les heures devant le groupe.</p>
       <p class="muted small tool">Règle les hypothèses&nbsp;: toute la page se recalcule.</p></div>
     <div class="card" data-pdf="calc" style="display:flex;flex-direction:column;gap:16px">
       <div class="ctlgrid" id="calc-ctl"></div>
@@ -342,12 +348,12 @@ body.kz-test .topbar { top: var(--kztb, 50px) }
         <p class="tiny muted" style="margin-top:8px">Les trajets ne sont pas comptés ici&nbsp;: ils sont facturés en plus (indemnités kilométriques). La CFE est nulle la première année et réduite de moitié la deuxième.</p>
       </details>
     </div>
-    <p class="note">Une journée de formation de 7&nbsp;h demande en réalité 13&nbsp;à&nbsp;14&nbsp;h de travail&nbsp;: préparation (environ 0,6&nbsp;h par heure animée, en moyenne entre un module neuf et un module déjà rodé), gestion et trajet. Une séance de coaching de 2&nbsp;h en demande environ 4. C'est pourquoi les formats courts doivent coûter plus cher à l'heure.</p>
+    <p class="note">Une journée de formation de 7&nbsp;h me demande en réalité 13&nbsp;à&nbsp;14&nbsp;h de travail&nbsp;: préparation (environ 0,6&nbsp;h par heure animée, en moyenne entre un module neuf et un module déjà rodé), gestion et trajet. Une séance de coaching de 2&nbsp;h m'en demande environ 4. C'est pourquoi je facture les formats courts plus cher à l'heure.</p>
   </section>
 
   <section id="marche" aria-labelledby="m-t">
-    <div class="sechead"><div class="eyebrow">Le marché</div><h2 id="m-t">Où se situent les prix</h2>
-      <p class="muted">Fourchettes de prix HT relevées en 2025 et 2026 (sources en fin d'étude).<span data-sec="acm"> Les grands réseaux d'éducation populaire (CEMÉA, Francas, UFCV, Ligue de l'enseignement) ne publient pas leurs prix intra&nbsp;: les repères ACM viennent du CNFPT, de Familles Rurales, de collectivités et d'organismes du secteur social.</span></p></div>
+    <div class="sechead"><div class="eyebrow">Le marché</div><h2 id="m-t">Où se situent les prix du marché</h2>
+      <p class="muted">J'ai relevé ces fourchettes de prix HT en 2025 et 2026 (sources en fin d'étude). Au-dessus de chaque losange doré, le prix que je recommande.<span data-sec="acm"> Les grands réseaux d'éducation populaire (CEMÉA, Francas, UFCV, Ligue de l'enseignement) ne publient pas leurs prix intra&nbsp;: mes repères ACM viennent du CNFPT, de Familles Rurales, de collectivités et d'organismes du secteur social.</span></p></div>
     <div class="card" data-sec="acm" style="display:flex;flex-direction:column;gap:12px">
       <h3>Animation et ACM</h3>
       <div class="legend"><span><i style="background:var(--grid);border:1px solid var(--axis)"></i>Fourchette du marché</span><span><i style="background:var(--gold);transform:rotate(45deg)"></i>Prix recommandé</span></div>
@@ -363,50 +369,50 @@ body.kz-test .topbar { top: var(--kztb, 50px) }
       <div class="tile" data-sec="acm"><div class="v num">32&nbsp;457</div><div class="l">lieux d'accueil périscolaire et extrascolaire en France (INJEP, 2024-2025)</div></div>
       <div class="tile" data-sec="acm"><div class="v num">14&nbsp;040</div><div class="l">structures dans la branche de l'animation, à 96&nbsp;% des associations, deux sur trois avec moins de 5&nbsp;salariés</div></div>
       <div class="tile" data-sec="acm"><div class="v num">30&nbsp;%</div><div class="l">de nouveaux salariés chaque année dans la branche, et 76&nbsp;% des structures ont du mal à recruter</div></div>
-      <div class="tile" data-sec="com"><div class="v num">17&nbsp;700</div><div class="l">établissements de 1 à 49&nbsp;salariés dans le Loiret, premier marché visé pour le commerce (Insee, fin 2024)</div></div>
+      <div class="tile" data-sec="com"><div class="v num">17&nbsp;700</div><div class="l">établissements de 1 à 49&nbsp;salariés dans le Loiret, le premier marché que je vise pour le commerce (Insee, fin 2024)</div></div>
       <div class="tile" data-sec="com"><div class="v num">1,8&nbsp;M</div><div class="l">commerciaux et vendeurs en France, dont 438&nbsp;000 attachés commerciaux</div></div>
       <div class="tile" data-sec="com"><div class="v num">305</div><div class="l">recrutements d'attachés commerciaux prévus dans le Loiret en 2026, autant de commerciaux à former</div></div>
     </div>
   </section>
 
   <section id="acm" aria-labelledby="a-t" data-sec="acm">
-    <div class="sechead"><div class="eyebrow">Animation et ACM</div><h2 id="a-t">La grille recommandée face au marché</h2>
-      <p class="muted">Chaque prix se place dans la fourchette publique, au-dessus du prix plancher. La colonne «&nbsp;Position&nbsp;» le situe par rapport au plancher et au marché.</p></div>
+    <div class="sechead"><div class="eyebrow">Animation et ACM</div><h2 id="a-t">Ma grille recommandée face au marché</h2>
+      <p class="muted">Je place chaque prix dans la fourchette publique, au-dessus de mon prix plancher. La colonne «&nbsp;Position&nbsp;» le situe par rapport à mon plancher et au marché.</p></div>
     <div class="card" id="acm-prop" data-pdf="acm-prop"></div>
     <div class="two">
-      <div class="card"><h3>Les principes de la grille</h3><ul class="clean small" style="margin-top:8px">
-        <li><strong>La journée de formation en groupe autour de 850&nbsp;€</strong>&nbsp;: au milieu de la fourchette du CNFPT (400 à 1&nbsp;200&nbsp;€ la journée intra), un prix qu'une mairie ou une association compare sans difficulté.</li>
-        <li><strong>Des formats courts plus chers à l'heure</strong>&nbsp;: un atelier de 2&nbsp;h demande presque autant de préparation et de trajet qu'une demi-journée.</li>
-        <li><strong>Des remises limitées à 5 à 10&nbsp;%</strong> sur les formats longs&nbsp;: au-delà, le deuxième jour passe sous le prix plancher.</li>
-        <li><strong>Le coaching des directeurs vendu en séances de 2&nbsp;h et en forfaits</strong>&nbsp;: un directeur se libère plus facilement 2&nbsp;h qu'une journée, et le forfait engage sur la durée.</li>
+      <div class="card"><h3>Les principes de ma grille</h3><ul class="clean small" style="margin-top:8px">
+        <li><strong>Ma journée de formation en groupe autour de 850&nbsp;€</strong>&nbsp;: je la place au milieu de la fourchette du CNFPT (400 à 1&nbsp;200&nbsp;€ la journée intra), à un prix qu'une mairie ou une association compare sans difficulté.</li>
+        <li><strong>Des formats courts plus chers à l'heure</strong>&nbsp;: un atelier de 2&nbsp;h me demande presque autant de préparation et de trajet qu'une demi-journée.</li>
+        <li><strong>Des remises limitées à 5 à 10&nbsp;%</strong> sur les formats longs&nbsp;: au-delà, mon deuxième jour passerait sous mon prix plancher.</li>
+        <li><strong>Le coaching des directeurs en séances de 2&nbsp;h et en forfaits</strong>&nbsp;: un directeur se libère plus facilement 2&nbsp;h qu'une journée, et le forfait l'engage sur la durée.</li>
         <li><strong>Une session ouverte vendue par participant</strong>, pour les petites structures qui n'ont que 1 à 3&nbsp;animateurs à former.</li>
         <li><strong>Des formats récurrents</strong>&nbsp;: cycles d'analyse de pratiques, diagnostic d'un accueil, parcours d'équipe sur plusieurs semaines.</li>
       </ul></div>
-      <div class="card"><h3>À qui la vendre, et comment</h3><ul class="clean small" style="margin-top:8px">
-        <li><strong>Collectivités</strong>&nbsp;: un simple devis suffit sous 60&nbsp;000&nbsp;€. Le budget est voté au printemps&nbsp;: la prospection se fait de septembre à janvier pour l'année suivante.</li>
-        <li><strong>Associations et organisateurs de séjours</strong>&nbsp;: paiement sur fonds propres ou par Uniformation. Les besoins culminent avant l'été et à la rentrée.</li>
-        <li><strong>Arguments</strong>&nbsp;: la qualité éducative de l'accueil, la sécurité affective des enfants, la fidélisation d'équipes qui se renouvellent chaque année.</li>
-        <li><strong>Ce que le CNFPT ne propose pas</strong>&nbsp;: interventions sur site, contenus sur mesure, accompagnement sur le terrain et coaching des directeurs.</li>
+      <div class="card"><h3>À qui je la vends, et comment</h3><ul class="clean small" style="margin-top:8px">
+        <li><strong>Collectivités</strong>&nbsp;: un simple devis suffit sous 60&nbsp;000&nbsp;€. Le budget est voté au printemps&nbsp;: je prospecte de septembre à janvier pour l'année suivante.</li>
+        <li><strong>Associations et organisateurs de séjours</strong>&nbsp;: elles paient sur fonds propres ou par Uniformation. Leurs besoins culminent avant l'été et à la rentrée.</li>
+        <li><strong>Mes arguments</strong>&nbsp;: la qualité éducative de l'accueil, la sécurité affective des enfants, la fidélisation d'équipes qui se renouvellent chaque année.</li>
+        <li><strong>Ce que j'apporte et que le CNFPT ne propose pas</strong>&nbsp;: interventions sur site, contenus sur mesure, accompagnement sur le terrain et coaching des directeurs.</li>
       </ul></div>
     </div>
   </section>
 
   <section id="commerce" aria-labelledby="c-t" data-sec="com">
-    <div class="sechead"><div class="eyebrow">Accompagnement commercial</div><h2 id="c-t">La grille recommandée pour les entreprises</h2>
-      <p class="muted">Une PME achète un résultat&nbsp;: plus de rendez-vous, un meilleur taux de signature. Le parcours de terrain de Khalid AJDID (plus de 2&nbsp;000 contrats signés, 4&nbsp;M€ de chiffre d'affaires générés comme salarié) justifie un prix de formateur confirmé.</p></div>
+    <div class="sechead"><div class="eyebrow">Accompagnement commercial</div><h2 id="c-t">Ma grille recommandée pour les entreprises</h2>
+      <p class="muted">Une PME achète un résultat&nbsp;: plus de rendez-vous, un meilleur taux de signature. Mon parcours de terrain (plus de 2&nbsp;000 contrats signés, 4&nbsp;M€ de chiffre d'affaires générés comme salarié) me permet de me positionner au prix d'un formateur confirmé.</p></div>
     <div class="card" id="com-prop" data-pdf="com-prop"></div>
     <div class="two">
       <div class="card"><h3>Pourquoi ces prix</h3><ul class="clean small" style="margin-top:8px">
-        <li>1&nbsp;200&nbsp;€ la journée intra&nbsp;: dans le bas de la fourchette des organismes (850 à 2&nbsp;300&nbsp;€), crédible sans marque connue ni Qualiopi.</li>
-        <li>Coaching à 240&nbsp;€ la séance de 1&nbsp;h&nbsp;30&nbsp;: dans le bas du marché (150 à 450&nbsp;€), le temps de constituer des références.</li>
-        <li>Terrain à 900&nbsp;€ la journée&nbsp;: c'est la compétence la plus rare de l'offre, un ancien chef d'agence qui accompagne en rendez-vous.</li>
-        <li>Session ouverte à 550&nbsp;€ par participant&nbsp;: elle ouvre les TPE qui n'ont qu'un ou deux commerciaux.</li>
+        <li>1&nbsp;200&nbsp;€ la journée intra&nbsp;: je me place dans le bas de la fourchette des organismes (850 à 2&nbsp;300&nbsp;€), à un prix crédible sans marque connue ni Qualiopi.</li>
+        <li>Coaching à 240&nbsp;€ la séance de 1&nbsp;h&nbsp;30&nbsp;: je reste dans le bas du marché (150 à 450&nbsp;€), le temps de constituer mes références.</li>
+        <li>Terrain à 900&nbsp;€ la journée&nbsp;: c'est la compétence la plus rare de mon offre. Ancien chef d'agence, j'accompagne le commercial en rendez-vous.</li>
+        <li>Session ouverte à 550&nbsp;€ par participant&nbsp;: elle m'ouvre les TPE qui n'ont qu'un ou deux commerciaux.</li>
       </ul></div>
-      <div class="card"><h3>Comment la vendre</h3><ul class="clean small" style="margin-top:8px">
-        <li>Commencer par le diagnostic&nbsp;: il donne au dirigeant un plan d'action chiffré, et le parcours en découle naturellement.</li>
-        <li>Présenter le parcours de 3&nbsp;mois en premier&nbsp;: les formats seuls paraissent alors plus abordables.</li>
-        <li>Parler de retour sur investissement&nbsp;: chiffrer avec le dirigeant ce que rapporte une vente de plus par commercial et par mois, et le comparer au prix du parcours.</li>
-        <li>Les financements des OPCO se raréfient pour les entreprises de moins de 50&nbsp;salariés&nbsp;: la plupart paieront sur leur budget. Vendre un résultat, pas un dossier de financement.</li>
+      <div class="card"><h3>Comment je la vends</h3><ul class="clean small" style="margin-top:8px">
+        <li>Je commence par le diagnostic&nbsp;: il donne au dirigeant un plan d'action chiffré, et le parcours en découle naturellement.</li>
+        <li>Je présente le parcours de 3&nbsp;mois en premier&nbsp;: les formats seuls paraissent alors plus abordables.</li>
+        <li>Je parle de retour sur investissement&nbsp;: je chiffre avec le dirigeant ce que rapporte une vente de plus par commercial et par mois, et je le compare au prix du parcours.</li>
+        <li>Les financements des OPCO se raréfient pour les entreprises de moins de 50&nbsp;salariés&nbsp;: la plupart paieront sur leur budget. Je vends un résultat, pas un dossier de financement.</li>
       </ul></div>
     </div>
   </section>
@@ -476,44 +482,44 @@ body.kz-test .topbar { top: var(--kztb, 50px) }
   </section>
 
   <section id="cadre" aria-labelledby="f-t">
-    <div class="sechead"><div class="eyebrow">Financements et cadre</div><h2 id="f-t">Qui paie, et ce que cela change pour les prix</h2></div>
+    <div class="sechead"><div class="eyebrow">Financements et cadre</div><h2 id="f-t">Qui paie, et ce que cela change pour mes prix</h2></div>
     <div class="tablewrap card" style="padding:6px 12px"><table data-w="22,42,36">
-      <thead><tr><th>Client</th><th style="text-align:left">Comment il paie</th><th style="text-align:left">Ce qu'il faut</th></tr></thead>
+      <thead><tr><th>Client</th><th style="text-align:left">Comment il paie</th><th style="text-align:left">Ce que je dois prévoir</th></tr></thead>
       <tbody>
-        <tr data-sec="acm"><td><b>Mairie, communauté de communes</b></td><td style="text-align:left;min-width:220px">Sur son budget. Jusqu'à 60&nbsp;000&nbsp;€&nbsp;HT, un simple devis suffit, sans appel d'offres. Le budget est voté en mars ou avril&nbsp;: la prospection se fait de septembre à janvier pour l'année suivante.</td><td style="text-align:left;min-width:180px">Rien de plus que le devis. Qualiopi n'est pas exigé. Pas d'acompte&nbsp;: paiement à 30&nbsp;jours après service fait.</td></tr>
-        <tr data-sec="acm"><td><b>Agents territoriaux</b></td><td style="text-align:left">Le CNFPT les forme gratuitement sur son catalogue, mais ses moyens baissent en 2026.</td><td style="text-align:left">Ne pas se battre sur le catalogue&nbsp;: vendre ce qu'il ne fait pas (sur site, sur mesure, terrain, coaching). Surveiller ses marchés de sous-traitance sur le BOAMP.</td></tr>
-        <tr data-sec="acm"><td><b>Association de moins de 50&nbsp;salariés</b></td><td style="text-align:left">Sur fonds propres, ou par Uniformation&nbsp;: une demande par an, 5&nbsp;000&nbsp;€ au maximum, dans la limite des fonds. Uniformation propose aussi des formations gratuites sur les thèmes ACM.</td><td style="text-align:left">Qualiopi pour être financé par Uniformation, ou passer en sous-traitance d'un organisme certifié.</td></tr>
-        <tr data-sec="com"><td><b>Entreprise, TPE ou PME</b></td><td style="text-align:left">Surtout sur son budget&nbsp;: le FNE-Formation est arrêté, et AKTO a suspendu mi-2026 ses financements pour les moins de 50&nbsp;salariés de 10&nbsp;branches.</td><td style="text-align:left">Qualiopi pour un financement par un OPCO. Le coaching se vend comme du conseil, hors formation.</td></tr>
-        <tr><td><b>Organisme de formation certifié</b></td><td style="text-align:left">Il paie la journée animée et revend la formation avec sa certification.</td><td style="text-align:left">Aucune certification nécessaire (sauf CPF). Compter 250 à 450&nbsp;€ la journée animée.</td></tr>
+        <tr data-sec="acm"><td><b>Mairie, communauté de communes</b></td><td style="text-align:left;min-width:220px">Sur son budget. Jusqu'à 60&nbsp;000&nbsp;€&nbsp;HT, un simple devis suffit, sans appel d'offres. Le budget est voté en mars ou avril&nbsp;: la prospection se fait de septembre à janvier pour l'année suivante.</td><td style="text-align:left;min-width:180px">Rien de plus que mon devis. Qualiopi n'est pas exigé. Pas d'acompte&nbsp;: paiement à 30&nbsp;jours après service fait.</td></tr>
+        <tr data-sec="acm"><td><b>Agents territoriaux</b></td><td style="text-align:left">Le CNFPT les forme gratuitement sur son catalogue, mais ses moyens baissent en 2026.</td><td style="text-align:left">Je ne me bats pas sur son catalogue&nbsp;: je vends ce qu'il ne fait pas (sur site, sur mesure, terrain, coaching). Je surveille ses marchés de sous-traitance sur le BOAMP.</td></tr>
+        <tr data-sec="acm"><td><b>Association de moins de 50&nbsp;salariés</b></td><td style="text-align:left">Sur fonds propres, ou par Uniformation&nbsp;: une demande par an, 5&nbsp;000&nbsp;€ au maximum, dans la limite des fonds. Uniformation propose aussi des formations gratuites sur les thèmes ACM.</td><td style="text-align:left">Qualiopi pour que la formation soit financée par Uniformation, ou je passe en sous-traitance d'un organisme certifié.</td></tr>
+        <tr data-sec="com"><td><b>Entreprise, TPE ou PME</b></td><td style="text-align:left">Surtout sur son budget&nbsp;: le FNE-Formation est arrêté, et AKTO a suspendu mi-2026 ses financements pour les moins de 50&nbsp;salariés de 10&nbsp;branches.</td><td style="text-align:left">Qualiopi pour un financement par un OPCO. Je vends le coaching comme du conseil, hors formation.</td></tr>
+        <tr><td><b>Organisme de formation certifié</b></td><td style="text-align:left">Il me paie la journée animée et revend la formation avec sa certification.</td><td style="text-align:left">Aucune certification nécessaire de mon côté (sauf CPF). Je compte 250 à 450&nbsp;€ la journée animée.</td></tr>
       </tbody></table></div>
     <div class="two">
-      <div class="card"><h3>Micro-entreprise en 2027</h3><ul class="clean small" style="margin-top:8px">
+      <div class="card"><h3>Ma micro-entreprise en 2027</h3><ul class="clean small" style="margin-top:8px">
         <li>Cotisations 25,6&nbsp;% en activité libérale, plus 0,2&nbsp;% de formation professionnelle et 2,2&nbsp;% de versement libératoire&nbsp;: 28&nbsp;% au total. Le taux 2027 n'est pas encore voté&nbsp;; aucun changement n'est annoncé.</li>
         <li>Plafond de chiffre d'affaires&nbsp;: 83&nbsp;600&nbsp;€ par an jusqu'en 2028, réduit au prorata la première année.</li>
-        <li>ACRE pour une création depuis juillet 2026&nbsp;: cotisations à 19,2&nbsp;% au lieu de 25,6&nbsp;%, jusqu'au 31&nbsp;décembre&nbsp;2027 pour un début en janvier. Demande dans les 60&nbsp;jours, pour un demandeur d'emploi ou dans un autre cas prévu.</li>
+        <li>ACRE pour une création depuis juillet 2026&nbsp;: cotisations à 19,2&nbsp;% au lieu de 25,6&nbsp;%, jusqu'au 31&nbsp;décembre&nbsp;2027 pour mon début en janvier. Demande dans les 60&nbsp;jours, pour un demandeur d'emploi ou dans un autre cas prévu.</li>
         <li>CFE&nbsp;: rien la première année, base réduite de moitié la deuxième.</li>
       </ul></div>
       <div class="card"><h3>TVA&nbsp;: le point clé</h3><ul class="clean small" style="margin-top:8px">
         <li>Franchise jusqu'à 37&nbsp;500&nbsp;€ de prestations par an (41&nbsp;250&nbsp;€ en seuil majoré). Le projet de seuil à 25&nbsp;000&nbsp;€ est abandonné.</li>
-        <li>Pour un revenu de 2&nbsp;500&nbsp;€ nets par mois, il faut environ 47&nbsp;000&nbsp;€ de chiffre d'affaires&nbsp;: au-dessus du seuil.</li>
-        <li>La parade&nbsp;: les formations sont exonérées de TVA avec la déclaration d'activité et l'attestation de la DREETS (formulaire 3511-SD). Les opérations exonérées ne comptent en principe pas dans le seuil de franchise&nbsp;: seuls le coaching, le terrain et le conseil y comptent. À faire confirmer par un comptable.</li>
-        <li>Au 1<sup>er</sup>&nbsp;janvier 2027, les règles de TVA passent dans un nouveau code&nbsp;: les numéros d'articles à citer sur les factures (293&nbsp;B, 261-4-4°&nbsp;a) peuvent changer.</li>
+        <li>Pour me verser 2&nbsp;500&nbsp;€ nets par mois, il me faut environ 47&nbsp;000&nbsp;€ de chiffre d'affaires&nbsp;: au-dessus du seuil.</li>
+        <li>Ma parade&nbsp;: avec la déclaration d'activité et l'attestation de la DREETS (formulaire 3511-SD), mes formations sont exonérées de TVA. Les opérations exonérées ne comptent en principe pas dans le seuil de franchise&nbsp;: seuls mon coaching, le terrain et le conseil y comptent. Je le ferai confirmer par un comptable.</li>
+        <li>Au 1<sup>er</sup>&nbsp;janvier 2027, les règles de TVA passent dans un nouveau code&nbsp;: les numéros d'articles à citer sur mes factures (293&nbsp;B, 261-4-4°&nbsp;a) peuvent changer.</li>
       </ul></div>
       <div class="card"><h3>Déclaration d'activité</h3><ul class="clean small" style="margin-top:8px">
-        <li>À faire dans les 3&nbsp;mois qui suivent la première convention de formation signée, sur « Mon Activité Formation ».</li>
-        <li>Ensuite&nbsp;: numéro sur les devis, conventions et factures, et un bilan pédagogique et financier chaque printemps.</li>
+        <li>Je la fais dans les 3&nbsp;mois qui suivent ma première convention de formation signée, sur « Mon Activité Formation ».</li>
+        <li>Ensuite&nbsp;: mon numéro sur les devis, conventions et factures, et un bilan pédagogique et financier chaque printemps.</li>
       </ul></div>
       <div class="card"><h3>Qualiopi</h3><ul class="clean small" style="margin-top:8px">
         <li>Environ 1&nbsp;500&nbsp;€&nbsp;HT sur 3&nbsp;ans pour un formateur seul sans accompagnement&nbsp;: audit initial, audit de surveillance entre le 14<sup>e</sup> et le 22<sup>e</sup>&nbsp;mois, renouvellement.</li>
-        <li>Utile dès que les clients demandent un financement (associations, PME). Les collectivités qui paient sur leur budget ne l'exigent pas.</li>
-        <li>La réserve de 500&nbsp;€ par an est déjà comptée dans les frais fixes.</li>
+        <li>Utile dès que mes clients demandent un financement (associations, PME). Les collectivités qui paient sur leur budget ne l'exigent pas.</li>
+        <li>La réserve de 500&nbsp;€ par an est déjà comptée dans mes frais fixes.</li>
       </ul></div>
     </div>
   </section>
 
   <section id="conditions" aria-labelledby="cond-t">
-    <div class="sechead"><div class="eyebrow">Ce qui accompagne chaque prix</div><h2 id="cond-t">Conditions commerciales à afficher</h2>
-      <p class="muted">Un bon prix se défend avec des règles claires. Ce sont elles qui évitent de travailler gratuitement : séance annulée la veille, trajet de 90&nbsp;km non facturé, programme conçu sur mesure et jamais vendu.</p></div>
+    <div class="sechead"><div class="eyebrow">Ce qui accompagne chaque prix</div><h2 id="cond-t">Les conditions commerciales que j'affiche</h2>
+      <p class="muted">Un bon prix se défend avec des règles claires. Ce sont elles qui m'évitent de travailler gratuitement&nbsp;: séance annulée la veille, trajet de 90&nbsp;km non facturé, programme conçu sur mesure et jamais vendu.</p></div>
     <div class="two">
       <div class="card"><h3>Ce qui est compris</h3><ul class="clean small" style="margin-top:8px">
         <li>La préparation d'un module du catalogue, les supports remis aux participants, la feuille d'émargement et l'attestation de fin de formation.</li>
@@ -524,7 +530,7 @@ body.kz-test .topbar { top: var(--kztb, 50px) }
       <div class="card"><h3>Ce qui est facturé en plus</h3><ul class="clean small" style="margin-top:8px">
         <li><b>Déplacements</b> hors Orléans&nbsp;: 0,63&nbsp;€ par kilomètre, aller et retour depuis Orléans.</li>
         <li><b>Repas et nuitée</b> au-delà de 80&nbsp;km ou pour une journée commençant avant 8&nbsp;h&nbsp;: forfait repas et forfait nuit (déjà prévus dans l'outil de gestion).</li>
-        <li><b>Conception sur mesure</b>&nbsp;: une demi-journée à une journée de conception facturée quand le contenu est créé pour un seul client.</li>
+        <li><b>Conception sur mesure</b>&nbsp;: je facture une demi-journée à une journée de conception quand le contenu est créé pour un seul client.</li>
         <li><b>Supports imprimés</b> en nombre ou livret individuel, sur devis.</li>
       </ul></div>
       <div class="card"><h3>Paiement</h3><ul class="clean small" style="margin-top:8px">
@@ -539,49 +545,49 @@ body.kz-test .topbar { top: var(--kztb, 50px) }
         <li>Pour une collectivité, ces règles figurent dans le devis ou la convention signée&nbsp;: c'est ce qui les rend applicables.</li>
       </ul></div>
     </div>
-    <p class="note">Les remises se donnent en échange de quelque chose&nbsp;: un engagement sur plusieurs sessions, un paiement d'avance, une date creuse. Jamais un rabais sec sur le prix d'une journée&nbsp;: il devient la référence de tous les devis suivants.</p>
+    <p class="note">Je n'accorde une remise qu'en échange de quelque chose&nbsp;: un engagement sur plusieurs sessions, un paiement d'avance, une date creuse. Jamais de rabais sec sur le prix d'une journée&nbsp;: il deviendrait la référence de tous mes devis suivants.</p>
   </section>
 
 
   <section id="route" aria-labelledby="r-t">
-    <div class="sechead"><div class="eyebrow">Mise en place</div><h2 id="r-t">Feuille de route tarifaire</h2></div>
+    <div class="sechead"><div class="eyebrow">Mise en place</div><h2 id="r-t">Ma feuille de route tarifaire</h2></div>
     <div class="steps">
-      <div class="step"><div><h3>Valider la grille</h3><div class="when">Novembre et décembre 2026</div><ul>
-        <li>Présenter la grille à 5&nbsp;à&nbsp;8 prospects&nbsp;: 3&nbsp;collectivités, 2&nbsp;associations, 3&nbsp;PME. Noter les réactions, sans annoncer de remise.</li>
-        <li>Diffuser la grille tarifaire de chaque secteur, avec les conditions commerciales de cette étude.</li>
-        <li>Les prix de la grille retenue alimentent directement les devis, contrats et factures de l'outil de gestion commerciale.</li>
+      <div class="step"><div><h3>Valider ma grille</h3><div class="when">Novembre et décembre 2026</div><ul>
+        <li>Je présente ma grille à 5&nbsp;à&nbsp;8 prospects&nbsp;: 3&nbsp;collectivités, 2&nbsp;associations, 3&nbsp;PME. Je note leurs réactions, sans annoncer de remise.</li>
+        <li>Je diffuse la grille tarifaire de chaque domaine, avec les conditions commerciales de cette étude.</li>
+        <li>Les prix de ma grille alimentent directement les devis, contrats et factures de mon outil de gestion commerciale.</li>
       </ul></div></div>
       <div class="step"><div><h3>Démarrer</h3><div class="when">Janvier 2027</div><ul>
-        <li>Immatriculation, option pour le versement libératoire, demande d'ACRE dans les 60&nbsp;jours si les conditions sont remplies.</li>
+        <li>Je m'immatricule, j'opte pour le versement libératoire et je demande l'ACRE dans les 60&nbsp;jours si j'en remplis les conditions.</li>
         <li>Indemnités kilométriques&nbsp;: 0,63&nbsp;€ par km, proche du barème fiscal pour une 5&nbsp;CV (0,636&nbsp;€).</li>
       </ul></div></div>
-      <div class="step"><div><h3>Déclarer l'activité de formation</h3><div class="when">Dans les 3 mois suivant la première convention</div><ul>
+      <div class="step"><div><h3>Déclarer mon activité de formation</h3><div class="when">Dans les 3 mois suivant la première convention</div><ul>
         <li>Déclaration d'activité, puis demande d'attestation d'exonération de TVA (3511-SD) auprès de la DREETS.</li>
-        <li>Dès l'attestation reçue, les formations sortent du seuil de franchise de TVA.</li>
+        <li>Dès l'attestation reçue, mes formations sortent du seuil de franchise de TVA.</li>
       </ul></div></div>
       <div class="step"><div><h3>Ouvrir les clients financés</h3><div class="when">Printemps 2027</div><ul>
-        <li>Proposer de la sous-traitance à 2 ou 3 organismes certifiés Qualiopi (autour de 400&nbsp;€ la journée), pour les associations et PME financées par un OPCO.</li>
-        <li>Lancer une première session ouverte à Orléans dans chaque secteur&nbsp;: elle remplit l'agenda et montre le savoir-faire à plusieurs structures à la fois.</li>
+        <li>Je propose de la sous-traitance à 2 ou 3 organismes certifiés Qualiopi (autour de 400&nbsp;€ la journée), pour les associations et PME financées par un OPCO.</li>
+        <li>Je lance une première session ouverte à Orléans dans chaque domaine&nbsp;: elle remplit mon agenda et montre mon savoir-faire à plusieurs structures à la fois.</li>
       </ul></div></div>
       <div class="step"><div><h3>Prospecter avant les budgets</h3><div class="when">Septembre 2027 à janvier 2028</div><ul>
-        <li data-sec="acm">Viser les collectivités qui préparent leur budget 2028, avec des cycles d'analyse de pratiques et des parcours d'équipe.</li>
-        <li data-sec="com">Relancer les PME avec le diagnostic commercial et le parcours de 3&nbsp;mois, en s'appuyant sur les premiers résultats chiffrés.</li>
-        <li>Décider de Qualiopi selon la part des clients qui demandent un financement.</li>
+        <li data-sec="acm">Je vise les collectivités qui préparent leur budget 2028, avec des cycles d'analyse de pratiques et des parcours d'équipe.</li>
+        <li data-sec="com">Je relance les PME avec le diagnostic commercial et le parcours de 3&nbsp;mois, en m'appuyant sur mes premiers résultats chiffrés.</li>
+        <li>Je décide de Qualiopi selon la part de mes clients qui demandent un financement.</li>
       </ul></div></div>
-      <div class="step"><div><h3>Réviser les prix chaque année</h3><div class="when">Janvier 2028, puis chaque janvier</div><ul>
-        <li>Hausse de 3&nbsp;à&nbsp;5&nbsp;% annoncée en novembre, prévue dans les conditions générales.</li>
-        <li>Comparer les résultats au simulateur&nbsp;: si l'agenda dépasse la part de temps prévue, monter les prix des formats les plus demandés.</li>
+      <div class="step"><div><h3>Réviser mes prix chaque année</h3><div class="when">Janvier 2028, puis chaque janvier</div><ul>
+        <li>Une hausse de 3&nbsp;à&nbsp;5&nbsp;%, annoncée en novembre et prévue dans mes conditions générales.</li>
+        <li>Je compare mes résultats au simulateur&nbsp;: si mon agenda dépasse la part de temps prévue, je monte les prix des formats les plus demandés.</li>
       </ul></div></div>
     </div>
   </section>
 
   <section id="sources" aria-labelledby="src-t">
-    <div class="sechead"><div class="eyebrow">Méthode</div><h2 id="src-t">Hypothèses et sources</h2></div>
+    <div class="sechead"><div class="eyebrow">Méthode</div><h2 id="src-t">Mes hypothèses et mes sources</h2></div>
     <div class="card"><ul class="clean small">
-      <li>Prix HT relevés en ligne entre 2022 et novembre 2026. Les prix intra des grands réseaux d'éducation populaire ne sont pas publics&nbsp;; les fourchettes de terrain et de coaching commercial reposent en partie sur des estimations de guides spécialisés.</li>
+      <li>J'ai relevé les prix HT en ligne entre 2022 et novembre 2026. Les prix intra des grands réseaux d'éducation populaire ne sont pas publics&nbsp;; les fourchettes de terrain et de coaching commercial reposent en partie sur des estimations de guides spécialisés.</li>
       <li>Temps réel d'une prestation&nbsp;: heures animées, plus la préparation (0,6&nbsp;h par heure en formation, 0,8&nbsp;h en atelier court, 0,3&nbsp;h en coaching, 0,2&nbsp;h sur le terrain, 1&nbsp;h en diagnostic), plus la gestion et le trajet par déplacement.</li>
       <li>Prix plancher&nbsp;: chiffre d'affaires nécessaire divisé par les heures de mission disponibles (semaines travaillées × 35&nbsp;h × part du temps consacrée aux missions).</li>
-      <li>Ce n'est pas un conseil juridique, fiscal ou financier&nbsp;: les points de TVA et de statut sont à faire valider par un expert-comptable, et les taux à reconfirmer sur le site de l'Urssaf à l'inscription.</li>
+      <li>Cette étude n'est pas un avis juridique, fiscal ou financier&nbsp;: je ferai valider les points de TVA et de statut par un expert-comptable, et je reconfirmerai les taux sur le site de l'Urssaf à mon inscription.</li>
     </ul></div>
     <ul class="src">
       <li><a href="https://www.cnfpt.fr/sites/default/files/tarifs.pdf" target="_blank" rel="noopener">CNFPT : tarifs des formations intra et de l'accompagnement</a></li>
@@ -609,37 +615,37 @@ body.kz-test .topbar { top: var(--kztb, 50px) }
   <section id="verdict" aria-labelledby="v-t">
     <div class="verdict" data-only="full">
       <div class="eyebrow">Verdict</div>
-      <h2 id="v-t">Une activité viable, à condition de vendre au prix du marché et de remplir l'agenda</h2>
-      <p>L'étude conduit à quatre constats.</p>
+      <h2 id="v-t">Mon activité est viable, à condition de vendre au prix du marché et de remplir mon agenda</h2>
+      <p>Cette étude me conduit à quatre constats.</p>
       <ul>
-        <li><strong>Le prix plancher fixe la limite basse.</strong> Avec les hypothèses retenues, une journée de formation en groupe doit être facturée au moins <span data-v="day">624&nbsp;€</span>&nbsp;; en dessous, l'activité ne rémunère pas son dirigeant au niveau visé. Les prix recommandés se situent tous au-dessus de ce seuil.</li>
-        <li><strong>Les deux secteurs n'ont pas le même marché.</strong> L'animation se vend dans une fourchette publique, de 400 à 1&nbsp;200&nbsp;€ la journée intra, à des acheteurs attentifs au prix. Le commerce se vend 1,5 à 2&nbsp;fois plus cher, de 850 à 2&nbsp;300&nbsp;€ la journée intra, à des entreprises qui achètent un résultat. Chaque secteur a donc sa propre grille.</li>
-        <li><strong>La rentabilité tient aux formats.</strong> Les formats courts se facturent plus cher à l'heure, les remises sur les formats longs restent limitées, la session ouverte vendue par participant ouvre les petites structures, et les cycles et parcours installent des clients dans la durée.</li>
-        <li><strong>Le volume reste le vrai défi.</strong> Au prix recommandé de la journée de formation (<span data-v="dayp">850&nbsp;€</span>), il faut en facturer l'équivalent d'environ <span data-v="jours">55</span> par an pour atteindre l'objectif de revenu&nbsp;: la prospection, au bon moment de l'année, compte autant que le prix.</li>
+        <li><strong>Mon prix plancher fixe ma limite basse.</strong> Avec mes hypothèses, je dois facturer une journée de formation en groupe au moins <span data-v="day">624&nbsp;€</span>&nbsp;; en dessous, je ne me verse pas le revenu que je vise. Tous mes prix recommandés se situent au-dessus de ce seuil.</li>
+        <li><strong>Mes deux domaines n'ont pas le même marché.</strong> L'animation se vend dans une fourchette publique, de 400 à 1&nbsp;200&nbsp;€ la journée intra, à des acheteurs attentifs au prix. Le commerce se vend 1,5 à 2&nbsp;fois plus cher, de 850 à 2&nbsp;300&nbsp;€ la journée intra, à des entreprises qui achètent un résultat. J'ai donc une grille pour chacun.</li>
+        <li><strong>Ma rentabilité tient aux formats.</strong> Je facture les formats courts plus cher à l'heure, je limite les remises sur les formats longs, la session ouverte vendue par participant m'ouvre les petites structures, et les cycles et parcours installent mes clients dans la durée.</li>
+        <li><strong>Le volume reste mon vrai défi.</strong> Au prix recommandé de la journée de formation (<span data-v="dayp">850&nbsp;€</span>), je dois en facturer l'équivalent d'environ <span data-v="jours">55</span> par an pour atteindre mon objectif de revenu&nbsp;: la prospection, au bon moment de l'année, compte autant que le prix.</li>
       </ul>
-      <p><strong>Recommandation&nbsp;:</strong> adopter les deux grilles recommandées, les diffuser avec les conditions commerciales, suivre l'activité avec le simulateur et réviser les prix chaque année. Points de vigilance&nbsp;: le seuil de franchise de TVA, la baisse des financements de la formation pour les petites entreprises, le creux d'août et la dépendance aux calendriers budgétaires publics.</p>
+      <p><strong>Ce que je mets en place&nbsp;:</strong> j'adopte les deux grilles recommandées, je les diffuse avec mes conditions commerciales, je suis mon activité avec le simulateur et je révise mes prix chaque année. <strong>Mes points de vigilance&nbsp;:</strong> le seuil de franchise de TVA, la baisse des financements de la formation pour les petites entreprises, le creux d'août et la dépendance aux calendriers budgétaires publics.</p>
     </div>
     <div class="verdict pdfonly" data-only="acm">
       <div class="eyebrow">Verdict</div>
-      <h2>Une grille ACM viable et crédible face aux acheteurs publics</h2>
-      <p>L'étude conduit à trois constats pour le secteur animation.</p>
+      <h2>Ma grille ACM est viable et crédible face aux acheteurs publics</h2>
+      <p>Cette étude me conduit à trois constats pour l'animation.</p>
       <ul>
-        <li><strong>Le prix plancher fixe la limite basse.</strong> Avec les hypothèses retenues, une journée de formation en groupe doit être facturée au moins <span data-v="day">624&nbsp;€</span>. La journée recommandée, autour de 850&nbsp;€, se situe au-dessus de ce seuil et au milieu de la fourchette du CNFPT.</li>
-        <li><strong>La rentabilité tient aux formats.</strong> Ateliers et séances de coaching plus chers à l'heure, remises limitées sur les formats longs, session ouverte par participant pour les petites structures, cycles d'analyse de pratiques et parcours d'équipe pour installer des clients dans la durée.</li>
-        <li><strong>Le calendrier commande les ventes.</strong> Les collectivités votent leur budget au printemps et les besoins des équipes culminent avant l'été&nbsp;: la prospection se fait de septembre à janvier.</li>
+        <li><strong>Mon prix plancher fixe ma limite basse.</strong> Avec mes hypothèses, je dois facturer une journée de formation en groupe au moins <span data-v="day">624&nbsp;€</span>. Ma journée recommandée, autour de 850&nbsp;€, se situe au-dessus de ce seuil et au milieu de la fourchette du CNFPT.</li>
+        <li><strong>Ma rentabilité tient aux formats.</strong> Ateliers et séances de coaching plus chers à l'heure, remises limitées sur les formats longs, session ouverte par participant pour les petites structures, cycles d'analyse de pratiques et parcours d'équipe pour installer mes clients dans la durée.</li>
+        <li><strong>Le calendrier commande mes ventes.</strong> Les collectivités votent leur budget au printemps et les besoins des équipes culminent avant l'été&nbsp;: je prospecte de septembre à janvier.</li>
       </ul>
-      <p><strong>Recommandation&nbsp;:</strong> adopter la grille recommandée, la diffuser avec les conditions commerciales et la réviser chaque année. Points de vigilance&nbsp;: le creux d'août, la concurrence gratuite du catalogue du CNFPT pour les agents territoriaux, et Qualiopi dès que des associations demandent un financement.</p>
+      <p><strong>Ce que je mets en place&nbsp;:</strong> j'adopte ma grille recommandée, je la diffuse avec mes conditions commerciales et je la révise chaque année. <strong>Mes points de vigilance&nbsp;:</strong> le creux d'août, la concurrence gratuite du catalogue du CNFPT pour les agents territoriaux, et Qualiopi dès que des associations demandent un financement.</p>
     </div>
     <div class="verdict pdfonly" data-only="com">
       <div class="eyebrow">Verdict</div>
-      <h2>Une grille commerce au prix d'un formateur confirmé</h2>
-      <p>L'étude conduit à trois constats pour l'accompagnement commercial.</p>
+      <h2>Ma grille commerce, au prix d'un formateur confirmé</h2>
+      <p>Cette étude me conduit à trois constats pour l'accompagnement commercial.</p>
       <ul>
-        <li><strong>Le marché paie le résultat.</strong> Les organismes facturent de 850 à 2&nbsp;300&nbsp;€ la journée intra&nbsp;; la journée recommandée, autour de 1&nbsp;200&nbsp;€, est crédible sans marque connue ni certification, et largement au-dessus du prix plancher (<span data-v="day">624&nbsp;€</span>).</li>
-        <li><strong>Le terrain fait la différence.</strong> L'accompagnement en clientèle, rare sur le marché, se vend mieux que la formation seule&nbsp;; le diagnostic ouvre la porte au parcours de 3&nbsp;mois.</li>
-        <li><strong>Les entreprises paient sur leur budget.</strong> Les financements des OPCO se raréfient pour les moins de 50&nbsp;salariés&nbsp;: la vente repose sur le retour sur investissement chiffré avec le dirigeant.</li>
+        <li><strong>Le marché paie le résultat.</strong> Les organismes facturent de 850 à 2&nbsp;300&nbsp;€ la journée intra&nbsp;; ma journée recommandée, autour de 1&nbsp;200&nbsp;€, est crédible sans marque connue ni certification, et largement au-dessus de mon prix plancher (<span data-v="day">624&nbsp;€</span>).</li>
+        <li><strong>Le terrain fait ma différence.</strong> L'accompagnement en clientèle, rare sur le marché, se vend mieux que la formation seule&nbsp;; le diagnostic m'ouvre la porte du parcours de 3&nbsp;mois.</li>
+        <li><strong>Les entreprises paient sur leur budget.</strong> Les financements des OPCO se raréfient pour les moins de 50&nbsp;salariés&nbsp;: je vends en chiffrant avec le dirigeant son retour sur investissement.</li>
       </ul>
-      <p><strong>Recommandation&nbsp;:</strong> adopter la grille recommandée, commencer par le diagnostic et le parcours, et réviser les prix chaque année. Points de vigilance&nbsp;: le seuil de franchise de TVA pour le coaching et le conseil, et la durée des cycles de décision dans les PME.</p>
+      <p><strong>Ce que je mets en place&nbsp;:</strong> j'adopte ma grille recommandée, je commence par le diagnostic et le parcours, et je révise mes prix chaque année. <strong>Mes points de vigilance&nbsp;:</strong> le seuil de franchise de TVA pour le coaching et le conseil, et la durée des cycles de décision dans les PME.</p>
     </div>
   </section>
 </main>
@@ -1364,7 +1370,7 @@ async function drawPoster(cv, pole, targetW) {
   await fontsReady(); const logo = await logoImg();
   const A = S.aff[pole], W = targetW, sc = W / PW;
   cv.width = Math.round(W); cv.height = Math.round(PH * sc);
-  const ctx = nnbsp(cv.getContext('2d')); ctx.setTransform(sc, 0, 0, sc, 0, 0); ctx.textBaseline = 'alphabetic';
+  const ctx = nnbsp(cv.getContext('2d')); ctx.imageSmoothingQuality = 'high'; ctx.setTransform(sc, 0, 0, sc, 0, 0); ctx.textBaseline = 'alphabetic';
   // fond et arcs
   ctx.fillStyle = PC.bg; ctx.fillRect(0, 0, PW, PH);
   ctx.save(); ctx.strokeStyle = PC.goldLt; ctx.globalAlpha = .85;
@@ -1478,7 +1484,7 @@ function pdfStr(s) { let h = 'FEFF'; for (const c of String(s)) { const cp = c.c
 function pdfFromJpegs(pages, meta = {}) {
   const enc = new TextEncoder(), parts = [], offs = []; let len = 0;
   const push = x => { const b = typeof x === 'string' ? enc.encode(x) : x; parts.push(b); len += b.length; };
-  const PWpt = 595.28, PHpt = 841.89, n = pages.length, total = 3 + n * 3;
+  const PWpt = 595.28, PHpt = 841.89, n = pages.length, imgs = meta.imgs || [], total = 3 + n * 3 + imgs.length, f3 = v => (+v).toFixed(3);
   push('%PDF-1.4\n'); push(new Uint8Array([37, 226, 227, 207, 211, 10]));
   const obj = (id, body) => { offs[id] = len; push(id + ' 0 obj\n'); body(); push('\nendobj\n'); };
   obj(1, () => push('<< /Type /Catalog /Pages 2 0 R >>'));
@@ -1486,11 +1492,14 @@ function pdfFromJpegs(pages, meta = {}) {
   const d = new Date(), p2 = v => String(v).padStart(2, '0');
   obj(3, () => push(`<< /Title ${pdfStr(meta.title || '')} /Author ${pdfStr(meta.author || '')} /Subject ${pdfStr(meta.subject || '')} /Creator ${pdfStr('KALAILET CONSEIL')} /CreationDate (D:${d.getFullYear()}${p2(d.getMonth() + 1)}${p2(d.getDate())}${p2(d.getHours())}${p2(d.getMinutes())}${p2(d.getSeconds())}) >>`));
   pages.forEach((pg, i) => {
-    const pid = 4 + i * 3, cid = pid + 1, iid = pid + 2, cs = `q ${PWpt} 0 0 ${PHpt} 0 0 cm /Im0 Do Q`;
-    obj(pid, () => push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PWpt} ${PHpt}] /Resources << /XObject << /Im0 ${iid} 0 R >> /ProcSet [/PDF /ImageC] >> /Contents ${cid} 0 R >>`));
+    const pid = 4 + i * 3, cid = pid + 1, iid = pid + 2, ov = (pg.ov || []).filter(o => imgs[o.i]);
+    const cs = `q ${PWpt} 0 0 ${PHpt} 0 0 cm /Im0 Do Q` + ov.map(o => ` q ${f3(o.w)} 0 0 ${f3(o.h)} ${f3(o.x)} ${f3(o.y)} cm /Lg${o.i} Do Q`).join('');
+    const xo = `/Im0 ${iid} 0 R` + [...new Set(ov.map(o => o.i))].map(k => ` /Lg${k} ${4 + n * 3 + k} 0 R`).join('');
+    obj(pid, () => push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PWpt} ${PHpt}] /Resources << /XObject << ${xo} >> /ProcSet [/PDF /ImageC] >> /Contents ${cid} 0 R >>`));
     obj(cid, () => { push(`<< /Length ${cs.length} >>\nstream\n`); push(cs); push('\nendstream'); });
     obj(iid, () => { push(`<< /Type /XObject /Subtype /Image /Width ${pg.w} /Height ${pg.h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${pg.bytes.length} >>\nstream\n`); push(pg.bytes); push('\nendstream'); });
   });
+  imgs.forEach((im, k) => obj(4 + n * 3 + k, () => { push(`<< /Type /XObject /Subtype /Image /Width ${im.w} /Height ${im.h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${im.bytes.length} >>\nstream\n`); push(im.bytes); push('\nendstream'); }));
   const xref = len; let x = `xref\n0 ${total + 1}\n0000000000 65535 f \n`;
   for (let i = 1; i <= total; i++) x += String(offs[i]).padStart(10, '0') + ' 00000 n \n';
   push(x + `trailer\n<< /Size ${total + 1} /Root 1 0 R /Info 3 0 R >>\nstartxref\n${xref}\n%%EOF\n`);
@@ -1612,16 +1621,16 @@ const SUB = t => [{ br: true }, { t, sub: true }];
 const GEN = {
   calc(B) {
     const h = S.hyp, c = calc();
-    B.push({ t: 'h3', runs: R('Hypothèses retenues'), gapB: 6 });
+    B.push({ t: 'h3', runs: R('Mes hypothèses'), gapB: 6 });
     B.push({ t: 'table', head: ['Hypothèse', 'Valeur'], widths: [68, 32], align: ['l', 'r'], rows: [
-      ['Revenu net visé par mois', eur(h.net)], ['Semaines travaillées par an', h.semaines + ' semaines'], ['Part du temps consacrée aux missions', pct(h.part)],
+      ['Revenu net que je vise par mois', eur(h.net)], ['Semaines travaillées par an', h.semaines + ' semaines'], ['Part du temps consacrée aux missions', pct(h.part)],
       ['Trajet moyen aller-retour, par journée sur place', nf1.format(h.trajet) + ' h'], ['Cotisations sociales (micro-entreprise libérale)', pct(h.coti)], ['Contribution à la formation professionnelle', pct(h.cfp)],
       ['Versement libératoire de l\'impôt', h.vl ? 'oui, ' + pct(h.vlr) : 'non'], ['ACRE la première année', h.acre ? 'oui' : 'non'], ['Frais fixes annuels (détail ci-dessous)', eur(c.fixes)]].map(r => ({ cells: [R(r[0]), R(r[1])] })) });
     B.push({ t: 'kpis', cells: [[eur(c.ca), 'chiffre d\'affaires annuel nécessaire', 1], [eur(c.day), 'prix plancher d\'une journée de formation en groupe', 1], [eur(c.coach), 'prix plancher d\'une séance de coaching de 2 h'], [eur(c.ph), 'par heure réellement travaillée, préparation et trajet compris']] });
-    B.push({ t: 'p', style: 'small', runs: [...R('L\'activité dispose de '), ...Rb(n0(c.heures) + ' heures'), ...R(' de missions par an, soit l\'équivalent de '), ...Rb(n0(c.jours) + ' journées de formation'), ...R(' préparées et animées. ' + pct(c.rEff) + ' de chaque euro encaissé part en cotisations, formation professionnelle et impôt.')] });
-    const tv = c.ca > LIMITS.micro ? [...Rb('Plafond. ', { c: RC.bad }), ...R('Au-dessus de ' + eur(LIMITS.micro) + ', l\'activité sortirait de la micro-entreprise.')]
-      : c.ca > LIMITS.tva ? [...Rb('TVA. ', { c: RC.warn }), ...R('Ce chiffre d\'affaires dépasse le seuil de franchise (' + eur(LIMITS.tva) + '). Ce n\'est pas un problème si les formations sont exonérées (voir « Financements et cadre ») : seules les autres prestations comptent alors dans le seuil.')]
-      : [...Rb('TVA. ', { c: RC.good }), ...R('Sous ' + eur(LIMITS.tva) + ', l\'activité reste en franchise : le prix HT est aussi le prix payé par le client.')];
+    B.push({ t: 'p', style: 'small', runs: [...R('Je dispose de '), ...Rb(n0(c.heures) + ' heures'), ...R(' de missions par an, soit l\'équivalent de '), ...Rb(n0(c.jours) + ' journées de formation'), ...R(' préparées et animées. ' + pct(c.rEff) + ' de chaque euro que j\'encaisse part en cotisations, formation professionnelle et impôt.')] });
+    const tv = c.ca > LIMITS.micro ? [...Rb('Plafond. ', { c: RC.bad }), ...R('Au-dessus de ' + eur(LIMITS.micro) + ', je sortirais de la micro-entreprise.')]
+      : c.ca > LIMITS.tva ? [...Rb('TVA. ', { c: RC.warn }), ...R('Ce chiffre d\'affaires dépasse le seuil de franchise (' + eur(LIMITS.tva) + '). Ce n\'est pas un problème si mes formations sont exonérées (voir « Financements et cadre ») : seules mes autres prestations comptent alors dans le seuil.')]
+      : [...Rb('TVA. ', { c: RC.good }), ...R('Sous ' + eur(LIMITS.tva) + ', je reste en franchise : le prix HT est aussi le prix payé par mon client.')];
     B.push({ t: 'p', style: 'small', runs: tv });
     const P = c.day, ch = P * c.rEff, fr = c.fixes * c.realDay / c.heures;
     B.push({ t: 'split', P, real: c.realDay, seg: [[RC.bad, ch, 'Cotisations et impôt'], [RC.gold, fr, 'Part des frais fixes'], [RC.good, P - ch - fr, 'Revenu']] });
@@ -1634,8 +1643,8 @@ const GEN = {
   'com-prop'(B) { B.push(gridBlock(PROPOSAL.filter(l => l.pole === 'com'))); },
   mygrid(B, mode) {
     const poles = mode === 'full' ? ['acm', 'com'] : [mode];
-    B.push({ t: 'section' }); B.push({ t: 'eyebrow', runs: R('Grille retenue') }); B.push({ t: 'h2', runs: R('La grille tarifaire retenue') });
-    B.push({ t: 'p', style: 'muted', runs: R('Ces prix sont ceux appliqués dans les devis, contrats et factures de KALAILET CONSEIL. Ils partent de la proposition de l\'étude, ajustée par l\'entrepreneur. Prix hors taxes ; la marge est calculée sur le temps réel de chaque prestation, avec les hypothèses du prix plancher.') });
+    B.push({ t: 'section' }); B.push({ t: 'eyebrow', runs: R('Grille retenue') }); B.push({ t: 'h2', runs: R('La grille tarifaire que je retiens') });
+    B.push({ t: 'p', style: 'muted', runs: R('Ce sont les prix que j\'applique dans mes devis, contrats et factures : la grille recommandée par cette étude, avec mes ajustements. Prix hors taxes ; la marge est calculée sur le temps réel de chaque prestation, avec les hypothèses de mon prix plancher.') });
     for (const pole of poles) {
       const L = S.lines.filter(l => l.pole === pole); if (!L.length) continue;
       B.push({ t: 'h3', runs: R(pole === 'acm' ? 'Animation et accueils collectifs de mineurs' : 'Accompagnement commercial'), gapB: 6 });
@@ -1651,9 +1660,9 @@ const GEN = {
   },
   sim(B) {
     const r = simRun(), capa = S.hyp.semaines * 5, load = r.joursR / capa;
-    B.push({ t: 'section' }); B.push({ t: 'eyebrow', runs: R('Projection') }); B.push({ t: 'h2', runs: R('Simulation d\'activité') });
-    const pre = S.sim.preset === 'an1' ? 'Volumes de l\'année 1 (2027, lancement)' : S.sim.preset === 'an2' ? 'Volumes de l\'année 2 (2028)' : 'Volumes retenus par l\'entrepreneur';
-    B.push({ t: 'p', style: 'muted', runs: R(pre + ', valorisés au prix moyen de la grille retenue et répartis selon la saison : peu de formations en août' + (S.sim.preset === 'an1' ? ', montée en charge sur les 9 premiers mois.' : '.') + (S.sim.exo ? ' Hypothèse : formations exonérées de TVA.' : '')) });
+    B.push({ t: 'section' }); B.push({ t: 'eyebrow', runs: R('Projection') }); B.push({ t: 'h2', runs: R('Ma simulation d\'activité') });
+    const pre = S.sim.preset === 'an1' ? 'Mes volumes de l\'année 1 (2027, lancement)' : S.sim.preset === 'an2' ? 'Mes volumes de l\'année 2 (2028)' : 'Les volumes que je me fixe';
+    B.push({ t: 'p', style: 'muted', runs: R(pre + ', valorisés au prix moyen de ma grille et répartis selon la saison : peu de formations en août' + (S.sim.preset === 'an1' ? ', montée en charge sur les 9 premiers mois.' : '.') + (S.sim.exo ? ' Hypothèse : formations exonérées de TVA.' : '')) });
     const rows = []; let tot = 0;
     for (const pole of ['acm', 'com']) {
       let sub = 0; const R2 = [];
@@ -1771,7 +1780,7 @@ function layoutBlocks(ctx, blocks) {
       }
       case 'ranges': {
         items.push({ k: 'rlegend', h: 34, legend: b.legend, x: X(), w: Wd(), g: G, keepNext: true });
-        b.rows.forEach(r => { items.push({ k: 'range', h: 70, r, x: X(), w: Wd(), g: G }); }); gap(6); break;
+        b.rows.forEach(r => { items.push({ k: 'range', h: 96, r, x: X(), w: Wd(), g: G }); }); gap(6); break;
       }
       case 'split': items.push({ k: 'split', h: 132, b, x: X(), w: Wd(), g: G }); gap(10); break;
       case 'chart': items.push({ k: 'chart', h: 372, b, x: X(), w: Wd(), g: G }); gap(10); break;
@@ -1827,13 +1836,19 @@ function drawItem(ctx, it) {
       ctx.fillStyle = RC.muted; ctx.fillText(t, x + 30, it.y + 21); x += 30 + ctx.measureText(t).width + 26; });
   } else if (it.k === 'range') {
     const r = it.r, nmW = 380, tx = it.x + nmW + 20, tw = it.w - nmW - 40, max = Math.max(r.max, r.cur || 0, r.prop || 0) * 1.12, X = v => tx + v / max * tw;
-    ctx.fillStyle = RC.ink; ctx.font = fnt(600, 16.5, SANS); ctx.textAlign = 'left'; ctx.fillText(r.n, it.x, it.y + 24);
-    const vals = r.prop ? 'recommandé ' + eur(r.prop) : '';
-    ctx.fillStyle = RC.muted; ctx.font = fnt(400, 14, SANS); wrapText(ctx, r.s + (vals ? ' · ' + vals : ''), nmW).slice(0, 2).forEach((s, i) => ctx.fillText(s, it.x, it.y + 46 + i * 19));
-    ctx.fillStyle = RC.grid; ctx.strokeStyle = RC.axis; ctx.lineWidth = 1.2; rrect(ctx, X(r.min), it.y + 18, X(r.max) - X(r.min), 13, 6); ctx.fill(); ctx.stroke();
-    const dia = (v, col) => { ctx.save(); ctx.translate(X(v), it.y + 24.5); ctx.rotate(Math.PI / 4); ctx.fillStyle = col; ctx.strokeStyle = RC.white; ctx.lineWidth = 2.5; ctx.fillRect(-8, -8, 16, 16); ctx.strokeRect(-8, -8, 16, 16); ctx.restore(); };
+    const by = it.y + 50; // axe de la bande
+    ctx.fillStyle = RC.ink; ctx.font = fnt(600, 16.5, SANS); ctx.textAlign = 'left'; ctx.fillText(r.n, it.x, it.y + 40);
+    ctx.fillStyle = RC.muted; ctx.font = fnt(400, 14, SANS); wrapText(ctx, r.s, nmW).slice(0, 2).forEach((s, i) => ctx.fillText(s, it.x, it.y + 62 + i * 19));
+    ctx.fillStyle = RC.grid; ctx.strokeStyle = RC.axis; ctx.lineWidth = 1.2; rrect(ctx, X(r.min), by - 6.5, X(r.max) - X(r.min), 13, 6); ctx.fill(); ctx.stroke();
+    const dia = (v, col) => { ctx.save(); ctx.translate(X(v), by); ctx.rotate(Math.PI / 4); ctx.fillStyle = col; ctx.strokeStyle = RC.white; ctx.lineWidth = 2.5; ctx.fillRect(-8, -8, 16, 16); ctx.strokeRect(-8, -8, 16, 16); ctx.restore(); };
     if (r.cur) dia(r.cur, RC.axis); if (r.prop) dia(r.prop, RC.gold);
-    ctx.fillStyle = RC.muted; ctx.font = fnt(400, 13, SANS); ctx.textAlign = 'center'; ctx.fillText(eur(r.min), X(r.min), it.y + 52); ctx.fillText(eur(r.max), X(r.max), it.y + 52);
+    if (r.prop) { // étiquette du prix recommandé, pointée sur le losange
+      const t = eur(r.prop); ctx.font = fnt(700, 16, SANS); const pw = ctx.measureText(t).width + 22, ph = 27, px = Math.min(Math.max(X(r.prop) - pw / 2, tx - 6), tx + tw + 14 - pw), py = by - 17 - ph;
+      ctx.fillStyle = RC.gold; rrect(ctx, px, py, pw, ph, 7); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(X(r.prop) - 6, py + ph - 0.5); ctx.lineTo(X(r.prop) + 6, py + ph - 0.5); ctx.lineTo(X(r.prop), py + ph + 6); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = RC.white; ctx.textAlign = 'center'; ctx.fillText(t, px + pw / 2, py + 19.5);
+    }
+    ctx.fillStyle = RC.muted; ctx.font = fnt(400, 13, SANS); ctx.textAlign = 'center'; ctx.fillText(eur(r.min), X(r.min), by + 27); ctx.fillText(eur(r.max), X(r.max), by + 27);
   } else if (it.k === 'split') {
     const b = it.b; ctx.fillStyle = RC.ink; ctx.font = fnt(600, 17, SANS); ctx.textAlign = 'left'; ctx.fillText('Une journée de formation vendue ' + eur(b.P), it.x, it.y + 22);
     ctx.fillStyle = RC.muted; ctx.font = fnt(400, 15, SANS); ctx.textAlign = 'right'; ctx.fillText(nf1.format(b.real) + ' h de travail réel', it.x + it.w, it.y + 22);
@@ -1917,7 +1932,7 @@ function drawCover(ctx, logo, mode, toc, forWho) {
 async function buildStudyPdf(mode, opts, progress) {
   await fontsReady(); const logo = await logoImg();
   const cv = document.createElement('canvas'); cv.width = Math.round(RW * RSCALE); cv.height = Math.round(RH * RSCALE);
-  const ctx = nnbsp(cv.getContext('2d')); ctx.setTransform(RSCALE, 0, 0, RSCALE, 0, 0); ctx.textBaseline = 'alphabetic';
+  const ctx = nnbsp(cv.getContext('2d')); ctx.imageSmoothingQuality = 'high'; ctx.setTransform(RSCALE, 0, 0, RSCALE, 0, 0); ctx.textBaseline = 'alphabetic';
   const items = layoutBlocks(ctx, blocksFor(mode)), pages = paginate(items);
   const posters = opts.poster ? (mode === 'full' ? ['acm', 'com'] : [mode]).filter(p => S.lines.some(l => l.pole === p && !l.off)) : [];
   const total = 1 + pages.length + posters.length, toc = [];
@@ -1926,8 +1941,26 @@ async function buildStudyPdf(mode, opts, progress) {
   const out = []; const step = async () => { out.push(await canvasJpeg(cv, 0.86)); progress && progress(out.length, total); await new Promise(r => setTimeout(r, 0)); };
   ctx.setTransform(RSCALE, 0, 0, RSCALE, 0, 0); drawCover(ctx, logo, mode, toc, opts.forWho); await step();
   for (let i = 0; i < pages.length; i++) { ctx.setTransform(RSCALE, 0, 0, RSCALE, 0, 0); drawChrome(ctx, logo, i + 2, total, mode); drawGroupBgs(ctx, pages[i]); pages[i].forEach(it => drawItem(ctx, it)); await step(); }
-  for (const p of posters) { const pc = document.createElement('canvas'); await drawPoster(pc, p, RW * RSCALE); out.push(await canvasJpeg(pc, 0.9)); progress && progress(out.length, total); }
-  return pdfFromJpegs(out, { title: 'Étude & stratégie tarifaire KALAILET CONSEIL : ' + MODE_LBL[mode], author: 'Khalid AJDID, KALAILET CONSEIL', subject: 'Étude & stratégie tarifaire, novembre 2026' });
+  for (const p of posters) { const pc = document.createElement('canvas'); await drawPoster(pc, p, PW * 1.4); out.push(await canvasJpeg(pc, 0.9)); progress && progress(out.length, total); }
+  // le logo (et ses écritures) est réinséré à sa pleine résolution : il reste net quel que soit le zoom
+  const imgs = [];
+  if (logo) try {
+    const lw = 62 * logo.width / logo.height, ch = 520 * logo.height / logo.width;
+    const hdr = await logoPatch(c => drawChrome(c, logo, 0, 0, mode), RML - 3, 19, lw + 6, 68, logo.height / 62);
+    const cov = await logoPatch(c => drawCover(c, logo, mode, toc, opts.forWho), RW / 2 - 263, 117, 526, ch + 6, Math.max(2, logo.width / 520));
+    imgs.push(cov.img, hdr.img);
+    out[0].ov = [{ i: 0, ...cov.at }];
+    for (let i = 1; i <= pages.length; i++) out[i].ov = [{ i: 1, ...hdr.at }];
+  } catch (e) { }
+  return pdfFromJpegs(out, { title: 'Étude & stratégie tarifaire KALAILET CONSEIL : ' + MODE_LBL[mode], author: 'Khalid AJDID, KALAILET CONSEIL', subject: 'Étude & stratégie tarifaire, novembre 2026', imgs });
+}
+// dessine une zone de la page (x, y, w, h en unités de page) à l'échelle sc, et donne sa place en points PDF
+async function logoPatch(draw, x, y, w, h, sc) {
+  const c = document.createElement('canvas'); c.width = Math.ceil(w * sc); c.height = Math.ceil(h * sc);
+  const ctx = nnbsp(c.getContext('2d')); ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+  ctx.setTransform(sc, 0, 0, sc, -x * sc, -y * sc); ctx.textBaseline = 'alphabetic'; draw(ctx);
+  const img = await canvasJpeg(c, 0.95), W2 = c.width / sc, H2 = c.height / sc, kx = 595.28 / RW, ky = 841.89 / RH;
+  return { img, at: { x: x * kx, y: 841.89 - (y + H2) * ky, w: W2 * kx, h: H2 * ky } };
 }
 
 // ───────── formats
@@ -2037,10 +2070,10 @@ const durTxt = h => h >= 35 && h % 35 === 0 ? (h / 35) + (h / 35 > 1 ? ' semaine
 function renderRanges(id, rows) {
   $(id).innerHTML = rows.map(r => {
     const max = Math.max(r.max, r.cur || 0, r.prop || 0) * 1.12, X = v => (v / max * 100).toFixed(2) + '%';
-    const vals = r.prop ? `<b style="color:var(--gold)">recommandé ${eur(r.prop)}</b>` : '';
-    return `<div class="r"><div class="nm">${esc(r.n)}<span>${esc(r.s)}${vals ? ' · ' + vals : ''}</span></div>
+    const pp = r.prop ? r.prop / max * 100 : 0, sh = pp < 14 ? '-18%' : pp > 80 ? '-82%' : '-50%';
+    return `<div class="r"><div class="nm">${esc(r.n)}<span>${esc(r.s)}</span></div>
     <div class="track"><div class="band" style="left:${X(r.min)};width:calc(${X(r.max)} - ${X(r.min)})" title="Marché : ${eur(r.min)} à ${eur(r.max)}"></div>
-      ${r.cur ? `<div class="me cur" style="left:${X(r.cur)}" title="Actuel : ${eur(r.cur)}"></div>` : ''}${r.prop ? `<div class="me prop" style="left:${X(r.prop)}" title="Prix recommandé : ${eur(r.prop)}"></div>` : ''}
+      ${r.cur ? `<div class="me cur" style="left:${X(r.cur)}" title="Actuel : ${eur(r.cur)}"></div>` : ''}${r.prop ? `<div class="me prop" style="left:${X(r.prop)}" title="Prix recommandé : ${eur(r.prop)}"></div><span class="rp" style="left:${X(r.prop)};--sh:${sh}" aria-label="Prix recommandé : ${eur(r.prop)}">${eur(r.prop)}</span>` : ''}
       <span class="lbl" style="left:${X(r.min)}">${eur(r.min)}</span><span class="lbl" style="left:${X(r.max)}">${eur(r.max)}</span></div></div>`; }).join('');
 }
 
